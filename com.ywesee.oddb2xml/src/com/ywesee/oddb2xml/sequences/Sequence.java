@@ -1,7 +1,9 @@
 package com.ywesee.oddb2xml.sequences;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -37,29 +39,43 @@ public class Sequence {
 	public static Function<String, Sequence> mapToSequence = (line) -> {
 		Sequence seq = null;
 		
-		String[] p = line.split(";", Integer.MAX_VALUE);
-		String prodno = p[0];
-		p = Arrays.copyOfRange(p, 1, p.length);
-		if (p.length < 8) {
+		String[] tokens = line.split(";", Integer.MAX_VALUE);
+		String prodno = tokens[0];
+		tokens = Arrays.copyOfRange(tokens, 1, tokens.length);
+		if (tokens.length < 8) {
 			System.out.println("ERROR in sequence [" + line + "]");
 		}
-		for (int i = 0; i < (p.length / 8); i++) {
-			String[] value = Arrays.copyOfRange(p, i * 8, ((i + 1) * 8));
+		List<String[]> sequences = new ArrayList<String[]>();
+		boolean error = false;
+		for (int i = 0; i < (tokens.length / 8); i++) {
+			String[] value = Arrays.copyOfRange(tokens, i * 8, ((i + 1) * 8));
+			sequences.add(value);
 			if (i == 0) {
 				seq = new Sequence(prodno, value[1], "--missing--");
 			}
-			
+
 			SequenceItem si = new SequenceItem();
 			si.setDesc1(value[0].trim());
 			si.setDesc2(value[1].trim());
 			si.setGalenicForm(value[2].trim());
-			si.setGtin(value[3].trim());
+			String gtin = value[3].trim();
+			if (!gtin.matches("^-?\\d+$")) {
+				System.out.println(
+					"ERROR is not integer [" + gtin + "] seq [" + i + "] line [" + line + "]");
+				error = true;
+			}
+			si.setGtin(gtin);
 			si.setAmount(value[4].trim());
 			si.setMunit(value[5].trim());
 			si.setPexf(value[6].trim());
 			si.setPpub(value[7].trim());
 			if (seq != null) {
 				seq.getSequenceItems().put(si.getGtin(), si);
+			}
+		}
+		if(error) {
+			for (String[] sequence : sequences) {
+				System.out.println("\t" + Arrays.toString(sequence));
 			}
 		}
 		

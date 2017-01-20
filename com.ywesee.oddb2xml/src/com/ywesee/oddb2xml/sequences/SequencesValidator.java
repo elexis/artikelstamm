@@ -14,26 +14,33 @@ public class SequencesValidator {
 		List<Sequence> readSequencesFile =
 			SequencesHelper.readSequencesFile(oddb2xmlSequencesFileObj);
 		boolean containsDoubleProdno = checkForDoubleProdno(readSequencesFile);
-		boolean containsDoubleGTIN = checkForDoubleGtin(readSequencesFile);
+		boolean containsDoubleGTIN = checkForValidAndUniqueGtin(readSequencesFile);
 		return (containsDoubleProdno || containsDoubleGTIN);
 	}
 	
-	private static boolean checkForDoubleGtin(List<Sequence> readSequencesFile){
+	private static boolean checkForValidAndUniqueGtin(List<Sequence> readSequencesFile){
 		Set<String> gtins = new HashSet<>();
-		boolean containsDouble = false;
+		boolean error = false;
 		for (Sequence seq : readSequencesFile) {
 			Set<Entry<String, SequenceItem>> entrySet = seq.getSequenceItems().entrySet();
 			for (Entry<String, SequenceItem> entry : entrySet) {
 				SequenceItem value = entry.getValue();
+				String gtin = value.gtin;
+				if (!gtin.matches("^-?\\d+$")) {
+					error = true;
+					System.out.println("Numeric GTIN violation [" + gtin + "] in " + seq);
+					continue;
+				}
+				
 				if (gtins.contains(value.gtin)) {
-					containsDouble = true;
+					error = true;
 					System.out.println("Unique GTIN violation [" + value.gtin + "] in " + seq);
 				} else {
 					gtins.add(value.gtin);
 				}
 			}
 		}
-		return containsDouble;
+		return error;
 	}
 	
 	private static boolean checkForDoubleProdno(List<Sequence> readSequencesFile){
