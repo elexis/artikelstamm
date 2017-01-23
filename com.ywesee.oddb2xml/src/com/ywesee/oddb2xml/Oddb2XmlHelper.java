@@ -13,9 +13,7 @@ package com.ywesee.oddb2xml;
 import java.io.File;
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -28,7 +26,6 @@ import com.ywesee.oddb2xml.limitation.LIM;
 import com.ywesee.oddb2xml.limitation.LIMITATION;
 import com.ywesee.oddb2xml.product.PRD;
 import com.ywesee.oddb2xml.product.PRODUCT;
-import com.ywesee.oddb2xml.sequences.Sequence;
 
 public class Oddb2XmlHelper {
 	private static HashMap<String, LIM> limitationListCache;

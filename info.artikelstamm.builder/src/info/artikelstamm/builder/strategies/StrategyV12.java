@@ -137,13 +137,14 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 				item.setPRODNO(seqProduct.getProdno());
 				item.setPHARMATYPE("P");
 				item.setDSCR(sequenceItem.getDesc1());
+				item.setDSCRF("--missing--");
 				item.setGTIN(sequenceItem.getGtin());
 				try {
 					int amount = Integer.parseInt(sequenceItem.getAmount());
 					item.setPKGSIZE(amount);
 				} catch (NumberFormatException nfe) {
-					System.out.println(item.getGTIN() + ": Invalid number string "
-						+ sequenceItem.getAmount() + " in sequences");
+					System.out.println("{"+item.getGTIN() + "} Invalid amount integer ["
+						+ sequenceItem.getAmount() + "] in oddb2xml sequences file.");
 					invalidPackageSize++;
 				}
 				
@@ -269,7 +270,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		List<ITEM> artikelstammItems = artikelstamm.getITEMS().getITEM();
 		for (ITEM artikelstammItem : artikelstammItems) {
 			if (artikelstammItem.getGTIN().length() == 0) {
-				System.out.println("No GTIN [" + artikelstammItem.getDSCR() + "]");
+				System.out.println("No GTIN defined for article [" + artikelstammItem.getDSCR() + "]");
 				continue;
 			}
 			
@@ -406,8 +407,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		HashMap<String, ARTPRI> hmPrices = new HashMap<>();
 		for (ARTPRI artpri : a.getARTPRI()) {
 			if (artpri.getPTYP() == null || artpri.getPRICE() == null) {
-				System.out
-					.println("ERROR " + item.getGTIN() + ": Invalid or no price information.");
+				System.out.println("{" + item.getGTIN() + "} Invalid or no price information.");
 				continue;
 			}
 			hmPrices.put(artpri.getPTYP(), artpri);
@@ -418,15 +418,13 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 			if (hmPrices.containsKey("PPUB")) {
 				ppub = hmPrices.get("PPUB").getPRICE().doubleValue();
 			} else {
-				System.out
-					.println("ERROR no PPUB for " + item.getDSCR() + " (" + item.getGTIN() + ")");
+				System.out.println("{" + item.getGTIN() + "} No PPUB for " + item.getDSCR());
 			}
 			
 			if (hmPrices.containsKey("PEXF")) {
 				pexf = hmPrices.get("PEXF").getPRICE().doubleValue();
 			} else {
-				System.out
-					.println("ERROR no PEXF for " + item.getDSCR() + " (" + item.getGTIN() + ")");
+				System.out.println("{" + item.getGTIN() + "} No PEXF for " + item.getDSCR());
 			}
 		} else {
 			// fetch public prices
