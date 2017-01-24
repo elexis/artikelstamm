@@ -80,7 +80,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		S2_populateNonPharmaFromOddb2Xml(artikelstamm, oddb2xmlProducts, oddb2xmlArticle,
 			oddb2xmlLimitations);
 		System.out.println("(S3) Amend product and article attributes via oddb_product.xml");
-		S3_amendProductAndArticleAttributes(artikelstamm, oddb2xmlProducts);
+		S3_amendProductAndArticleAttributes(artikelstamm, oddb2xmlProducts, oddb2xmlArticle);
 		System.out.println("(S4) Amend article attributes via oddb_article.xml");
 		S4_amendArticleAttributes(artikelstamm, oddb2xmlArticle);
 		System.out.println("(S5) Amend limitation information via oddb_limitation.xml");
@@ -143,7 +143,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 					int amount = Integer.parseInt(sequenceItem.getAmount());
 					item.setPKGSIZE(amount);
 				} catch (NumberFormatException nfe) {
-					System.out.println("{"+item.getGTIN() + "} Invalid amount integer ["
+					System.out.println("{" + item.getGTIN() + "} Invalid amount integer ["
 						+ sequenceItem.getAmount() + "] in oddb2xml sequences file.");
 					invalidPackageSize++;
 				}
@@ -192,7 +192,6 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 			
 			ITEM artikelstammItem = new ITEM();
 			artikelstammItem.setPHARMATYPE("N");
-			artikelstammItem.setPHAR(new BigInteger(oddb2xmlArt.getPHAR()));
 			artikelstammItem.setGTIN(String.format("%013d", oddb2xmlArt.getARTBAR().getBC()));
 			
 			// limit to max 50 chars
@@ -215,7 +214,8 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 	}
 	
 	private void S3_amendProductAndArticleAttributes(ARTIKELSTAMM artikelstamm,
-		com.ywesee.oddb2xml.product.PRODUCT oddb2xmlProducts){
+		com.ywesee.oddb2xml.product.PRODUCT oddb2xmlProducts,
+		com.ywesee.oddb2xml.article.ARTICLE oddb2xmlArticle){
 		List<PRODUCT> products = artikelstamm.getPRODUCTS().getPRODUCT();
 		for (PRODUCT product : products) {
 			PRD prd = findProductByProdNo(oddb2xmlProducts, product.getPRODNO());
@@ -239,6 +239,19 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 				}
 			} else {
 				noAmendFromProductXml++;
+			}
+		}
+		List<ITEM> item = artikelstamm.getITEMS().getITEM();
+		for (ITEM item2 : item) {
+			if ("P".equals(item2.getPHARMATYPE())) {
+				ART findArticleByGTIN =
+					findArticleByGTIN(oddb2xmlArticle, new BigInteger(item2.getGTIN()));
+				if (findArticleByGTIN != null) {
+					String phar = findArticleByGTIN.getPHAR();
+					if (phar != null) {
+						item2.setPHAR(new BigInteger(phar));
+					}
+				}
 			}
 		}
 	}
@@ -270,7 +283,8 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		List<ITEM> artikelstammItems = artikelstamm.getITEMS().getITEM();
 		for (ITEM artikelstammItem : artikelstammItems) {
 			if (artikelstammItem.getGTIN().length() == 0) {
-				System.out.println("No GTIN defined for article [" + artikelstammItem.getDSCR() + "]");
+				System.out
+					.println("No GTIN defined for article [" + artikelstammItem.getDSCR() + "]");
 				continue;
 			}
 			
