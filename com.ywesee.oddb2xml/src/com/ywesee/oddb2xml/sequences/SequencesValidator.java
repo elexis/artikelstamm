@@ -13,7 +13,7 @@ public class SequencesValidator {
 	public static boolean validateSequencesFile(File oddb2xmlSequencesFileObj) throws IOException{
 		List<Sequence> readSequencesFile =
 			SequencesHelper.readSequencesFile(oddb2xmlSequencesFileObj);
-		boolean containsDoubleProdno = checkForDoubleProdno(readSequencesFile);
+		boolean containsDoubleProdno = checkForValidAndUniqueProdno(readSequencesFile);
 		boolean containsDoubleGTIN = checkForValidAndUniqueGtin(readSequencesFile);
 		return (containsDoubleProdno || containsDoubleGTIN);
 	}
@@ -43,18 +43,22 @@ public class SequencesValidator {
 		return error;
 	}
 	
-	private static boolean checkForDoubleProdno(List<Sequence> readSequencesFile){
+	private static boolean checkForValidAndUniqueProdno(List<Sequence> readSequencesFile){
 		Set<String> prodnoSet = new HashSet<>();
-		boolean containsDouble = false;
+		boolean error = false;
 		for (Sequence seq : readSequencesFile) {
 			String prodno = seq.getProdno();
+			if (prodno.length() != 7) {
+				error = true;
+				System.out.println("PRODNO length 7 violation in " + seq);
+			}
 			if (prodnoSet.contains(prodno)) {
-				containsDouble = true;
+				error = true;
 				System.out.println("Unique PRODNO violation in " + seq);
 			} else {
 				prodnoSet.add(prodno);
 			}
 		}
-		return containsDouble;
+		return error;
 	}
 }

@@ -39,21 +39,25 @@ public class Sequence {
 	public static Function<String, Sequence> mapToSequence = (line) -> {
 		Sequence seq = null;
 		
+		boolean error = false;
 		String[] tokens = line.split(";", Integer.MAX_VALUE);
 		String prodno = tokens[0];
+		if (prodno.length() != 7) {
+			System.out.println("ERROR ProdNo length != 7");
+			error = true;
+		}
 		tokens = Arrays.copyOfRange(tokens, 1, tokens.length);
 		if (tokens.length < 8) {
 			System.out.println("ERROR in sequence [" + line + "]");
 		}
 		List<String[]> sequences = new ArrayList<String[]>();
-		boolean error = false;
 		for (int i = 0; i < (tokens.length / 8); i++) {
 			String[] value = Arrays.copyOfRange(tokens, i * 8, ((i + 1) * 8));
 			sequences.add(value);
 			if (i == 0) {
 				seq = new Sequence(prodno, value[1], "--missing--");
 			}
-
+			
 			SequenceItem si = new SequenceItem();
 			si.setDesc1(value[0].trim());
 			si.setDesc2(value[1].trim());
@@ -73,7 +77,7 @@ public class Sequence {
 				seq.getSequenceItems().put(si.getGtin(), si);
 			}
 		}
-		if(error) {
+		if (error) {
 			for (String[] sequence : sequences) {
 				System.out.println("\t" + Arrays.toString(sequence));
 			}
@@ -81,7 +85,7 @@ public class Sequence {
 		
 		return seq;
 	};
-	
+		
 	public static class SequenceItem {
 		// article name
 		String desc1;
