@@ -45,6 +45,7 @@ public class SequencesValidator {
 	
 	private static boolean checkForValidAndUniqueProdno(List<Sequence> readSequencesFile){
 		Set<String> prodnoSet = new HashSet<>();
+		Set<String> prodnoDscrSet = new HashSet<>();
 		boolean error = false;
 		for (Sequence seq : readSequencesFile) {
 			String prodno = seq.getProdno();
@@ -52,11 +53,15 @@ public class SequencesValidator {
 				error = true;
 				System.out.println("PRODNO length 7 violation in " + seq);
 			}
+			if(prodnoDscrSet.contains(seq.getDscr())) {
+				System.out.println("WARNING double PROD_DSCR ["+seq.getProdno()+"] "+seq.getDscr());
+			}
 			if (prodnoSet.contains(prodno)) {
 				error = true;
 				System.out.println("Unique PRODNO violation in " + seq);
 			} else {
 				prodnoSet.add(prodno);
+				prodnoDscrSet.add(seq.getDscr());
 			}
 		}
 		return error;
