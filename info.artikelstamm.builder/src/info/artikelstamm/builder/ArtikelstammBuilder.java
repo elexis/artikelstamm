@@ -32,6 +32,7 @@ import com.ywesee.oddb2xml.sequences.SequencesValidator;
 import info.artikelstamm.builder.strategies.IArtikelstammBuildStrategy;
 import info.artikelstamm.builder.strategies.StrategyV12;
 import info.artikelstamm.model.ARTIKELSTAMM;
+import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
 import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
 
 public class ArtikelstammBuilder {
@@ -151,6 +152,15 @@ public class ArtikelstammBuilder {
 			@Override
 			public int compare(PRODUCT o1, PRODUCT o2){
 				return o1.getPRODNO().compareTo(o2.getPRODNO());
+			}
+		});
+		
+		List<LIMITATION> limitation = artikelstamm.getLIMITATIONS().getLIMITATION();
+		Collections.sort(limitation, new Comparator<LIMITATION>() {
+
+			@Override
+			public int compare(LIMITATION o1, LIMITATION o2){
+				return o1.getLIMNAMEBAG().compareTo(o2.getLIMNAMEBAG());
 			}
 		});
 		

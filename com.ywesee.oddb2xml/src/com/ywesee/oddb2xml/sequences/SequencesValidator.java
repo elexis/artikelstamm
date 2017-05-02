@@ -11,11 +11,12 @@ import com.ywesee.oddb2xml.sequences.Sequence.SequenceItem;
 
 public class SequencesValidator {
 	public static boolean validateSequencesFile(File oddb2xmlSequencesFileObj) throws IOException{
+		boolean error = false;
 		List<Sequence> readSequencesFile =
 			SequencesHelper.readSequencesFile(oddb2xmlSequencesFileObj);
-		boolean containsDoubleProdno = checkForValidAndUniqueProdno(readSequencesFile);
-		boolean containsDoubleGTIN = checkForValidAndUniqueGtin(readSequencesFile);
-		return (containsDoubleProdno || containsDoubleGTIN);
+		error |= checkForValidAndUniqueProdno(readSequencesFile);
+		error |= checkForValidAndUniqueGtin(readSequencesFile);
+		return error;
 	}
 	
 	private static boolean checkForValidAndUniqueGtin(List<Sequence> readSequencesFile){
@@ -53,8 +54,9 @@ public class SequencesValidator {
 				error = true;
 				System.out.println("PRODNO length 7 violation in " + seq);
 			}
-			if(prodnoDscrSet.contains(seq.getDscr())) {
-				System.out.println("WARNING double PROD_DSCR ["+seq.getProdno()+"] "+seq.getDscr());
+			if (prodnoDscrSet.contains(seq.getDscr())) {
+				System.out
+					.println("WARNING double PROD_DSCR [" + seq.getProdno() + "] " + seq.getDscr());
 			}
 			if (prodnoSet.contains(prodno)) {
 				error = true;

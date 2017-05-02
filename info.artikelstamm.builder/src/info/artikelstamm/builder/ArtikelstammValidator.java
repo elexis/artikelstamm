@@ -111,7 +111,21 @@ public class ArtikelstammValidator {
 				System.out.println("Referenced limitation is included violation [" + refLim + "]");
 			}
 		}
-		
+		return error;
+	}
+	
+	public boolean semanticChecks(){
+		boolean error = false;
+		List<ITEM> item = artikelstamm.getITEMS().getITEM();
+		for (ITEM item2 : item) {
+			if (item2.getPKGSIZE() != null) {
+				String string = item2.getPKGSIZE().toString();
+				if (string.length() > 6) {
+					System.out.println("{" + item2.getGTIN()
+						+ "} WARNING possibly invalid package size [" + string + "] string is ["+item2.getPKGSIZESTRING()+"]");
+				}
+			}
+		}
 		return error;
 	}
 	
@@ -121,6 +135,7 @@ public class ArtikelstammValidator {
 		error |= everyPharmaArticleHasAProductItem();
 		error |= everyProductHasAtLeastOneArticle();
 		error |= everyReferencedLimitationIsIncluded();
+		error |= semanticChecks();
 		return error;
 	}
 }
