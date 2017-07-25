@@ -8,6 +8,6 @@
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="info.artikelstamm.builder.ArtikelstammBuilder"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--oddb2xmlSequencesFile ${project_loc}/sampleData/oddb2xml_swissmedic_sequences.csv &#10;--oddb2xmlProductFile ${project_loc}/sampleData/oddb_product.xml&#10;--oddb2xmlArticleFile ${project_loc}/sampleData/oddb_article.xml&#10;--oddb2xmlLimitationFile ${project_loc}/sampleData/oddb_limitation.xml&#10;--artikelstammSchema  ${project_loc}/../info.artikelstamm.model/lib/Elexis_Artikelstamm_v4.xsd"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${string_prompt:“oddb2xml“: -oddb2xmlSequencesFile ${project_loc}/sampleData/oddb2xml_swissmedic_sequences.csv &#10;-oddb2xmlProductFile ${project_loc}/sampleData/oddb_product.xml&#10;-oddb2xmlArticleFile ${project_loc}/sampleData/oddb_article.xml&#10;-oddb2xmlLimitationFile ${project_loc}/sampleData/oddb_limitation.xml}&#10;${string_prompt:“emediat“:-emediatProductFile ${project_loc}/sampleData/medindex_product.xml &#10;-emediatArticleFile ${project_loc}/sampleData/medindex_article.xml &#10;-emediatLimitationFile ${project_loc}/sampleData/medindex_limitation.xml}&#10;-artikelstammSchema  ${project_loc}/../info.artikelstamm.model/lib/Elexis_Artikelstamm_v5.xsd"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="info.artikelstamm.builder"/>
 </launchConfiguration>

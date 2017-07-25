@@ -3,6 +3,7 @@ package info.artikelstamm.builder.strategies;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,11 +33,12 @@ import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM.COMP;
 import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.DATASOURCEType;
 
 /**
  * Aufbau siehe <code>/doc/artikelstammBuildV12.png</code>
  */
-public class StrategyV12 implements IArtikelstammBuildStrategy {
+public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 	
 	private static final String SALECD_INACTIVE = "I";
 	
@@ -47,6 +49,8 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 	private int invalidPackageSize = 0;
 	private int noAmendFromArticleXml = 0;
 	private int noAmendFromProductXml = 0;
+	
+	private Map<String, String> gtinToProdNo = new HashMap<>();
 	
 	private Map<String, List<ITEM>> prodToItemCache = new HashMap<>();
 	
@@ -71,7 +75,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(parse);
 		
-		ARTIKELSTAMM artikelstamm = initializeArtikelstamm(gc);
+		ARTIKELSTAMM artikelstamm = initializeArtikelstamm(gc, DATASOURCEType.ODDB_2_XML);
 		
 		System.out
 			.println("(S1) Import pharma products and articles from oddb2xml_swissmedic_sequences");
@@ -85,6 +89,12 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 		S4_amendArticleAttributes(artikelstamm, oddb2xmlArticle);
 		System.out.println("(S5) Amend limitation information via oddb_limitation.xml");
 		S5_amendLimitationInformation(artikelstamm, oddb2xmlLimitations);
+		System.out.println("(S9) save gtin to prodno mappings");
+		Files.write(
+			new File(oddb2xmlProductFileObj.getParentFile(),
+				DATASOURCEType.ODDB_2_XML.value() + "_gtin_to_prodno.csv").toPath(),
+			() -> gtinToProdNo.entrySet().stream()
+				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
 		System.out.println("(FINISHED)");
 		
 		System.out.println("pharmaProductCounter " + pharmaProductCounter);
@@ -139,6 +149,7 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 				item.setDSCR(sequenceItem.getDesc1());
 				item.setDSCRF("--missing--");
 				item.setGTIN(sequenceItem.getGtin());
+				gtinToProdNo.put(item.getGTIN(), item.getPRODNO());
 				try {
 					int amount = Integer.parseInt(sequenceItem.getAmount());
 					item.setPKGSIZE(amount);
@@ -192,7 +203,9 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 			
 			ITEM artikelstammItem = new ITEM();
 			artikelstammItem.setPHARMATYPE("N");
-			artikelstammItem.setGTIN(String.format("%013d", oddb2xmlArt.getARTBAR().getBC()));
+			String gtin = String.format("%013d", oddb2xmlArt.getARTBAR().getBC());
+			artikelstammItem.setGTIN(gtin);
+			gtinToProdNo.put(gtin, "NO_ODDB2XML_PROD");
 			
 			// limit to max 50 chars
 			//			int dscrdL = (a.getDSCRD().trim().length() > 49) ? 50 : a.getDSCRD().trim().length();
@@ -460,5 +473,10 @@ public class StrategyV12 implements IArtikelstammBuildStrategy {
 			item.setPPUB(ppub);
 		if (pexf != null)
 			item.setPEXF(pexf);
+	}
+
+	@Override
+	public Map<String, String> getGtinToProdnoMapping(){
+		return gtinToProdNo;
 	}
 }

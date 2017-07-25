@@ -5,7 +5,7 @@
 			<arg value="src-gen" />
 			<arg value="-p" />
 			<arg value="info.artikelstamm.model" />
-			<arg value="lib/Elexis_Artikelstamm_v4.xsd" />
+			<arg value="lib/Elexis_Artikelstamm_v5.xsd" />
 		</java>
 	</target>
 </project>

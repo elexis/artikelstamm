@@ -9,39 +9,50 @@
 package info.artikelstamm.model;
 
 import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für DELTAType.
+ * <p>Java-Klasse für DATASOURCEType.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * <p>
  * <pre>
- * &lt;simpleType name="DELTAType">
+ * &lt;simpleType name="DATASOURCEType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="A"/>
- *     &lt;enumeration value="D"/>
- *     &lt;enumeration value="M"/>
+ *     &lt;enumeration value="oddb2xml"/>
+ *     &lt;enumeration value="medindex"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "DELTAType")
+@XmlType(name = "DATASOURCEType")
 @XmlEnum
-public enum DELTAType {
+public enum DATASOURCEType {
 
-    A,
-    D,
-    M;
+    @XmlEnumValue("oddb2xml")
+    ODDB_2_XML("oddb2xml"),
+    @XmlEnumValue("medindex")
+    MEDINDEX("medindex");
+    private final String value;
 
-    public String value() {
-        return name();
+    DATASOURCEType(String v) {
+        value = v;
     }
 
-    public static DELTAType fromValue(String v) {
-        return valueOf(v);
+    public String value() {
+        return value;
+    }
+
+    public static DATASOURCEType fromValue(String v) {
+        for (DATASOURCEType c: DATASOURCEType.values()) {
+            if (c.value.equals(v)) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException(v);
     }
 
 }

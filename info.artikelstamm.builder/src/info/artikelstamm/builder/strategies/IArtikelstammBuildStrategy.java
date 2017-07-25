@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -13,11 +14,12 @@ import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS;
 import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS;
 import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS;
+import info.artikelstamm.model.DATASOURCEType;
 
 public interface IArtikelstammBuildStrategy {
 	
-	ARTIKELSTAMM generate(File oddb2xmlSequencesFileObj, File oddb2xmlProductFileObj,
-		File oddb2xmlArticleFileObj, File oddb2xmlLimitationFileObj) throws Exception;
+	ARTIKELSTAMM generate(File sequencesFile, File productFile, File articleFile,
+		File limitationsFile) throws Exception;
 	
 	final static String pattern = "yyyy-MM-dd'T'hh:mm:ssZ";
 	final static SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -26,23 +28,25 @@ public interface IArtikelstammBuildStrategy {
 	 * Initialize an empty Artikelstamm object with basic values set
 	 * 
 	 * @param creationDate
+	 * @param source
+	 *            the source the content originates from
 	 * 
 	 * @return
 	 * @throws DatatypeConfigurationException
 	 */
-	public default ARTIKELSTAMM initializeArtikelstamm(GregorianCalendar creationDate)
-		throws DatatypeConfigurationException{
+	public default ARTIKELSTAMM initializeArtikelstamm(GregorianCalendar creationDate,
+		DATASOURCEType source) throws DatatypeConfigurationException{
 		ARTIKELSTAMM artikelstamm = new ARTIKELSTAMM();
-		artikelstamm.setSETTYPE("F"); // full data-set
 		
 		if (creationDate == null) {
 			creationDate = GregorianCalendar.from(ZonedDateTime.now());
 		}
 		
-		XMLGregorianCalendar xmlgc = DatatypeFactory.newInstance()
-			.newXMLGregorianCalendar(creationDate);
+		XMLGregorianCalendar xmlgc =
+			DatatypeFactory.newInstance().newXMLGregorianCalendar(creationDate);
 		
 		artikelstamm.setITEMS(new ITEMS());
+		artikelstamm.setDATASOURCE(source);
 		artikelstamm.setPRODUCTS(new PRODUCTS());
 		artikelstamm.setLIMITATIONS(new LIMITATIONS());
 		artikelstamm.setCREATIONDATETIME(xmlgc);
@@ -51,8 +55,13 @@ public interface IArtikelstammBuildStrategy {
 		
 		artikelstamm.setBUILDDATETIME(
 			DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));
-		artikelstamm.setLANG("DE");
 		
 		return artikelstamm;
 	}
+	
+	/**
+	 * @return a mapping of gtin values to product numbers. This map is bound to be available only
+	 *         after {@link #generate(File, File, File, File)} has been executed.
+	 */
+	Map<String, String> getGtinToProdnoMapping();
 }
