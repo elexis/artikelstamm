@@ -2,12 +2,13 @@ package info.artikelstamm.builder.strategies;
 
 import java.io.File;
 import java.math.BigInteger;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import ch.hcisolutions.index.ARTICLE;
 import ch.hcisolutions.index.ARTICLE.ART;
@@ -16,6 +17,11 @@ import ch.hcisolutions.index.ARTICLE.ART.ARTPRI;
 import ch.hcisolutions.index.MedindexHelper;
 import ch.hcisolutions.index.PRODUCT;
 import ch.hcisolutions.index.PRODUCT.PRD;
+import ch.hcisolutions.index.PRODUCT.PRD.CPT;
+import ch.hcisolutions.index.PRODUCT.PRD.CPT.CPTCMP;
+import ch.hcisolutions.index.SUBSTANCE;
+import ch.hcisolutions.index.SUBSTANCE.SB;
+import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
 import info.artikelstamm.model.DATASOURCEType;
@@ -27,11 +33,15 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 	private Map<String, PRD> prodNoToProduct = new HashMap<>();
 	private Set<String> articleReferencedProductNumbers = new HashSet<>();
 	
-	private Map<String, String> gtinToProdNo = new HashMap<>();
+	private Map<BigInteger, SB> substanceNo;
 	
 	@Override
-	public ARTIKELSTAMM generate(File sequencesFile, File productFile, File articleFile,
-		File limitationsFile) throws Exception{
+	public ARTIKELSTAMM generate(File[] inputFiles, Mapping mapping) throws Exception{
+		
+		File productFile = inputFiles[0];
+		File articleFile = inputFiles[1];
+		File limitationsFile = inputFiles[2];
+		File substancesFile = inputFiles[3];
 		
 		PRODUCT product = (PRODUCT) MedindexHelper.unmarshallFile(productFile);
 		for (PRD prd : product.getPRD()) {
@@ -41,21 +51,25 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 		ARTICLE articles = (ARTICLE) MedindexHelper.unmarshallFile(articleFile);
 		//		LIMITATION limitations = (LIMITATION) MedindexHelper.unmarshallFile(oddb2xmlLimitationFileObj);
 		
+		SUBSTANCE substances = (SUBSTANCE) MedindexHelper.unmarshallFile(substancesFile);
+		substanceNo = substances.getSB().stream()
+			.collect(Collectors.toMap(SB::getSUBNO, Function.identity()));
+		
 		ARTIKELSTAMM artikelstamm = initializeArtikelstamm(
 			articles.getCREATIONDATETIME().toGregorianCalendar(), DATASOURCEType.MEDINDEX);
 		
 		System.out.println("(S1) populate items from articles");
-		populateItemsFromArticles(artikelstamm, articles);
+		populateItemsFromArticles(artikelstamm, articles, mapping);
 		System.out.println(
 			"(S2) add products -> only referenced products = " + ADD_ONLY_PRODUCTS_WITH_ARTICLES);
 		populateProducts(artikelstamm, product);
 		
 		System.out.println("(S9) save gtin to prodno mappings");
-		Files.write(
-			new File(productFile.getParentFile(),
-				DATASOURCEType.MEDINDEX.value() + "_gtin_to_prodno.csv").toPath(),
-			() -> gtinToProdNo.entrySet().stream()
-				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
+//		Files.write(
+//			new File(productFile.getParentFile(),
+//				DATASOURCEType.MEDINDEX.value() + "_gtin_to_prodno.csv").toPath(),
+//			() -> gtinToProdNo.entrySet().stream()
+//				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
 		
 		System.out.println("# of products " + artikelstamm.getPRODUCTS().getPRODUCT().size());
 		System.out.println("# of items " + artikelstamm.getITEMS().getITEM().size());
@@ -87,10 +101,27 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 		product.setATC(prd.getATC());
 		product.setPRODNO(Integer.toString(prd.getPRDNO()));
 		
+		// PRD/CPT/CPTCMP -> WHK=W => SUBNO-> DSCRD
+		List<CPT> cptl = prd.getCPT();
+		if (cptl.size() > 0) {
+			// TODO what if more components??
+			CPT cpt = cptl.get(0);
+			List<CPTCMP> cptcmpl = cpt.getCPTCMP();
+			for (CPTCMP cptcmp : cptcmpl) {
+				if ("W".equals(cptcmp.getWHK())) {
+					SB substance = substanceNo.get(BigInteger.valueOf(cptcmp.getSUBNO()));
+					if (substance != null) {
+						product.setSUBSTANCE(substance.getNAMD());
+						product.setSUBSTANCEF(substance.getNAMF());
+						break;
+					}
+				}
+			}
+		}
 		artikelstamm.getPRODUCTS().getPRODUCT().add(product);
 	}
 	
-	private void populateItemsFromArticles(ARTIKELSTAMM artikelstamm, ARTICLE articles){
+	private void populateItemsFromArticles(ARTIKELSTAMM artikelstamm, ARTICLE articles, Mapping mapping){
 		List<ART> art = articles.getART();
 		for (ART a : art) {
 			ITEM item = new ITEM();
@@ -103,14 +134,15 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 			}
 			articleReferencedProductNumbers.add(item.getPRODNO());
 			item.setGTIN(a.getGTIN());
-			gtinToProdNo.put(item.getGTIN(), item.getPRODNO());
+
 			
 			String salecd = a.getSALECD();
-			// R, N, H --> was ist mit H?
+			// R, N, H --> was ist mit H? neues feld?
 			
 			// TODO item.setPHARMATYPE(value);
 			
 			item.setDSCR(a.getDSCRD());
+			mapping.add(DATASOURCEType.MEDINDEX, item.getGTIN(), item.getPRODNO(), item.getDSCR());
 			item.setDSCRF(a.getDSCRF());
 			item.setPHAR(BigInteger.valueOf(Long.parseLong(a.getPHAR())));
 			// TODO COMP
@@ -169,11 +201,6 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 			artikelstamm.getITEMS().getITEM().add(item);
 		}
 		
-	}
-
-	@Override
-	public Map<String, String> getGtinToProdnoMapping(){
-		return gtinToProdNo;
 	}
 	
 }

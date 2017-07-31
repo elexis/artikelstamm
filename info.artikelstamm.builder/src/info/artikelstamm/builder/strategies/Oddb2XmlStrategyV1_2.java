@@ -3,7 +3,6 @@ package info.artikelstamm.builder.strategies;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +28,7 @@ import com.ywesee.oddb2xml.sequences.SequencesHelper;
 
 import at.medevit.atc_codes.ATCCode;
 import at.medevit.atc_codes.internal.ATCCodes;
+import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM.COMP;
@@ -50,26 +50,21 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 	private int noAmendFromArticleXml = 0;
 	private int noAmendFromProductXml = 0;
 	
-	private Map<String, String> gtinToProdNo = new HashMap<>();
-	
 	private Map<String, List<ITEM>> prodToItemCache = new HashMap<>();
 	
 	@Override
-	public ARTIKELSTAMM generate(File oddb2xmlSequencesFileObj, File oddb2xmlProductFileObj,
-		File oddb2xmlArticleFileObj, File oddb2xmlLimitationFileObj)
+	public ARTIKELSTAMM generate(File[] inputFiles, Mapping mapping)
 		throws IOException, JAXBException, DatatypeConfigurationException, ParseException{
 		
 		Map<String, com.ywesee.oddb2xml.sequences.Sequence> oddb2xmlSequences =
-			SequencesHelper.unmarshallSequences(oddb2xmlSequencesFileObj);
+			SequencesHelper.unmarshallSequences(inputFiles[0]);
 		com.ywesee.oddb2xml.product.PRODUCT oddb2xmlProducts =
-			(com.ywesee.oddb2xml.product.PRODUCT) Oddb2XmlHelper
-				.unmarshallFile(oddb2xmlProductFileObj);
+			(com.ywesee.oddb2xml.product.PRODUCT) Oddb2XmlHelper.unmarshallFile(inputFiles[1]);
 		com.ywesee.oddb2xml.article.ARTICLE oddb2xmlArticle =
-			(com.ywesee.oddb2xml.article.ARTICLE) Oddb2XmlHelper
-				.unmarshallFile(oddb2xmlArticleFileObj);
+			(com.ywesee.oddb2xml.article.ARTICLE) Oddb2XmlHelper.unmarshallFile(inputFiles[2]);
 		com.ywesee.oddb2xml.limitation.LIMITATION oddb2xmlLimitations =
 			(com.ywesee.oddb2xml.limitation.LIMITATION) Oddb2XmlHelper
-				.unmarshallFile(oddb2xmlLimitationFileObj);
+				.unmarshallFile(inputFiles[3]);
 		
 		Date parse = sdf.parse(oddb2xmlArticle.getPRODDATE());
 		GregorianCalendar gc = new GregorianCalendar();
@@ -79,10 +74,10 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 		
 		System.out
 			.println("(S1) Import pharma products and articles from oddb2xml_swissmedic_sequences");
-		S1_populatePharmaFromSequences(artikelstamm, oddb2xmlSequences);
+		S1_populatePharmaFromSequences(artikelstamm, oddb2xmlSequences, mapping);
 		System.out.println("(S2) Import non-pharma articles from oddb_article");
 		S2_populateNonPharmaFromOddb2Xml(artikelstamm, oddb2xmlProducts, oddb2xmlArticle,
-			oddb2xmlLimitations);
+			oddb2xmlLimitations, mapping);
 		System.out.println("(S3) Amend product and article attributes via oddb_product.xml");
 		S3_amendProductAndArticleAttributes(artikelstamm, oddb2xmlProducts, oddb2xmlArticle);
 		System.out.println("(S4) Amend article attributes via oddb_article.xml");
@@ -90,11 +85,6 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 		System.out.println("(S5) Amend limitation information via oddb_limitation.xml");
 		S5_amendLimitationInformation(artikelstamm, oddb2xmlLimitations);
 		System.out.println("(S9) save gtin to prodno mappings");
-		Files.write(
-			new File(oddb2xmlProductFileObj.getParentFile(),
-				DATASOURCEType.ODDB_2_XML.value() + "_gtin_to_prodno.csv").toPath(),
-			() -> gtinToProdNo.entrySet().stream()
-				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
 		System.out.println("(FINISHED)");
 		
 		System.out.println("pharmaProductCounter " + pharmaProductCounter);
@@ -122,7 +112,7 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 	 * @param oddb2xmlSequences
 	 */
 	private void S1_populatePharmaFromSequences(ARTIKELSTAMM artikelstamm,
-		Map<String, com.ywesee.oddb2xml.sequences.Sequence> oddb2xmlSequences){
+		Map<String, com.ywesee.oddb2xml.sequences.Sequence> oddb2xmlSequences, Mapping mapping){
 		
 		Set<Entry<String, com.ywesee.oddb2xml.sequences.Sequence>> entrySet =
 			oddb2xmlSequences.entrySet();
@@ -149,7 +139,8 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 				item.setDSCR(sequenceItem.getDesc1());
 				item.setDSCRF("--missing--");
 				item.setGTIN(sequenceItem.getGtin());
-				gtinToProdNo.put(item.getGTIN(), item.getPRODNO());
+				mapping.add(DATASOURCEType.ODDB_2_XML, item.getGTIN(), item.getPRODNO(),
+					item.getDSCR());
 				try {
 					int amount = Integer.parseInt(sequenceItem.getAmount());
 					item.setPKGSIZE(amount);
@@ -179,7 +170,7 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 	
 	private void S2_populateNonPharmaFromOddb2Xml(ARTIKELSTAMM artikelstamm,
 		com.ywesee.oddb2xml.product.PRODUCT oddb2xmlProducts, ARTICLE oddb2xmlArticle,
-		LIMITATION oddb2xmlLimitations){
+		LIMITATION oddb2xmlLimitations, Mapping mapping){
 		List<ART> articles = oddb2xmlArticle.getART();
 		for (ART oddb2xmlArt : articles) {
 			// pre-fetch mapping for limitations (speedup)
@@ -205,13 +196,15 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 			artikelstammItem.setPHARMATYPE("N");
 			String gtin = String.format("%013d", oddb2xmlArt.getARTBAR().getBC());
 			artikelstammItem.setGTIN(gtin);
-			gtinToProdNo.put(gtin, "NO_ODDB2XML_PROD");
 			
 			// limit to max 50 chars
 			//			int dscrdL = (a.getDSCRD().trim().length() > 49) ? 50 : a.getDSCRD().trim().length();
 			//			item.setDSCR(a.getDSCRD().trim().substring(0, dscrdL));
 			artikelstammItem.setDSCR(oddb2xmlArt.getDSCRD().trim());
 			artikelstammItem.setDSCRF(oddb2xmlArt.getDSCRF().trim());
+			
+			mapping.add(DATASOURCEType.ODDB_2_XML, gtin, "NO_ODDB2XML_PROD",
+				artikelstammItem.getDSCR());
 			
 			if (oddb2xmlArt.getARTCOMP() != null) {
 				if (oddb2xmlArt.getARTCOMP().getCOMPNO() != null) {
@@ -475,8 +468,4 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 			item.setPEXF(pexf);
 	}
 
-	@Override
-	public Map<String, String> getGtinToProdnoMapping(){
-		return gtinToProdNo;
-	}
 }

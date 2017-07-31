@@ -4,12 +4,12 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
-import java.util.Map;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS;
 import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS;
@@ -18,8 +18,9 @@ import info.artikelstamm.model.DATASOURCEType;
 
 public interface IArtikelstammBuildStrategy {
 	
-	ARTIKELSTAMM generate(File sequencesFile, File productFile, File articleFile,
-		File limitationsFile) throws Exception;
+	
+	
+	ARTIKELSTAMM generate(File[] inputFiles, Mapping mapping) throws Exception;
 	
 	final static String pattern = "yyyy-MM-dd'T'hh:mm:ssZ";
 	final static SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -58,10 +59,5 @@ public interface IArtikelstammBuildStrategy {
 		
 		return artikelstamm;
 	}
-	
-	/**
-	 * @return a mapping of gtin values to product numbers. This map is bound to be available only
-	 *         after {@link #generate(File, File, File, File)} has been executed.
-	 */
-	Map<String, String> getGtinToProdnoMapping();
+
 }

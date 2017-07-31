@@ -3,18 +3,13 @@ package info.artikelstamm.builder;
 import java.io.File;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -35,7 +30,7 @@ import org.xml.sax.SAXException;
 import com.ywesee.oddb2xml.Oddb2xmlValidator;
 import com.ywesee.oddb2xml.sequences.SequencesValidator;
 
-import info.artikelstamm.builder.mapping.MappingEntry;
+import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.builder.strategies.EMediatStrategyV1;
 import info.artikelstamm.builder.strategies.IArtikelstammBuildStrategy;
 import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV1_2;
@@ -56,6 +51,7 @@ public class ArtikelstammBuilder {
 	public static final String OPTION_EMEDIAT_PRODUCT_FILE = "emediatProductFile";
 	public static final String OPTION_EMEDIAT_ARTICLE_FILE = "emediatArticleFile";
 	public static final String OPTION_EMEDIAT_LIMITATIONS_FILE = "emediatLimitationFile";
+	public static final String OPTION_EMEDIAT_SUBSTANCE_FILE = "emediatSubstanceFile";
 	
 	public static final String OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA = "artikelstammSchema";
 	
@@ -68,6 +64,7 @@ public class ArtikelstammBuilder {
 	static String emediatProductFile = null;
 	static String emediatArticleFile = null;
 	static String emediatLimitationsFile = null;
+	static String emediatSubstanceFile = null;
 	static String artikelstammSchemaFileName = null;
 	
 	private static Options options = new Options();
@@ -89,6 +86,7 @@ public class ArtikelstammBuilder {
 		options.addOption(OPTION_EMEDIAT_PRODUCT_FILE, true, "emediat_product.xml file");
 		options.addOption(OPTION_EMEDIAT_ARTICLE_FILE, true, "emediat_article.xml file");
 		options.addOption(OPTION_EMEDIAT_LIMITATIONS_FILE, true, "emediat_limitations.xml file");
+		options.addOption(OPTION_EMEDIAT_SUBSTANCE_FILE, true, "emediat_substance.xml file");
 		Option required = new Option(OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA, true,
 			"Elexis_Artikelstamm_v4.xsd file");
 		required.setRequired(true);
@@ -114,7 +112,8 @@ public class ArtikelstammBuilder {
 				&& line.hasOption(OPTION_ODDB2XML_SEQUENCES_FILE));
 			buildMedindex = (line.hasOption(OPTION_EMEDIAT_PRODUCT_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_ARTICLE_FILE)
-				&& line.hasOption(OPTION_EMEDIAT_LIMITATIONS_FILE));
+				&& line.hasOption(OPTION_EMEDIAT_LIMITATIONS_FILE)
+				&& line.hasOption(OPTION_EMEDIAT_SUBSTANCE_FILE));
 			
 			if (!buildOddb2Xml && !buildMedindex) {
 				printHelp();
@@ -129,6 +128,7 @@ public class ArtikelstammBuilder {
 			emediatProductFile = line.getOptionValue(OPTION_EMEDIAT_PRODUCT_FILE);
 			emediatArticleFile = line.getOptionValue(OPTION_EMEDIAT_ARTICLE_FILE);
 			emediatLimitationsFile = line.getOptionValue(OPTION_EMEDIAT_LIMITATIONS_FILE);
+			emediatSubstanceFile = line.getOptionValue(OPTION_EMEDIAT_SUBSTANCE_FILE);
 			
 			artikelstammSchemaFileName = line.getOptionValue(OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA);
 		} catch (ParseException exp) {
@@ -137,51 +137,40 @@ public class ArtikelstammBuilder {
 			return;
 		}
 		
-		Map<String, MappingEntry> gtinToProducts = new HashMap<>();
+		Mapping mapping = new Mapping();
 		if (buildOddb2Xml) {
 			System.out.println("--- Building oddb2xml based artikelstamm file");
-			Set<Entry<String, String>> entrySet =
-				buildOddb2Xml().getGtinToProdnoMapping().entrySet();
-			entrySet.forEach(c -> gtinToProducts.put(c.getKey(),
-				new MappingEntry(c.getKey(), c.getValue(), null)));
+			buildOddb2Xml(mapping);
 		}
 		
 		if (buildMedindex) {
 			System.out.println("--- Building e-mediat based artikelstamm file");
-			Set<Entry<String, String>> entrySet =
-				buildEmediat().getGtinToProdnoMapping().entrySet();
-			for (Entry<String, String> entry : entrySet) {
-				if (gtinToProducts.containsKey(entry.getKey())) {
-					MappingEntry mappingEntry = gtinToProducts.get(entry.getKey());
-					mappingEntry.setMedindex_prodno(entry.getValue());
-					gtinToProducts.put(entry.getKey(), mappingEntry);
-				} else {
-					gtinToProducts.put(entry.getKey(),
-						new MappingEntry(entry.getKey(), null, entry.getValue()));
-				}
-			}
+			buildEmediat(mapping);
 		}
 		
 		Path path = new File("gtin_to_prodno.csv").toPath();
 		System.out.println("--- Writing gtin/prodno mapping file [" + path.toAbsolutePath() + "]");
-		Files.write(path, () -> gtinToProducts.entrySet().stream()
-			.<CharSequence> map(e -> e.getValue().toString()).iterator());
+		mapping.writeToFile(path);
+		System.out.println("--- Mapping file statistics ----");
+		mapping.writeStatistics(System.out);
 	}
 	
-	private static IArtikelstammBuildStrategy buildEmediat() throws Exception{
+	private static IArtikelstammBuildStrategy buildEmediat(Mapping mapping) throws Exception{
 		File productFile = new File(emediatProductFile);
 		File articlesFile = new File(emediatArticleFile);
 		File limitationsFile = new File(emediatLimitationsFile);
+		File substancesFile = new File(emediatSubstanceFile);
 		
 		IArtikelstammBuildStrategy strategy = new EMediatStrategyV1();
-		ARTIKELSTAMM artikelstamm =
-			strategy.generate(null, productFile, articlesFile, limitationsFile);
+		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
+			productFile, articlesFile, limitationsFile, substancesFile
+		}, mapping);
 		
 		sortAndOutputToFile(artikelstamm, productFile.getParentFile());
 		return strategy;
 	}
 	
-	private static IArtikelstammBuildStrategy buildOddb2Xml() throws Exception{
+	private static IArtikelstammBuildStrategy buildOddb2Xml(Mapping mapping) throws Exception{
 		File oddb2xmlArticleFileObj = new File(oddb2xmlArticleFileName);
 		File oddb2xmlLimitationFileObj = new File(oddb2xmlLimitationFileName);
 		File oddb2xmlProductFileObj = new File(oddb2xmlProductFileName);
@@ -196,8 +185,10 @@ public class ArtikelstammBuilder {
 		}
 		
 		IArtikelstammBuildStrategy strategy = new Oddb2XmlStrategyV1_2();
-		ARTIKELSTAMM artikelstamm = strategy.generate(oddb2xmlSequencesFileObj,
-			oddb2xmlProductFileObj, oddb2xmlArticleFileObj, oddb2xmlLimitationFileObj);
+		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
+			oddb2xmlSequencesFileObj, oddb2xmlProductFileObj, oddb2xmlArticleFileObj,
+			oddb2xmlLimitationFileObj
+		}, mapping);
 		
 		System.out.println("(VALIDATING)");
 		ArtikelstammValidator av = new ArtikelstammValidator(artikelstamm);
