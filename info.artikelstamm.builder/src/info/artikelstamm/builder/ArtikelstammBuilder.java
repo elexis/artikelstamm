@@ -34,6 +34,7 @@ import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.builder.strategies.EMediatStrategyV1;
 import info.artikelstamm.builder.strategies.IArtikelstammBuildStrategy;
 import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV1_2;
+import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV2_0;
 import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
 import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
@@ -184,7 +185,7 @@ public class ArtikelstammBuilder {
 			return null;
 		}
 		
-		IArtikelstammBuildStrategy strategy = new Oddb2XmlStrategyV1_2();
+		IArtikelstammBuildStrategy strategy = new Oddb2XmlStrategyV2_0();
 		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
 			oddb2xmlSequencesFileObj, oddb2xmlProductFileObj, oddb2xmlArticleFileObj,
 			oddb2xmlLimitationFileObj

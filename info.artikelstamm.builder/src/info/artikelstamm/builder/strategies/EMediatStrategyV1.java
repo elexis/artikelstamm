@@ -13,7 +13,10 @@ import java.util.stream.Collectors;
 import ch.hcisolutions.index.ARTICLE;
 import ch.hcisolutions.index.ARTICLE.ART;
 import ch.hcisolutions.index.ARTICLE.ART.ARTINS;
+import ch.hcisolutions.index.ARTICLE.ART.ARTLIM;
 import ch.hcisolutions.index.ARTICLE.ART.ARTPRI;
+import ch.hcisolutions.index.LIMITATION;
+import ch.hcisolutions.index.LIMITATION.LIM;
 import ch.hcisolutions.index.MedindexHelper;
 import ch.hcisolutions.index.PRODUCT;
 import ch.hcisolutions.index.PRODUCT.PRD;
@@ -24,16 +27,20 @@ import ch.hcisolutions.index.SUBSTANCE.SB;
 import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.model.ARTIKELSTAMM;
 import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS;
 import info.artikelstamm.model.DATASOURCEType;
+import info.artikelstamm.model.SALECDType;
 
 public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 	
-	private static boolean ADD_ONLY_PRODUCTS_WITH_ARTICLES = false;
+	private static boolean ADD_ONLY_PRODUCTS_WITH_ARTICLES = true;
 	
 	private Map<String, PRD> prodNoToProduct = new HashMap<>();
 	private Set<String> articleReferencedProductNumbers = new HashSet<>();
 	
 	private Map<BigInteger, SB> substanceNo;
+	private Map<Integer, String> productLimitations = new HashMap<>();
+	private Set<String> usedLimitations = new HashSet<>();
 	
 	@Override
 	public ARTIKELSTAMM generate(File[] inputFiles, Mapping mapping) throws Exception{
@@ -49,7 +56,7 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 		}
 		
 		ARTICLE articles = (ARTICLE) MedindexHelper.unmarshallFile(articleFile);
-		//		LIMITATION limitations = (LIMITATION) MedindexHelper.unmarshallFile(oddb2xmlLimitationFileObj);
+		LIMITATION limitations = (LIMITATION) MedindexHelper.unmarshallFile(limitationsFile);
 		
 		SUBSTANCE substances = (SUBSTANCE) MedindexHelper.unmarshallFile(substancesFile);
 		substanceNo = substances.getSB().stream()
@@ -64,12 +71,15 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 			"(S2) add products -> only referenced products = " + ADD_ONLY_PRODUCTS_WITH_ARTICLES);
 		populateProducts(artikelstamm, product);
 		
+		System.out.println("(S3) populate limitations");
+		populateLimitations(artikelstamm, limitations);
+		
 		System.out.println("(S9) save gtin to prodno mappings");
-//		Files.write(
-//			new File(productFile.getParentFile(),
-//				DATASOURCEType.MEDINDEX.value() + "_gtin_to_prodno.csv").toPath(),
-//			() -> gtinToProdNo.entrySet().stream()
-//				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
+		//		Files.write(
+		//			new File(productFile.getParentFile(),
+		//				DATASOURCEType.MEDINDEX.value() + "_gtin_to_prodno.csv").toPath(),
+		//			() -> gtinToProdNo.entrySet().stream()
+		//				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
 		
 		System.out.println("# of products " + artikelstamm.getPRODUCTS().getPRODUCT().size());
 		System.out.println("# of items " + artikelstamm.getITEMS().getITEM().size());
@@ -77,6 +87,49 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 			.println("# of limitations " + artikelstamm.getLIMITATIONS().getLIMITATION().size());
 		
 		return artikelstamm;
+	}
+	
+	private void populateLimitations(ARTIKELSTAMM artikelstamm, LIMITATION limitations){
+		
+		Map<String, LIM> addedLimitations = new HashMap<>();
+		
+		List<LIM> lim = limitations.getLIM();
+		for (LIM lim2 : lim) {
+			if (usedLimitations.contains(lim2.getLIMCD())) {
+				if ("MIG".equals(lim2.getLIMTYP())) {
+					// skip MIG type limitations, they do not contain descriptive texts
+					System.out.println("Skipping limitation "+lim2.getLIMCD());
+					continue;
+				}
+				
+				info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION limitation =
+					new info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
+				limitation.setDSCR(lim2.getDSCRD());
+				limitation.setDSCRF(lim2.getDSCRF());
+				limitation.setLIMNAMEBAG(lim2.getLIMCD());
+				if ("PTS".equals(lim2.getLIMTYP())) {
+					if (lim2.getLIMVAL() != null) {
+						limitation.setLIMITATIONPTS(lim2.getLIMVAL().intValue());
+					}
+				}
+				
+				artikelstamm.getLIMITATIONS().getLIMITATION().add(limitation);
+				addedLimitations.put(lim2.getLIMCD(), lim2);
+			}
+		}
+		
+		// Clean skipped limitation references;
+		PRODUCTS products = artikelstamm.getPRODUCTS();
+		for (info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT prod : products.getPRODUCT()) {
+			String limnamebag = prod.getLIMNAMEBAG();
+			if (limnamebag != null) {
+				if (!addedLimitations.containsKey(limnamebag)) {
+					System.out.println("Cleaning limitation "+limnamebag);
+					prod.setLIMNAMEBAG(null);
+				}
+			}
+		}
+		
 	}
 	
 	private void populateProducts(ARTIKELSTAMM artikelstamm, PRODUCT product){
@@ -118,31 +171,61 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 				}
 			}
 		}
+		
+		String limcd = productLimitations.get(prd.getPRDNO());
+		if (limcd != null) {
+			product.setLIMNAMEBAG(limcd);
+			usedLimitations.add(limcd);
+		}
+		
 		artikelstamm.getPRODUCTS().getPRODUCT().add(product);
 	}
 	
-	private void populateItemsFromArticles(ARTIKELSTAMM artikelstamm, ARTICLE articles, Mapping mapping){
+	private void populateItemsFromArticles(ARTIKELSTAMM artikelstamm, ARTICLE articles,
+		Mapping mapping){
 		List<ART> art = articles.getART();
 		for (ART a : art) {
-			ITEM item = new ITEM();
-			item.setPRODNO(Integer.toString(a.getPRDNO()));
-			PRD prd = prodNoToProduct.get(item.getPRODNO());
-			if (prd == null) {
-				System.out.println(
-					"[ERROR] No product [" + a.getPRDNO() + "] for article [" + a.getARTNO() + "]");
-				return;
+			if (a.isDEL()) {
+				// If article is deleted, we consider it as "dead" no changes will be done further; 
+				// after 4 - 6 months after the marking as deleted, the article will be removed permanently from the data
+				continue;
 			}
-			articleReferencedProductNumbers.add(item.getPRODNO());
+			
+			ITEM item = new ITEM();
+			
+			// 8-stellige Nummer, die von Swissmedic nach Zulassung eines Arzneimittels erteilt wird; 
+			// ist Teil vom GTIN 7680.
+			if (a.getSMNO() != null) {
+				item.setPHARMATYPE("P");
+			} else {
+				item.setPHARMATYPE("N");
+			}
+			
+			if (item.getPHARMATYPE().equals("P")) {
+				item.setPRODNO(Integer.toString(a.getPRDNO()));
+				PRD prd = prodNoToProduct.get(item.getPRODNO());
+				if (prd == null) {
+					System.out.println("[ERROR] No product [" + a.getPRDNO() + "] for article ["
+						+ a.getARTNO() + "]");
+					
+					return;
+				}
+				item.setGENERICTYPE(prd.getGENCD());
+				articleReferencedProductNumbers.add(item.getPRODNO());
+			}
+			
 			item.setGTIN(a.getGTIN());
-
 			
 			String salecd = a.getSALECD();
-			// R, N, H --> was ist mit H? neues feld?
-			
-			// TODO item.setPHARMATYPE(value);
+			if ("N".equals(salecd)) {
+				item.setSALECD(SALECDType.A);
+			} else {
+				item.setSALECD(SALECDType.I);
+			}
 			
 			item.setDSCR(a.getDSCRD());
-			mapping.add(DATASOURCEType.MEDINDEX, item.getGTIN(), item.getPRODNO(), item.getDSCR());
+			mapping.add(DATASOURCEType.MEDINDEX, item.getGTIN(),
+				"N_" + Integer.toString(a.getPRDNO()), item.getDSCR());
 			item.setDSCRF(a.getDSCRF());
 			item.setPHAR(BigInteger.valueOf(Long.parseLong(a.getPHAR())));
 			// TODO COMP
@@ -173,7 +256,7 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 				}
 			}
 			item.setIKSCAT(a.getSMCAT());
-			item.setGENERICTYPE(prd.getGENCD());
+			
 			// TODO HAS_GENERIC (? REMOVE ?)
 			
 			// DEDUCTIBLE
@@ -190,12 +273,18 @@ public class EMediatStrategyV1 implements IArtikelstammBuildStrategy {
 				}
 			}
 			// NARCOTIC
-			// TODO Y existiert nicht in CDBG
-			// https://index.hcisolutions.ch/DataDoc/element/ARTICLE/ART/CDBG
-			//			if ("Y".equalsIgnoreCase(a.getCDBG())
-			//				&& "Y".equalsIgnoreCase(a.getBG())) {
-			//				item.setNARCOTIC(true);
-			//			}
+			// Y=drug is under law for narcotics (galdat 3.0,Table.Field: AC.CodeBG)
+			if ("Y".equalsIgnoreCase(a.getBG())) {
+				item.setNARCOTIC(true);
+			}
+			
+			// LIMITATIONS
+			List<ARTLIM> artlim = a.getARTLIM();
+			if (artlim.size() > 0) {
+				// TODO collect limitions, only the first one is collected
+				String limcd = artlim.get(0).getLIMCD();
+				productLimitations.put(a.getPRDNO(), limcd);
+			}
 			// TODO NARCOTIC_CAS via SUBSTANCE)
 			
 			artikelstamm.getITEMS().getITEM().add(item);

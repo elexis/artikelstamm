@@ -36,17 +36,13 @@ import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
 import info.artikelstamm.model.DATASOURCEType;
 import info.artikelstamm.model.SALECDType;
 
-/**
- * Aufbau siehe <code>/doc/artikelstammBuildV12.png</code>
- */
-public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
-	
-	private static final String SALECD_INACTIVE = "I";
+
+public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
+
 	
 	private int pharmaProductCounter = 0;
 	private int pharmaArticleCounter = 0;
 	private int nonPharmaArticleCounter = 0;
-	private int nonPharmaInactive = 0;
 	private int invalidPackageSize = 0;
 	private int noAmendFromArticleXml = 0;
 	private int noAmendFromProductXml = 0;
@@ -91,7 +87,6 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 		System.out.println("pharmaProductCounter " + pharmaProductCounter);
 		System.out.println("pharmaArticleCounter " + pharmaArticleCounter);
 		System.out.println("nonPharmaArticleCounter " + nonPharmaArticleCounter);
-		System.out.println("nonPharmaInactive " + nonPharmaInactive);
 		System.out.println("invalidPackageSize " + invalidPackageSize);
 		System.out.println("noAmendFromProductXml (PRODNO not found in oddb_product.xml) "
 			+ noAmendFromProductXml);
@@ -186,15 +181,11 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 			if (isPharma) {
 				continue;
 			}
-			boolean isInactive = SALECD_INACTIVE.equalsIgnoreCase(oddb2xmlArt.getSALECD());
-			if (isInactive) {
-				nonPharmaInactive++;
-				continue;
-			}
 			
 			nonPharmaArticleCounter++;
 			
 			ITEM artikelstammItem = new ITEM();
+			artikelstammItem.setSALECD(SALECDType.fromValue(oddb2xmlArt.getSALECD()));
 			artikelstammItem.setPHARMATYPE("N");
 			String gtin = String.format("%013d", oddb2xmlArt.getARTBAR().getBC());
 			artikelstammItem.setGTIN(gtin);

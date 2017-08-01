@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.07.25 um 02:05:04 PM CEST 
+// Generiert: 2017.08.01 um 11:08:19 AM CEST 
 //
 
 
@@ -13,34 +13,32 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für DELTAType.
+ * <p>Java-Klasse für SALECDType.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * <p>
  * <pre>
- * &lt;simpleType name="DELTAType">
+ * &lt;simpleType name="SALECDType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     &lt;enumeration value="I"/>
  *     &lt;enumeration value="A"/>
- *     &lt;enumeration value="D"/>
- *     &lt;enumeration value="M"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "DELTAType")
+@XmlType(name = "SALECDType")
 @XmlEnum
-public enum DELTAType {
+public enum SALECDType {
 
-    A,
-    D,
-    M;
+    I,
+    A;
 
     public String value() {
         return name();
     }
 
-    public static DELTAType fromValue(String v) {
+    public static SALECDType fromValue(String v) {
         return valueOf(v);
     }
 

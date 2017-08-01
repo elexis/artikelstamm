@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.07.25 um 02:05:04 PM CEST 
+// Generiert: 2017.08.01 um 11:08:19 AM CEST 
 //
 
 
@@ -55,7 +55,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
- *                           &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -80,7 +79,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DSCRType"/>
  *                             &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                           &lt;/sequence>
- *                           &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -170,6 +168,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
  *                             &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="SALECD" type="{http://elexis.ch/Elexis_Artikelstamm_v5}SALECDType"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="PHARMATYPE">
  *                             &lt;simpleType>
@@ -179,7 +178,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                               &lt;/restriction>
  *                             &lt;/simpleType>
  *                           &lt;/attribute>
- *                           &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -192,9 +190,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;/sequence>
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="BUILD_DATETIME" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
- *       &lt;attribute name="MONTH" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="YEAR" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="VERSION_ID" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="DATA_SOURCE" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DATASOURCEType" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -224,12 +219,6 @@ public class ARTIKELSTAMM {
     @XmlAttribute(name = "BUILD_DATETIME")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar builddatetime;
-    @XmlAttribute(name = "MONTH", required = true)
-    protected int month;
-    @XmlAttribute(name = "YEAR", required = true)
-    protected int year;
-    @XmlAttribute(name = "VERSION_ID", required = true)
-    protected int versionid;
     @XmlAttribute(name = "DATA_SOURCE")
     protected DATASOURCEType datasource;
 
@@ -354,54 +343,6 @@ public class ARTIKELSTAMM {
     }
 
     /**
-     * Ruft den Wert der month-Eigenschaft ab.
-     * 
-     */
-    public int getMONTH() {
-        return month;
-    }
-
-    /**
-     * Legt den Wert der month-Eigenschaft fest.
-     * 
-     */
-    public void setMONTH(int value) {
-        this.month = value;
-    }
-
-    /**
-     * Ruft den Wert der year-Eigenschaft ab.
-     * 
-     */
-    public int getYEAR() {
-        return year;
-    }
-
-    /**
-     * Legt den Wert der year-Eigenschaft fest.
-     * 
-     */
-    public void setYEAR(int value) {
-        this.year = value;
-    }
-
-    /**
-     * Ruft den Wert der versionid-Eigenschaft ab.
-     * 
-     */
-    public int getVERSIONID() {
-        return versionid;
-    }
-
-    /**
-     * Legt den Wert der versionid-Eigenschaft fest.
-     * 
-     */
-    public void setVERSIONID(int value) {
-        this.versionid = value;
-    }
-
-    /**
      * Ruft den Wert der datasource-Eigenschaft ab.
      * 
      * @return
@@ -511,6 +452,7 @@ public class ARTIKELSTAMM {
      *                   &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
      *                   &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="SALECD" type="{http://elexis.ch/Elexis_Artikelstamm_v5}SALECDType"/>
      *                 &lt;/sequence>
      *                 &lt;attribute name="PHARMATYPE">
      *                   &lt;simpleType>
@@ -520,7 +462,6 @@ public class ARTIKELSTAMM {
      *                     &lt;/restriction>
      *                   &lt;/simpleType>
      *                 &lt;/attribute>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -659,6 +600,7 @@ public class ARTIKELSTAMM {
          *         &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
          *         &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="SALECD" type="{http://elexis.ch/Elexis_Artikelstamm_v5}SALECDType"/>
          *       &lt;/sequence>
          *       &lt;attribute name="PHARMATYPE">
          *         &lt;simpleType>
@@ -668,7 +610,6 @@ public class ARTIKELSTAMM {
          *           &lt;/restriction>
          *         &lt;/simpleType>
          *       &lt;/attribute>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -696,7 +637,8 @@ public class ARTIKELSTAMM {
             "narcotic",
             "narcoticcas",
             "prodno",
-            "measure"
+            "measure",
+            "salecd"
         })
         public static class ITEM {
 
@@ -738,10 +680,11 @@ public class ARTIKELSTAMM {
             protected String prodno;
             @XmlElement(name = "MEASURE")
             protected String measure;
+            @XmlElement(name = "SALECD", required = true)
+            @XmlSchemaType(name = "string")
+            protected SALECDType salecd;
             @XmlAttribute(name = "PHARMATYPE")
             protected String pharmatype;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
 
             /**
              * Ruft den Wert der gtin-Eigenschaft ab.
@@ -1200,6 +1143,30 @@ public class ARTIKELSTAMM {
             }
 
             /**
+             * Ruft den Wert der salecd-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link SALECDType }
+             *     
+             */
+            public SALECDType getSALECD() {
+                return salecd;
+            }
+
+            /**
+             * Legt den Wert der salecd-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link SALECDType }
+             *     
+             */
+            public void setSALECD(SALECDType value) {
+                this.salecd = value;
+            }
+
+            /**
              * Ruft den Wert der pharmatype-Eigenschaft ab.
              * 
              * @return
@@ -1221,30 +1188,6 @@ public class ARTIKELSTAMM {
              */
             public void setPHARMATYPE(String value) {
                 this.pharmatype = value;
-            }
-
-            /**
-             * Ruft den Wert der delta-Eigenschaft ab.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Legt den Wert der delta-Eigenschaft fest.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
             }
 
 
@@ -1367,7 +1310,6 @@ public class ARTIKELSTAMM {
      *                   &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DSCRType"/>
      *                   &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                 &lt;/sequence>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -1434,7 +1376,6 @@ public class ARTIKELSTAMM {
          *         &lt;element name="DSCRF" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DSCRType"/>
          *         &lt;element name="LIMITATION_PTS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *       &lt;/sequence>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -1459,8 +1400,6 @@ public class ARTIKELSTAMM {
             protected String dscrf;
             @XmlElement(name = "LIMITATION_PTS")
             protected Integer limitationpts;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
 
             /**
              * Ruft den Wert der limnamebag-Eigenschaft ab.
@@ -1558,30 +1497,6 @@ public class ARTIKELSTAMM {
                 this.limitationpts = value;
             }
 
-            /**
-             * Ruft den Wert der delta-Eigenschaft ab.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Legt den Wert der delta-Eigenschaft fest.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
-            }
-
         }
 
     }
@@ -1616,7 +1531,6 @@ public class ARTIKELSTAMM {
      *                   &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
-     *                 &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -1692,7 +1606,6 @@ public class ARTIKELSTAMM {
          *         &lt;element name="SUBSTANCE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="SUBSTANCEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *       &lt;/sequence>
-         *       &lt;attribute name="DELTA" type="{http://elexis.ch/Elexis_Artikelstamm_v5}DELTAType" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -1726,8 +1639,6 @@ public class ARTIKELSTAMM {
             protected String substance;
             @XmlElement(name = "SUBSTANCEF")
             protected String substancef;
-            @XmlAttribute(name = "DELTA")
-            protected DELTAType delta;
 
             /**
              * Ruft den Wert der prodno-Eigenschaft ab.
@@ -1895,30 +1806,6 @@ public class ARTIKELSTAMM {
              */
             public void setSUBSTANCEF(String value) {
                 this.substancef = value;
-            }
-
-            /**
-             * Ruft den Wert der delta-Eigenschaft ab.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DELTAType }
-             *     
-             */
-            public DELTAType getDELTA() {
-                return delta;
-            }
-
-            /**
-             * Legt den Wert der delta-Eigenschaft fest.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DELTAType }
-             *     
-             */
-            public void setDELTA(DELTAType value) {
-                this.delta = value;
             }
 
         }

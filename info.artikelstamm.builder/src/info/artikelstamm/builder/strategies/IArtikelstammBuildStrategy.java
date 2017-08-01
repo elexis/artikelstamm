@@ -51,8 +51,6 @@ public interface IArtikelstammBuildStrategy {
 		artikelstamm.setPRODUCTS(new PRODUCTS());
 		artikelstamm.setLIMITATIONS(new LIMITATIONS());
 		artikelstamm.setCREATIONDATETIME(xmlgc);
-		artikelstamm.setMONTH(xmlgc.getMonth());
-		artikelstamm.setYEAR(xmlgc.getYear());
 		
 		artikelstamm.setBUILDDATETIME(
 			DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));

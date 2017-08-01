@@ -67,9 +67,6 @@
 											type="xs:string" minOccurs="0" maxOccurs="1">
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="DELTA"
-										type="DELTAType" use="optional">
-									</xs:attribute>
 								</xs:complexType>
 								<xs:unique name="uniqueProdno">
 									<xs:selector xpath="PRODNO" />
@@ -106,9 +103,6 @@
 											</xs:annotation>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="DELTA"
-										type="DELTAType" use="optional">
-									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -409,6 +403,12 @@
 												</xs:documentation>
 											</xs:annotation>
 										</xs:element>
+										<xs:element name="SALECD"
+											type="SALECDType" minOccurs="1" maxOccurs="1">
+                                            <xs:annotation>
+                                            	<xs:documentation></xs:documentation>
+                                            </xs:annotation>
+										</xs:element>
 									</xs:sequence>
 
 
@@ -432,9 +432,6 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
-									<xs:attribute name="DELTA"
-										type="DELTAType" use="optional">
-									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -444,8 +441,7 @@
 			<xs:attribute name="CREATION_DATETIME" type="xs:dateTime"
 				use="required">
 				<xs:annotation>
-					<xs:documentation>
-						Erstellungszeitpunkt des Ursprungsdatensatzes
+					<xs:documentation>Erstellungszeitpunkt des QuellDatensatzes (siehe DATA_SOURCE)
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -456,27 +452,10 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="MONTH" type="xs:int" use="required">
+			<xs:attribute name="DATA_SOURCE" type="DATASOURCEType">
 				<xs:annotation>
-					<xs:documentation>
-						Monatszuordnung dieses Datensatzes
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="YEAR" type="xs:int" use="required">
-				<xs:annotation>
-					<xs:documentation>
-						Jahreszuordnung dieses Datensatzes
-					</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="VERSION_ID" type="xs:int"
-				use="required">
-				<xs:annotation>
-					<xs:documentation>A version ID</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="DATA_SOURCE" type="DATASOURCEType"></xs:attribute>
+					<xs:documentation></xs:documentation>
+				</xs:annotation></xs:attribute>
 		</xs:complexType>
 	</xs:element>
 
@@ -494,32 +473,25 @@
 	</xs:simpleType>
 
 
-	<xs:simpleType name="DELTAType">
-		<xs:annotation>
-			<xs:documentation>
-				DELTA type for an entry, only defined if set-type
-				is D :
-				A the entry was added, M modified or D deleted compared
-				to
-				VID_APP_TO. Not valid for FULL data set types
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="A"></xs:enumeration>
-			<xs:enumeration value="D"></xs:enumeration>
-			<xs:enumeration value="M"></xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
 
 	<xs:simpleType name="DATASOURCEType">
 		<xs:annotation>
-			<xs:documentation>
-				The data source this Artikelstamm is generated from.
+			<xs:documentation>The data source this Artikelstamm is generated from.
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="oddb2xml"></xs:enumeration>
 			<xs:enumeration value="medindex"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SALECDType">
+        <xs:annotation>
+        	<xs:documentation>Bedeutung ist 'A' = Aktiv,'I' = inaktiv == Ausser Handel</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+			<xs:enumeration value="I"></xs:enumeration>
+			<xs:enumeration value="A"></xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>
