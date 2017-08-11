@@ -1,6 +1,7 @@
 package ch.hcisolutions.index;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
 
@@ -28,21 +29,24 @@ public class MedIndexDownload {
 	public static final String OPTION_USERNAME = "username";
 	public static final String OPTION_PASSWORD = "password";
 	
-	public static void main(String[] args) throws SAXException, JAXBException{
+	public static void main(String[] args)
+		throws SAXException, JAXBException, MalformedURLException{
 		
-		if (args.length != 3) {
+		if (args.length != 2) {
 			System.out.println("Usage MedindexDownload username password");
 			System.out.println("See https://redmine.medelexis.ch/issues/6592");
 			return;
 		}
 		
-		String username = args[1];
-		String password = args[2];
+		String username = args[0];
+		String password = args[1];
 		
 		File medindexDir = new File("medindex");
 		medindexDir.mkdir();
 		
-		DownloadSoap download = new Download().getDownloadSoap12();
+		DownloadSoap download =
+			new Download(MedIndexDownload.class.getResource("hcisolutions_index_download.wsdl"))
+				.getDownloadSoap12();
 		
 		((BindingProvider) download).getRequestContext().put(BindingProvider.USERNAME_PROPERTY,
 			username);
