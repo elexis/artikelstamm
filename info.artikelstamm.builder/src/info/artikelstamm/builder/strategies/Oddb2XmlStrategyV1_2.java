@@ -29,12 +29,13 @@ import com.ywesee.oddb2xml.sequences.SequencesHelper;
 import at.medevit.atc_codes.ATCCode;
 import at.medevit.atc_codes.internal.ATCCodes;
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.model.ARTIKELSTAMM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM.COMP;
-import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
-import info.artikelstamm.model.DATASOURCEType;
-import info.artikelstamm.model.SALECDType;
+import info.artikelstamm.model.v5.ARTIKELSTAMM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM.COMP;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.v5.DATASOURCEType;
+import info.artikelstamm.model.v5.SALECDType;
+
 
 /**
  * Aufbau siehe <code>/doc/artikelstammBuildV12.png</code>
@@ -386,8 +387,8 @@ public class Oddb2XmlStrategyV1_2 implements IArtikelstammBuildStrategy {
 		}
 		
 		for (LIM limitation : employedLimitations.values()) {
-			info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION astammLimitation =
-				new info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
+			info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION astammLimitation =
+				new info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
 			astammLimitation.setDSCR(limitation.getDSCRD().trim());
 			astammLimitation.setDSCRF(limitation.getDSCRF().trim());
 			astammLimitation.setLIMNAMEBAG(limitation.getLIMNAMEBAG());

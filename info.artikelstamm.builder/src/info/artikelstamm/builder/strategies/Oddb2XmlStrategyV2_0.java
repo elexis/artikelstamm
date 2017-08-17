@@ -29,16 +29,14 @@ import com.ywesee.oddb2xml.sequences.SequencesHelper;
 import at.medevit.atc_codes.ATCCode;
 import at.medevit.atc_codes.internal.ATCCodes;
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.model.ARTIKELSTAMM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM.COMP;
-import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
-import info.artikelstamm.model.DATASOURCEType;
-import info.artikelstamm.model.SALECDType;
-
+import info.artikelstamm.model.v5.ARTIKELSTAMM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM.COMP;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.v5.DATASOURCEType;
+import info.artikelstamm.model.v5.SALECDType;
 
 public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
-
 	
 	private int pharmaProductCounter = 0;
 	private int pharmaArticleCounter = 0;
@@ -150,6 +148,8 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 				item.setPKGSIZESTRING(sequenceItem.getAmount() + " " + sequenceItem.getMunit());
 				item.setMEASURE(sequenceItem.getMunit());
 				
+				item.setDOSAGEFORM(sequenceItem.getGalenicForm());
+				
 				artikelstamm.getITEMS().getITEM().add(item);
 				
 				List<ITEM> list = prodToItemCache.get(astammProduct.getPRODNO());
@@ -172,13 +172,17 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 		for (ART oddb2xmlArt : articles) {
 			// pre-fetch mapping for limitations (speedup)
 			BigInteger barcode = oddb2xmlArt.getARTBAR().getBC();
-			if (barcode != null) {
-				gtinToSwissMedicNo.put(oddb2xmlArt.getARTBAR().getBC(), oddb2xmlArt.getSMNO());
+			if (barcode == null || BigInteger.ZERO.equals(barcode)) {
+				System.out.println("[INFO] GTIN is null ["+oddb2xmlArt.getDSCRD()+"] ("+oddb2xmlArt.getSALECD()+")");
+				continue;
 			}
-			//
+			
+			gtinToSwissMedicNo.put(oddb2xmlArt.getARTBAR().getBC(), oddb2xmlArt.getSMNO());
 			
 			boolean isPharma = Oddb2XmlHelper.determineIfPharma(oddb2xmlArt);
 			if (isPharma) {
+				// TODO skips a lot of articles, like 7680091430332 LYSOFORM
+				// which appears in oddb_article but not swissemedic_sequences
 				continue;
 			}
 			
@@ -187,7 +191,8 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 			ITEM artikelstammItem = new ITEM();
 			artikelstammItem.setSALECD(SALECDType.fromValue(oddb2xmlArt.getSALECD()));
 			artikelstammItem.setPHARMATYPE("N");
-			String gtin = String.format("%013d", oddb2xmlArt.getARTBAR().getBC());
+			
+			String gtin = String.format("%013d", barcode);
 			artikelstammItem.setGTIN(gtin);
 			
 			// limit to max 50 chars
@@ -377,8 +382,8 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 		}
 		
 		for (LIM limitation : employedLimitations.values()) {
-			info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION astammLimitation =
-				new info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
+			info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION astammLimitation =
+				new info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
 			astammLimitation.setDSCR(limitation.getDSCRD().trim());
 			astammLimitation.setDSCRF(limitation.getDSCRF().trim());
 			astammLimitation.setLIMNAMEBAG(limitation.getLIMNAMEBAG());
@@ -462,5 +467,5 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 		if (pexf != null)
 			item.setPEXF(pexf);
 	}
-
+	
 }

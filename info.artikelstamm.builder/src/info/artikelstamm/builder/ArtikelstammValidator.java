@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import info.artikelstamm.model.ARTIKELSTAMM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS.ITEM;
-import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
-import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.v5.ARTIKELSTAMM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+
 
 public class ArtikelstammValidator {
 	

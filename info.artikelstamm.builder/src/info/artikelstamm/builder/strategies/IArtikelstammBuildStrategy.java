@@ -10,15 +10,13 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.model.ARTIKELSTAMM;
-import info.artikelstamm.model.ARTIKELSTAMM.ITEMS;
-import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS;
-import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS;
-import info.artikelstamm.model.DATASOURCEType;
+import info.artikelstamm.model.v5.ARTIKELSTAMM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS;
+import info.artikelstamm.model.v5.DATASOURCEType;
 
 public interface IArtikelstammBuildStrategy {
-	
-	
 	
 	ARTIKELSTAMM generate(File[] inputFiles, Mapping mapping) throws Exception;
 	

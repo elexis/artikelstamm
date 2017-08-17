@@ -31,13 +31,12 @@ import com.ywesee.oddb2xml.Oddb2xmlValidator;
 import com.ywesee.oddb2xml.sequences.SequencesValidator;
 
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.builder.strategies.EMediatStrategyV1;
+import info.artikelstamm.builder.strategies.MedindexStrategyV1;
 import info.artikelstamm.builder.strategies.IArtikelstammBuildStrategy;
-import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV1_2;
 import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV2_0;
-import info.artikelstamm.model.ARTIKELSTAMM;
-import info.artikelstamm.model.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
-import info.artikelstamm.model.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.v5.ARTIKELSTAMM;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
+import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT;
 
 public class ArtikelstammBuilder {
 	
@@ -162,7 +161,7 @@ public class ArtikelstammBuilder {
 		File limitationsFile = new File(emediatLimitationsFile);
 		File substancesFile = new File(emediatSubstanceFile);
 		
-		IArtikelstammBuildStrategy strategy = new EMediatStrategyV1();
+		IArtikelstammBuildStrategy strategy = new MedindexStrategyV1();
 		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
 			productFile, articlesFile, limitationsFile, substancesFile
 		}, mapping);
