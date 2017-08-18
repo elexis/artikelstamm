@@ -192,12 +192,6 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		Mapping mapping){
 		List<ART> art = articles.getART();
 		for (ART a : art) {
-			if (a.isDEL()) {
-				// If article is deleted, we consider it as "dead" no changes will be done further; 
-				// after 4 - 6 months after the marking as deleted, the article will be removed permanently from the data
-				continue;
-			}
-			
 			ITEM item = new ITEM();
 			
 			item.setGTIN(a.getGTIN());
@@ -226,8 +220,6 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 				item.setGENERICTYPE(prd.getGENCD());
 				articleReferencedProductNumbers.add(item.getPRODNO());
 			}
-			
-
 			
 			String salecd = a.getSALECD();
 			if ("N".equals(salecd)) {
