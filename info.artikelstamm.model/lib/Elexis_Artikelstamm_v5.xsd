@@ -247,8 +247,17 @@
 										<xs:element name="PKG_SIZE"
 											type="xs:int" maxOccurs="1" minOccurs="0">
 										</xs:element>
-										<xs:element
-											name="PKG_SIZE_STRING" type="xs:string" minOccurs="0"
+                                        <xs:element name="MEASURE" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>
+													Measurement Unit,
+													e.g. Pills or
+													milliliters
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+                                        <xs:element
+											name="MEASUREF" type="xs:string" minOccurs="0"
 											maxOccurs="1">
 										</xs:element>
                                         <xs:element name="DOSAGE_FORM" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -413,16 +422,6 @@
 												<xs:documentation>
 													Produktnummer des
 													Artikels
-												</xs:documentation>
-											</xs:annotation>
-										</xs:element>
-										<xs:element name="MEASURE"
-											type="xs:string" minOccurs="0" maxOccurs="1">
-											<xs:annotation>
-												<xs:documentation>
-													Measurement Unit,
-													e.g. Pills or
-													milliliters
 												</xs:documentation>
 											</xs:annotation>
 										</xs:element>

@@ -201,18 +201,16 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 				item.setPHARMATYPE("N");
 			}
 			
-			if (item.getPHARMATYPE().equals("P")) {
-				item.setPRODNO(Integer.toString(a.getPRDNO()));
-				PRD prd = prodNoToProduct.get(item.getPRODNO());
-				if (prd == null) {
-					System.out.println("[ERROR] No product [" + a.getPRDNO() + "] for article ["
-						+ a.getARTNO() + "]");
-					
-					return;
-				}
-				item.setGENERICTYPE(prd.getGENCD());
-				articleReferencedProductNumbers.add(item.getPRODNO());
+			item.setPRODNO(Integer.toString(a.getPRDNO()));
+			PRD prd = prodNoToProduct.get(item.getPRODNO());
+			if (prd == null) {
+				System.out.println(
+					"[ERROR] No product [" + a.getPRDNO() + "] for article [" + a.getARTNO() + "]");
+				
+				return;
 			}
+			item.setGENERICTYPE(prd.getGENCD());
+			articleReferencedProductNumbers.add(item.getPRODNO());
 			
 			String salecd = a.getSALECD();
 			if ("N".equals(salecd)) {
@@ -238,8 +236,8 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 				}
 			}
 			item.setPKGSIZE((a.getQTY() != null) ? a.getQTY().intValue() : null);
-			item.setPKGSIZESTRING(item.getPKGSIZE() + " " + a.getQTYUD());
 			item.setMEASURE(a.getQTYUD());
+			item.setMEASUREF(a.getQTYUF());
 			item.setDOSAGEFORM(a.getPCKTYPD());
 			item.setDOSAGEFORMF(a.getPCKTYPF());
 			

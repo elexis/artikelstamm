@@ -123,7 +123,7 @@ public class ArtikelstammValidator {
 				String string = item2.getPKGSIZE().toString();
 				if (string.length() > 6) {
 					System.out.println("{" + item2.getGTIN()
-						+ "} WARNING possibly invalid package size [" + string + "] string is ["+item2.getPKGSIZESTRING()+"]");
+						+ "} WARNING possibly invalid package size [" + string + "] string is ["+item2.getPKGSIZE()+"]");
 				}
 			}
 		}

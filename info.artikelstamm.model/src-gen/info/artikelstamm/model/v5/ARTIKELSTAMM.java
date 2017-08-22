@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.08.21 um 02:29:53 PM CEST 
+// Generiert: 2017.08.22 um 09:26:57 AM CEST 
 //
 
 
@@ -141,7 +141,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *                             &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="MEASUREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="DOSAGE_FORM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="DOSAGE_FORMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -171,7 +172,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                             &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
- *                             &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="PHARMATYPE">
  *                             &lt;simpleType>
@@ -427,7 +427,8 @@ public class ARTIKELSTAMM {
      *                   &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *                   &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="MEASUREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="DOSAGE_FORM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="DOSAGE_FORMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -457,7 +458,6 @@ public class ARTIKELSTAMM {
      *                   &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *                   &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
-     *                   &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
      *                 &lt;attribute name="PHARMATYPE">
      *                   &lt;simpleType>
@@ -577,7 +577,8 @@ public class ARTIKELSTAMM {
          *         &lt;element name="PEXF" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="PPUB" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="PKG_SIZE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-         *         &lt;element name="PKG_SIZE_STRING" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="MEASUREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="DOSAGE_FORM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="DOSAGE_FORMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="SL_ENTRY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -607,7 +608,6 @@ public class ARTIKELSTAMM {
          *         &lt;element name="NARCOTIC" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
          *         &lt;element name="NARCOTIC_CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="PRODNO" type="{http://elexis.ch/Elexis_Artikelstamm_v5}PRODNOType" minOccurs="0"/>
-         *         &lt;element name="MEASURE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *       &lt;/sequence>
          *       &lt;attribute name="PHARMATYPE">
          *         &lt;simpleType>
@@ -635,7 +635,8 @@ public class ARTIKELSTAMM {
             "pexf",
             "ppub",
             "pkgsize",
-            "pkgsizestring",
+            "measure",
+            "measuref",
             "dosageform",
             "dosageformf",
             "slentry",
@@ -646,8 +647,7 @@ public class ARTIKELSTAMM {
             "deductible",
             "narcotic",
             "narcoticcas",
-            "prodno",
-            "measure"
+            "prodno"
         })
         public static class ITEM {
 
@@ -670,8 +670,10 @@ public class ARTIKELSTAMM {
             protected Double ppub;
             @XmlElement(name = "PKG_SIZE")
             protected Integer pkgsize;
-            @XmlElement(name = "PKG_SIZE_STRING")
-            protected String pkgsizestring;
+            @XmlElement(name = "MEASURE")
+            protected String measure;
+            @XmlElement(name = "MEASUREF")
+            protected String measuref;
             @XmlElement(name = "DOSAGE_FORM")
             protected String dosageform;
             @XmlElement(name = "DOSAGE_FORMF")
@@ -694,8 +696,6 @@ public class ARTIKELSTAMM {
             protected String narcoticcas;
             @XmlElement(name = "PRODNO")
             protected String prodno;
-            @XmlElement(name = "MEASURE")
-            protected String measure;
             @XmlAttribute(name = "PHARMATYPE")
             protected String pharmatype;
 
@@ -916,27 +916,51 @@ public class ARTIKELSTAMM {
             }
 
             /**
-             * Ruft den Wert der pkgsizestring-Eigenschaft ab.
+             * Ruft den Wert der measure-Eigenschaft ab.
              * 
              * @return
              *     possible object is
              *     {@link String }
              *     
              */
-            public String getPKGSIZESTRING() {
-                return pkgsizestring;
+            public String getMEASURE() {
+                return measure;
             }
 
             /**
-             * Legt den Wert der pkgsizestring-Eigenschaft fest.
+             * Legt den Wert der measure-Eigenschaft fest.
              * 
              * @param value
              *     allowed object is
              *     {@link String }
              *     
              */
-            public void setPKGSIZESTRING(String value) {
-                this.pkgsizestring = value;
+            public void setMEASURE(String value) {
+                this.measure = value;
+            }
+
+            /**
+             * Ruft den Wert der measuref-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getMEASUREF() {
+                return measuref;
+            }
+
+            /**
+             * Legt den Wert der measuref-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setMEASUREF(String value) {
+                this.measuref = value;
             }
 
             /**
@@ -1201,30 +1225,6 @@ public class ARTIKELSTAMM {
              */
             public void setPRODNO(String value) {
                 this.prodno = value;
-            }
-
-            /**
-             * Ruft den Wert der measure-Eigenschaft ab.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getMEASURE() {
-                return measure;
-            }
-
-            /**
-             * Legt den Wert der measure-Eigenschaft fest.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setMEASURE(String value) {
-                this.measure = value;
             }
 
             /**

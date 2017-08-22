@@ -146,7 +146,6 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 					invalidPackageSize++;
 				}
 				
-				item.setPKGSIZESTRING(sequenceItem.getAmount() + " " + sequenceItem.getMunit());
 				item.setMEASURE(sequenceItem.getMunit());
 				
 				item.setDOSAGEFORM(sequenceItem.getGalenicForm());
