@@ -33,8 +33,6 @@ import info.artikelstamm.model.v5.SALECDType;
 
 public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	
-	private static boolean ADD_ONLY_PRODUCTS_WITH_ARTICLES = true;
-	
 	private Map<String, PRD> prodNoToProduct = new HashMap<>();
 	private Set<String> articleReferencedProductNumbers = new HashSet<>();
 	
@@ -67,8 +65,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		
 		System.out.println("(S1) populate items from articles");
 		populateItemsFromArticles(artikelstamm, articles, mapping);
-		System.out.println(
-			"(S2) add products -> only referenced products = " + ADD_ONLY_PRODUCTS_WITH_ARTICLES);
+		System.out.println("(S2) add products");
 		populateProducts(artikelstamm, product);
 		
 		System.out.println("(S3) populate limitations");
@@ -113,12 +110,12 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					}
 				}
 				
-				
-				if(!addedLimitations.containsKey(lim2.getLIMCD())) {
+				if (!addedLimitations.containsKey(lim2.getLIMCD())) {
 					addedLimitations.put(lim2.getLIMCD(), lim2);
 					artikelstamm.getLIMITATIONS().getLIMITATION().add(limitation);
 				} else {
-					System.out.println("WARNING skipping duplicate limitation code ["+lim2.getLIMCD()+"]");
+					System.out.println(
+						"WARNING skipping duplicate limitation code [" + lim2.getLIMCD() + "]");
 				}
 				
 			}
@@ -140,16 +137,9 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	}
 	
 	private void populateProducts(ARTIKELSTAMM artikelstamm, PRODUCT product){
-		if (ADD_ONLY_PRODUCTS_WITH_ARTICLES) {
-			for (String prodno : articleReferencedProductNumbers) {
-				PRD prd = prodNoToProduct.get(prodno);
-				addProduct(artikelstamm, prd);
-			}
-		} else {
-			List<PRD> products = product.getPRD();
-			for (PRD prd : products) {
-				addProduct(artikelstamm, prd);
-			}
+		List<PRD> products = product.getPRD();
+		for (PRD prd : products) {
+			addProduct(artikelstamm, prd);
 		}
 	}
 	
@@ -159,6 +149,8 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		product.setDSCR(prd.getDSCRD());
 		product.setDSCRF(prd.getDSCRF());
 		product.setATC(prd.getATC());
+		// https://index.hcisolutions.ch/DataDoc/element/PRODUCT/PRD/TRADE
+		product.setSALECD("iH".equalsIgnoreCase(prd.getTRADE()) ? SALECDType.A : SALECDType.I);
 		product.setPRODNO(Integer.toString(prd.getPRDNO()));
 		
 		// PRD/CPT/CPTCMP -> WHK=W => SUBNO-> DSCRD
@@ -195,8 +187,9 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			ITEM item = new ITEM();
 			
 			item.setGTIN(a.getGTIN());
-			if(item.getGTIN()==null) {
-				System.out.println("[INFO] GTIN is null ["+a.getDSCRD()+"] ("+a.getSALECD()+")");
+			if (item.getGTIN() == null) {
+				System.out
+					.println("[INFO] GTIN is null [" + a.getDSCRD() + "] (" + a.getSALECD() + ")");
 				continue;
 			}
 			
@@ -244,10 +237,11 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					item.setPPUB(artpri.getPRICE());
 				}
 			}
-			item.setPKGSIZE((a.getQTY()!=null) ? a.getQTY().intValue() : null);
+			item.setPKGSIZE((a.getQTY() != null) ? a.getQTY().intValue() : null);
 			item.setPKGSIZESTRING(item.getPKGSIZE() + " " + a.getQTYUD());
 			item.setMEASURE(a.getQTYUD());
 			item.setDOSAGEFORM(a.getPCKTYPD());
+			item.setDOSAGEFORMF(a.getPCKTYPF());
 			
 			List<ARTINS> artins = a.getARTINS();
 			for (ARTINS artin : artins) {

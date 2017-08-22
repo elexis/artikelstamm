@@ -117,6 +117,7 @@ public class Oddb2XmlStrategyV2_0 implements IArtikelstammBuildStrategy {
 			astammProduct.setDSCR(seqProduct.getDscr());
 			astammProduct.setDSCRF(seqProduct.getDcsrf());
 			astammProduct.setPRODNO(seqProduct.getProdno());
+			astammProduct.setSALECD(SALECDType.A);
 			
 			List<PRODUCT> astammProductsList = artikelstamm.getPRODUCTS().getPRODUCT();
 			if (!astammProductsList.contains(astammProduct)) {
