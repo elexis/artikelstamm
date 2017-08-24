@@ -15,15 +15,13 @@ import ch.hcisolutions.index.ARTICLE.ART;
 import ch.hcisolutions.index.ARTICLE.ART.ARTINS;
 import ch.hcisolutions.index.ARTICLE.ART.ARTLIM;
 import ch.hcisolutions.index.ARTICLE.ART.ARTPRI;
+import ch.hcisolutions.index.CODE;
+import ch.hcisolutions.index.CODE.CD;
 import ch.hcisolutions.index.LIMITATION;
 import ch.hcisolutions.index.LIMITATION.LIM;
 import ch.hcisolutions.index.MedindexHelper;
 import ch.hcisolutions.index.PRODUCT;
 import ch.hcisolutions.index.PRODUCT.PRD;
-import ch.hcisolutions.index.PRODUCT.PRD.CPT;
-import ch.hcisolutions.index.PRODUCT.PRD.CPT.CPTCMP;
-import ch.hcisolutions.index.SUBSTANCE;
-import ch.hcisolutions.index.SUBSTANCE.SB;
 import info.artikelstamm.builder.mapping.Mapping;
 import info.artikelstamm.model.v5.ARTIKELSTAMM;
 import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
@@ -36,7 +34,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	private Map<String, PRD> prodNoToProduct = new HashMap<>();
 	private Set<String> articleReferencedProductNumbers = new HashSet<>();
 	
-	private Map<BigInteger, SB> substanceNo;
+	private Map<String, CD> atcCode;
 	private Map<Integer, String> productLimitations = new HashMap<>();
 	private Set<String> usedLimitations = new HashSet<>();
 	
@@ -46,7 +44,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		File productFile = inputFiles[0];
 		File articleFile = inputFiles[1];
 		File limitationsFile = inputFiles[2];
-		File substancesFile = inputFiles[3];
+		File codeFile = inputFiles[3];
 		
 		PRODUCT product = (PRODUCT) MedindexHelper.unmarshallFile(productFile);
 		for (PRD prd : product.getPRD()) {
@@ -56,9 +54,9 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		ARTICLE articles = (ARTICLE) MedindexHelper.unmarshallFile(articleFile);
 		LIMITATION limitations = (LIMITATION) MedindexHelper.unmarshallFile(limitationsFile);
 		
-		SUBSTANCE substances = (SUBSTANCE) MedindexHelper.unmarshallFile(substancesFile);
-		substanceNo = substances.getSB().stream()
-			.collect(Collectors.toMap(SB::getSUBNO, Function.identity()));
+		CODE codes = (CODE) MedindexHelper.unmarshallFile(codeFile);
+		atcCode = codes.getCD().stream().filter(c -> c.getCDTYP() == 3)
+			.collect(Collectors.toMap(CD::getCDVAL, Function.identity()));
 		
 		ARTIKELSTAMM artikelstamm = initializeArtikelstamm(
 			articles.getCREATIONDATETIME().toGregorianCalendar(), DATASOURCEType.MEDINDEX);
@@ -153,21 +151,12 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		product.setSALECD("iH".equalsIgnoreCase(prd.getTRADE()) ? SALECDType.A : SALECDType.I);
 		product.setPRODNO(Integer.toString(prd.getPRDNO()));
 		
-		// PRD/CPT/CPTCMP -> WHK=W => SUBNO-> DSCRD
-		List<CPT> cptl = prd.getCPT();
-		if (cptl.size() > 0) {
-			// TODO what if more components??
-			CPT cpt = cptl.get(0);
-			List<CPTCMP> cptcmpl = cpt.getCPTCMP();
-			for (CPTCMP cptcmp : cptcmpl) {
-				if ("W".equals(cptcmp.getWHK())) {
-					SB substance = substanceNo.get(BigInteger.valueOf(cptcmp.getSUBNO()));
-					if (substance != null) {
-						product.setSUBSTANCE(substance.getNAMD());
-						product.setSUBSTANCEF(substance.getNAMF());
-						break;
-					}
-				}
+		String atc = prd.getATC();
+		if (atc != null) {
+			CD cd = atcCode.get(atc);
+			if (cd != null) {
+				product.setSUBSTANCE(cd.getDSCRD());
+				product.setSUBSTANCEF(cd.getDSCRF());
 			}
 		}
 		
@@ -235,11 +224,26 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					item.setPPUB(artpri.getPRICE());
 				}
 			}
-			item.setPKGSIZE((a.getQTY() != null) ? a.getQTY().intValue() : null);
+			item.setPKGSIZE((a.getNOPCS() != null) ? a.getNOPCS().intValue() : null);
 			item.setMEASURE(a.getQTYUD());
 			item.setMEASUREF(a.getQTYUF());
-			item.setDOSAGEFORM(a.getPCKTYPD());
-			item.setDOSAGEFORMF(a.getPCKTYPF());
+			
+			String pcktypd = a.getPCKTYPD();
+			if (pcktypd != null) {
+				if (a.getQTY() != null) {
+					item.setDOSAGEFORM(pcktypd + " " + a.getQTY());
+				} else {
+					item.setDOSAGEFORM(pcktypd);
+				}
+			}
+			String pcktypf = a.getPCKTYPF();
+			if (pcktypf != null) {
+				if (a.getQTY() != null) {
+					item.setDOSAGEFORMF(pcktypf + " " + a.getQTY());
+				} else {
+					item.setDOSAGEFORMF(pcktypf);
+				}
+			}
 			
 			List<ARTINS> artins = a.getARTINS();
 			for (ARTINS artin : artins) {

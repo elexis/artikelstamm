@@ -31,8 +31,8 @@ import com.ywesee.oddb2xml.Oddb2xmlValidator;
 import com.ywesee.oddb2xml.sequences.SequencesValidator;
 
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.builder.strategies.MedindexStrategyV1;
 import info.artikelstamm.builder.strategies.IArtikelstammBuildStrategy;
+import info.artikelstamm.builder.strategies.MedindexStrategyV1;
 import info.artikelstamm.builder.strategies.Oddb2XmlStrategyV2_0;
 import info.artikelstamm.model.v5.ARTIKELSTAMM;
 import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
@@ -51,7 +51,7 @@ public class ArtikelstammBuilder {
 	public static final String OPTION_EMEDIAT_PRODUCT_FILE = "emediatProductFile";
 	public static final String OPTION_EMEDIAT_ARTICLE_FILE = "emediatArticleFile";
 	public static final String OPTION_EMEDIAT_LIMITATIONS_FILE = "emediatLimitationFile";
-	public static final String OPTION_EMEDIAT_SUBSTANCE_FILE = "emediatSubstanceFile";
+	public static final String OPTION_EMEDIAT_CODE_FILE = "emediatCodeFile";
 	
 	public static final String OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA = "artikelstammSchema";
 	
@@ -64,7 +64,7 @@ public class ArtikelstammBuilder {
 	static String emediatProductFile = null;
 	static String emediatArticleFile = null;
 	static String emediatLimitationsFile = null;
-	static String emediatSubstanceFile = null;
+	static String emediateCodeFile = null;
 	static String artikelstammSchemaFileName = null;
 	
 	private static Options options = new Options();
@@ -86,7 +86,7 @@ public class ArtikelstammBuilder {
 		options.addOption(OPTION_EMEDIAT_PRODUCT_FILE, true, "emediat_product.xml file");
 		options.addOption(OPTION_EMEDIAT_ARTICLE_FILE, true, "emediat_article.xml file");
 		options.addOption(OPTION_EMEDIAT_LIMITATIONS_FILE, true, "emediat_limitations.xml file");
-		options.addOption(OPTION_EMEDIAT_SUBSTANCE_FILE, true, "emediat_substance.xml file");
+		options.addOption(OPTION_EMEDIAT_CODE_FILE, true, "emediat_code.xml file");
 		Option required = new Option(OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA, true,
 			"Elexis_Artikelstamm_v4.xsd file");
 		required.setRequired(true);
@@ -113,7 +113,7 @@ public class ArtikelstammBuilder {
 			buildMedindex = (line.hasOption(OPTION_EMEDIAT_PRODUCT_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_ARTICLE_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_LIMITATIONS_FILE)
-				&& line.hasOption(OPTION_EMEDIAT_SUBSTANCE_FILE));
+				&& line.hasOption(OPTION_EMEDIAT_CODE_FILE));
 			
 			if (!buildOddb2Xml && !buildMedindex) {
 				printHelp();
@@ -128,7 +128,7 @@ public class ArtikelstammBuilder {
 			emediatProductFile = line.getOptionValue(OPTION_EMEDIAT_PRODUCT_FILE);
 			emediatArticleFile = line.getOptionValue(OPTION_EMEDIAT_ARTICLE_FILE);
 			emediatLimitationsFile = line.getOptionValue(OPTION_EMEDIAT_LIMITATIONS_FILE);
-			emediatSubstanceFile = line.getOptionValue(OPTION_EMEDIAT_SUBSTANCE_FILE);
+			emediateCodeFile = line.getOptionValue(OPTION_EMEDIAT_CODE_FILE);
 			
 			artikelstammSchemaFileName = line.getOptionValue(OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA);
 		} catch (ParseException exp) {
@@ -159,11 +159,11 @@ public class ArtikelstammBuilder {
 		File productFile = new File(emediatProductFile);
 		File articlesFile = new File(emediatArticleFile);
 		File limitationsFile = new File(emediatLimitationsFile);
-		File substancesFile = new File(emediatSubstanceFile);
+		File codeFile = new File(emediateCodeFile);
 		
 		IArtikelstammBuildStrategy strategy = new MedindexStrategyV1();
 		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
-			productFile, articlesFile, limitationsFile, substancesFile
+			productFile, articlesFile, limitationsFile, codeFile
 		}, mapping);
 		
 		sortAndOutputToFile(artikelstamm, productFile.getParentFile());
