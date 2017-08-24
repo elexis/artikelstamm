@@ -69,7 +69,7 @@ public class MedIndexDownload {
 		dpi.setINDEX(INDEX_MEDINDEX);
 		dpi.setFILTER(FILTER_ONLY_ACTIVE);
 		dpi.setFROMDATE(START_2000);
-		System.out.println("Downloading products ...");
+		System.out.println("Downloading products ... ");
 		PRODUCT downloadProduct = download.downloadProduct(dpi);
 		marshallToFileSystem(downloadProduct, new File(medindexDir, "medindex_product.xml"), null,
 			PRODUCT.class);
@@ -77,19 +77,27 @@ public class MedIndexDownload {
 		DownloadLimitationInput dli = new DownloadLimitationInput();
 		dli.setFROMDATE(START_2000);
 		dli.setINDEX(INDEX_MEDINDEX);
-		System.out.println("Downloading limitations ...");
+		System.out.println("Downloading limitations ... ");
 		LIMITATION downloadLimitation = download.downloadLimitation(dli);
 		marshallToFileSystem(downloadLimitation, new File(medindexDir, "medindex_limitation.xml"),
 			null, LIMITATION.class);
 		
-		DownloadSubstanceInput dsi = new DownloadSubstanceInput();
-		dsi.setFROMDATE(START_2000);
-		dsi.setINDEX(INDEX_MEDINDEX);
-		dsi.setFILTER(FILTER_ONLY_ACTIVE);
-		System.out.println("Downloading substances ...");
-		SUBSTANCE downloadSubstance = download.downloadSubstance(dsi);
-		marshallToFileSystem(downloadSubstance, new File(medindexDir, "medindex_substance.xml"),
-			null, SUBSTANCE.class);
+//		DownloadSubstanceInput dsi = new DownloadSubstanceInput();
+//		dsi.setFROMDATE(START_2000);
+//		dsi.setINDEX(INDEX_MEDINDEX);
+//		dsi.setFILTER(FILTER_ONLY_ACTIVE);
+//		System.out.println("Downloading substances ... ");
+//		SUBSTANCE downloadSubstance = download.downloadSubstance(dsi);
+//		marshallToFileSystem(downloadSubstance, new File(medindexDir, "medindex_substance.xml"),
+//			null, SUBSTANCE.class);
+		
+		DownloadCodeInput dci = new DownloadCodeInput();
+		dci.setFROMDATE(START_2000);
+		dci.setINDEX(INDEX_MEDINDEX);
+		dci.setFILTER(FILTER_ONLY_ACTIVE);
+		System.out.println("Downloading codes ... ");
+		CODE downloadCode = download.downloadCode(dci);
+		marshallToFileSystem(downloadCode, new File(medindexDir, "medindex_code.xml"), null, CODE.class);
 	}
 	
 	public static void marshallToFileSystem(Object newData, File outputFile, URL validationFileUrl,
@@ -101,6 +109,7 @@ public class MedIndexDownload {
 			m.setSchema(validationSchema);
 		}
 		m.marshal(newData, outputFile);
+		System.out.println("["+outputFile.getAbsolutePath()+"]");
 	}
 	
 }

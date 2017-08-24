@@ -11,7 +11,7 @@ public class MedindexHelper {
 	public static Object unmarshallFile(File xmlFile) throws JAXBException{
 		System.out.println("[INFO] Trying to unmarshall " + xmlFile);
 		Unmarshaller u =
-			JAXBContext.newInstance(PRODUCT.class, ARTICLE.class, LIMITATION.class, SUBSTANCE.class)
+			JAXBContext.newInstance(PRODUCT.class, ARTICLE.class, LIMITATION.class, SUBSTANCE.class, CODE.class)
 				.createUnmarshaller();
 		return u.unmarshal(xmlFile);
 		
