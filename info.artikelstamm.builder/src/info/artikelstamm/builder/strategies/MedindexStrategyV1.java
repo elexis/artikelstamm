@@ -224,24 +224,36 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					item.setPPUB(artpri.getPRICE());
 				}
 			}
-			item.setPKGSIZE((a.getNOPCS() != null) ? a.getNOPCS().intValue() : null);
-			item.setMEASURE(a.getQTYUD());
-			item.setMEASUREF(a.getQTYUF());
-			
-			String pcktypd = a.getPCKTYPD();
-			if (pcktypd != null) {
-				if (a.getQTY() != null) {
-					item.setDOSAGEFORM(pcktypd + " " + a.getQTY());
-				} else {
-					item.setDOSAGEFORM(pcktypd);
+
+			// https://index.hcisolutions.ch/DataDoc/element/ARTICLE/ART/ARTTYP
+			String arttyp = a.getARTTYP();
+			if("4".equals(arttyp)) {
+				// 4 = Abgabeeinheit (1 Kapsel, 1 Tablette, 1 Ampulle etc)
+				item.setPKGSIZE(1);
+				
+				item.setMEASURE("Stk");
+				item.setMEASUREF("pce");
+			} else {
+				item.setPKGSIZE((a.getNOPCS() != null) ? a.getNOPCS().intValue() : null);
+				
+				item.setMEASURE(a.getQTYUD());
+				item.setMEASUREF(a.getQTYUF());
+				
+				String pcktypd = a.getPCKTYPD();
+				if (pcktypd != null) {
+					if (a.getQTY() != null) {
+						item.setDOSAGEFORM(pcktypd + " " + a.getQTY());
+					} else {
+						item.setDOSAGEFORM(pcktypd);
+					}
 				}
-			}
-			String pcktypf = a.getPCKTYPF();
-			if (pcktypf != null) {
-				if (a.getQTY() != null) {
-					item.setDOSAGEFORMF(pcktypf + " " + a.getQTY());
-				} else {
-					item.setDOSAGEFORMF(pcktypf);
+				String pcktypf = a.getPCKTYPF();
+				if (pcktypf != null) {
+					if (a.getQTY() != null) {
+						item.setDOSAGEFORMF(pcktypf + " " + a.getQTY());
+					} else {
+						item.setDOSAGEFORMF(pcktypf);
+					}
 				}
 			}
 			
