@@ -246,7 +246,10 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					} else {
 						item.setDOSAGEFORM(pcktypd);
 					}
+				} else {
+					item.setDOSAGEFORM(a.getQTY().toString());
 				}
+				
 				String pcktypf = a.getPCKTYPF();
 				if (pcktypf != null) {
 					if (a.getQTY() != null) {
@@ -254,6 +257,8 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					} else {
 						item.setDOSAGEFORMF(pcktypf);
 					}
+				} else {
+					item.setDOSAGEFORMF(a.getQTY().toString());
 				}
 			}
 			
