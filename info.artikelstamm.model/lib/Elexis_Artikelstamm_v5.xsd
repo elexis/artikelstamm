@@ -431,9 +431,7 @@
 
 									<xs:attribute name="PHARMATYPE">
 										<xs:annotation>
-											<xs:documentation>
-												If a PRODNO is defined,
-												the PharmaType is P
+											<xs:documentation>P Pharma, N Non-Pharma
 											</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>

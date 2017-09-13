@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
+
 import info.artikelstamm.model.v5.ARTIKELSTAMM;
 import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
 import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
@@ -130,9 +132,24 @@ public class ArtikelstammValidator {
 		return error;
 	}
 	
+	public boolean everyGTINIsNumericOnly() {
+		boolean error = false;
+		List<ITEM> items = artikelstamm.getITEMS().getITEM();
+		for (ITEM item : items) {
+			String gtin = item.getGTIN();
+			if(!StringUtils.isNumeric(gtin)) {
+				error = true;
+				System.out.println("{"+item.getGTIN()+"} is non numeric for item {"+item.getDSCR()+"}");
+			}
+
+		}
+		return error;
+	}
+	
 	public boolean validate(){
 		boolean error = everyProductNumberIsUnique();
 		error |= everyGTINIsUnique();
+		error |= everyGTINIsNumericOnly();
 		error |= everyPharmaArticleHasAProductItem();
 		error |= everyProductHasAtLeastOneArticle();
 		error |= everyReferencedLimitationIsIncluded();

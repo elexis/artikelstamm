@@ -2,7 +2,7 @@ h1. Artikelstamm Datensatz Konverter
 
 __Copyright 2017, MEDEVIT <office@medevit.at>__ 
 
-@ArtikelstammBuilder@ erstellt auf der Basis der "oddb2xml":http://www.ywesee.com/Oddb2xml/Index Daten den Artikelstamm CH.
+@ArtikelstammBuilder@ erstellt auf der Basis der "oddb2xml":http://www.ywesee.com/Oddb2xml/Index Daten  sowie der Medindex Daten den Artikelstamm CH. Es werden Artikelstamm_v5 basierte Daten erstellt.
 
 h2. Requirements
 

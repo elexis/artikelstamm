@@ -31,6 +31,8 @@ import info.artikelstamm.model.v5.SALECDType;
 
 public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	
+	private int noGtin;
+	
 	private Map<String, PRD> prodNoToProduct = new HashMap<>();
 	private Set<String> articleReferencedProductNumbers = new HashSet<>();
 	
@@ -75,7 +77,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		//				DATASOURCEType.MEDINDEX.value() + "_gtin_to_prodno.csv").toPath(),
 		//			() -> gtinToProdNo.entrySet().stream()
 		//				.<CharSequence> map(e -> e.getKey() + "," + e.getValue()).iterator());
-		
+		System.out.println("# no GTIN " + noGtin);
 		System.out.println("# of products " + artikelstamm.getPRODUCTS().getPRODUCT().size());
 		System.out.println("# of items " + artikelstamm.getITEMS().getITEM().size());
 		System.out
@@ -177,6 +179,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			
 			item.setGTIN(a.getGTIN());
 			if (item.getGTIN() == null) {
+				noGtin++;
 				System.out
 					.println("[INFO] GTIN is null [" + a.getDSCRD() + "] (" + a.getSALECD() + ")");
 				continue;
