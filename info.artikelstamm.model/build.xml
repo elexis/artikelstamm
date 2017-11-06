@@ -4,6 +4,20 @@
 			<arg value="-d" />
 			<arg value="src-gen" />
 			<arg value="-p" />
+			<arg value="info.artikelstamm.model.v2" />
+			<arg value="lib/Elexis_Artikelstamm_v002.xsd" />
+		</java>
+		<java classname="com.sun.tools.internal.xjc.XJCFacade">
+			<arg value="-d" />
+			<arg value="src-gen" />
+			<arg value="-p" />
+			<arg value="info.artikelstamm.model.v3" />
+			<arg value="lib/Elexis_Artikelstamm_v003.xsd" />
+		</java>
+		<java classname="com.sun.tools.internal.xjc.XJCFacade">
+			<arg value="-d" />
+			<arg value="src-gen" />
+			<arg value="-p" />
 			<arg value="info.artikelstamm.model.v4" />
 			<arg value="lib/Elexis_Artikelstamm_v4.xsd" />
 		</java>
