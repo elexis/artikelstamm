@@ -25,7 +25,8 @@ public class Oddb2xmlValidator {
 				System.out.println("No GTIN found for " + art.getDSCRD());
 			}
 			
-			BigInteger uniqueId = new BigInteger(bc + "" + art.getPHAR());
+			String phar = (art.getPHAR() != null) ? art.getPHAR() : "";
+			BigInteger uniqueId = new BigInteger(bc + phar);
 			if (uniqueIds.contains(uniqueId)) {
 				containsDouble = true;
 				System.out.println("Double UniqueId found in " + uniqueId);
