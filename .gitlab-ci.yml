@@ -4,3 +4,7 @@ build:
   - docker-host
   script:
   - ./download-build-artikelstamm.sh
+  artifacts:
+    paths:
+      - medindex/artikelstamm_*.gz
+    expire_in: 6 months

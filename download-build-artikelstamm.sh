@@ -12,3 +12,5 @@ docker run --rm -v "$(pwd)":/prog -w /prog adoptopenjdk/openjdk8:alpine java -XX
 -emediatArticleFile medindex/medindex_article.xml -emediatCodeFile medindex/medindex_code.xml \
 -emediatLimitationFile medindex/medindex_limitation.xml \
 -artikelstammSchema Elexis_Artikelstamm_v5.xsd
+
+gzip medindex/artikelstamm_medindex*
