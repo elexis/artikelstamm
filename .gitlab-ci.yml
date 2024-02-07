@@ -3,4 +3,4 @@ build:
   tags:
   - docker-host
   script:
-  - download-build-artikelstamm.sh
+  - ./download-build-artikelstamm.sh
