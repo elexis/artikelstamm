@@ -50,6 +50,7 @@ public class ArtikelstammBuilder {
 	
 	public static final String OPTION_EMEDIAT_PRODUCT_FILE = "emediatProductFile";
 	public static final String OPTION_EMEDIAT_ARTICLE_FILE = "emediatArticleFile";
+	public static final String OPTION_EMEDIAT_ARTICLE_PRICE_FILE = "emediatArticlePriceFile";
 	public static final String OPTION_EMEDIAT_LIMITATIONS_FILE = "emediatLimitationFile";
 	public static final String OPTION_EMEDIAT_CODE_FILE = "emediatCodeFile";
 	
@@ -63,6 +64,7 @@ public class ArtikelstammBuilder {
 	static String oddb2xmlSequencesFileName = null;
 	static String emediatProductFile = null;
 	static String emediatArticleFile = null;
+	static String emediatArticlePriceFile = null;
 	static String emediatLimitationsFile = null;
 	static String emediateCodeFile = null;
 	static String artikelstammSchemaFileName = null;
@@ -85,6 +87,7 @@ public class ArtikelstammBuilder {
 		options.addOption(OPTION_ODDB2XML_SEQUENCES_FILE, true, "oddb2xml_sequences.xml file");
 		options.addOption(OPTION_EMEDIAT_PRODUCT_FILE, true, "emediat_product.xml file");
 		options.addOption(OPTION_EMEDIAT_ARTICLE_FILE, true, "emediat_article.xml file");
+		options.addOption(OPTION_EMEDIAT_ARTICLE_PRICE_FILE, true, "emediat_article_price.xml file");
 		options.addOption(OPTION_EMEDIAT_LIMITATIONS_FILE, true, "emediat_limitations.xml file");
 		options.addOption(OPTION_EMEDIAT_CODE_FILE, true, "emediat_code.xml file");
 		Option required = new Option(OPTION_ARTIKELSTAMM_VALIDATION_SCHEMA, true,
@@ -112,6 +115,7 @@ public class ArtikelstammBuilder {
 				&& line.hasOption(OPTION_ODDB2XML_SEQUENCES_FILE));
 			buildMedindex = (line.hasOption(OPTION_EMEDIAT_PRODUCT_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_ARTICLE_FILE)
+				&& line.hasOption(OPTION_EMEDIAT_ARTICLE_PRICE_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_LIMITATIONS_FILE)
 				&& line.hasOption(OPTION_EMEDIAT_CODE_FILE));
 			
@@ -127,6 +131,7 @@ public class ArtikelstammBuilder {
 			
 			emediatProductFile = line.getOptionValue(OPTION_EMEDIAT_PRODUCT_FILE);
 			emediatArticleFile = line.getOptionValue(OPTION_EMEDIAT_ARTICLE_FILE);
+			emediatArticlePriceFile = line.getOptionValue(OPTION_EMEDIAT_ARTICLE_PRICE_FILE);
 			emediatLimitationsFile = line.getOptionValue(OPTION_EMEDIAT_LIMITATIONS_FILE);
 			emediateCodeFile = line.getOptionValue(OPTION_EMEDIAT_CODE_FILE);
 			
@@ -140,7 +145,7 @@ public class ArtikelstammBuilder {
 		Mapping mapping = new Mapping();
 		if (buildOddb2Xml) {
 			System.out.println("--- Building oddb2xml based artikelstamm file");
-			buildOddb2Xml(mapping);
+//			buildOddb2Xml(mapping);
 		}
 		
 		if (buildMedindex) {
@@ -158,12 +163,13 @@ public class ArtikelstammBuilder {
 	private static IArtikelstammBuildStrategy buildEmediat(Mapping mapping) throws Exception{
 		File productFile = new File(emediatProductFile);
 		File articlesFile = new File(emediatArticleFile);
+		File articlePricesFile = new File(emediatArticlePriceFile);
 		File limitationsFile = new File(emediatLimitationsFile);
 		File codeFile = new File(emediateCodeFile);
 		
 		IArtikelstammBuildStrategy strategy = new MedindexStrategyV1();
 		ARTIKELSTAMM artikelstamm = strategy.generate(new File[] {
-			productFile, articlesFile, limitationsFile, codeFile
+			productFile, articlesFile, limitationsFile, codeFile, articlePricesFile
 		}, mapping);
 		
 		sortAndOutputToFile(artikelstamm, productFile.getParentFile());

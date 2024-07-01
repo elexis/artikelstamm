@@ -14,7 +14,8 @@ import ch.hcisolutions.index.ARTICLE;
 import ch.hcisolutions.index.ARTICLE.ART;
 import ch.hcisolutions.index.ARTICLE.ART.ARTINS;
 import ch.hcisolutions.index.ARTICLE.ART.ARTLIM;
-import ch.hcisolutions.index.ARTICLE.ART.ARTPRI;
+import ch.hcisolutions.index.ARTICLEPRICE;
+import ch.hcisolutions.index.ARTICLEPRICE.AP;
 import ch.hcisolutions.index.CODE;
 import ch.hcisolutions.index.CODE.CD;
 import ch.hcisolutions.index.LIMITATION;
@@ -47,6 +48,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		File articleFile = inputFiles[1];
 		File limitationsFile = inputFiles[2];
 		File codeFile = inputFiles[3];
+		File articlePriceFile = inputFiles[4];
 		
 		PRODUCT product = (PRODUCT) MedindexHelper.unmarshallFile(productFile);
 		for (PRD prd : product.getPRD()) {
@@ -54,6 +56,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		}
 		
 		ARTICLE articles = (ARTICLE) MedindexHelper.unmarshallFile(articleFile);
+		ARTICLEPRICE articleprices = (ARTICLEPRICE) MedindexHelper.unmarshallFile(articlePriceFile);
 		LIMITATION limitations = (LIMITATION) MedindexHelper.unmarshallFile(limitationsFile);
 		
 		CODE codes = (CODE) MedindexHelper.unmarshallFile(codeFile);
@@ -64,7 +67,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			articles.getCREATIONDATETIME().toGregorianCalendar(), DATASOURCEType.MEDINDEX);
 		
 		System.out.println("(S1) populate items from articles");
-		populateItemsFromArticles(artikelstamm, articles, mapping);
+		populateItemsFromArticles(artikelstamm, articles, articleprices, mapping);
 		System.out.println("(S2) add products");
 		populateProducts(artikelstamm, product);
 		
@@ -172,7 +175,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	}
 	
 	private void populateItemsFromArticles(ARTIKELSTAMM artikelstamm, ARTICLE articles,
-		Mapping mapping){
+		ARTICLEPRICE articleprices, Mapping mapping){
 		List<ART> art = articles.getART();
 		for (ART a : art) {
 			ITEM item = new ITEM();
@@ -197,7 +200,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			PRD prd = prodNoToProduct.get(item.getPRODNO());
 			if (prd == null) {
 				System.out.println(
-					"[ERROR] No product [" + a.getPRDNO() + "] for article [" + a.getARTNO() + "]");
+					"[ERROR] No product [" + a.getPRDNO() + "] for article [" + a.getPHARMACODE() + "]");
 				
 				return;
 			}
@@ -217,17 +220,16 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			item.setDSCRF(a.getDSCRF());
 			item.setPHAR(BigInteger.valueOf(Long.parseLong(a.getPHAR())));
 			// TODO COMP
-			List<ARTPRI> prices = a.getARTPRI();
-			for (ARTPRI artpri : prices) {
+			List<AP> articlePrices = articleprices.getAP().stream().filter(ap -> a.getPHARMACODE() == ap.getPHARMACODE()).collect(Collectors.toList());
+			for (AP artpri : articlePrices) {
 				if ("PEXF".equals(artpri.getPTYP())) {
 					// TODO validity date
 					item.setPEXF(artpri.getPRICE());
 				} else if ("PPUB".equals(artpri.getPTYP())) {
 					// TODO validity date
 					item.setPPUB(artpri.getPRICE());
-				}
+				}				
 			}
-
 			// https://index.hcisolutions.ch/DataDoc/element/ARTICLE/ART/ARTTYP
 			String arttyp = a.getARTTYP();
 			if("4".equals(arttyp)) {
@@ -283,10 +285,10 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			// DEDUCTIBLE
 			// Co-Payment information
 			// https://index.hcisolutions.ch/DataDoc/element/ARTICLE/ART/SLOPLUS
-			if (a.getSLOPLUS() != null) {
+			if (a.getARTSL() != null && a.getARTSL().getSLOPLUS() != null) {
 				// 1: 20 %
 				// 2: 10 %
-				int value = a.getSLOPLUS().intValue();
+				int value = a.getARTSL().getSLOPLUS().intValue();
 				if (value == 1) {
 					item.setDEDUCTIBLE(20);
 				} else if (value == 2) {
