@@ -35,6 +35,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="STDQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PRPQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                   &lt;element name="PRPQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="APPROX" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="DIV" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
@@ -68,6 +69,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -96,6 +98,8 @@ public class PRODUCTPROPRIETARYQUANTITY {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the pq property.
@@ -222,6 +226,30 @@ public class PRODUCTPROPRIETARYQUANTITY {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -240,6 +268,7 @@ public class PRODUCTPROPRIETARYQUANTITY {
      *         &lt;element name="STDQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PRPQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *         &lt;element name="PRPQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="APPROX" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="DIV" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
@@ -260,6 +289,7 @@ public class PRODUCTPROPRIETARYQUANTITY {
         "stdqtyu",
         "prpqty",
         "prpqtyu",
+        "approx",
         "div",
         "del"
     })
@@ -279,6 +309,8 @@ public class PRODUCTPROPRIETARYQUANTITY {
         protected Double prpqty;
         @XmlElement(name = "PRPQTYU")
         protected String prpqtyu;
+        @XmlElement(name = "APPROX")
+        protected Boolean approx;
         @XmlElement(name = "DIV")
         protected Integer div;
         @XmlElement(name = "DEL", required = true, type = Boolean.class, nillable = true)
@@ -453,6 +485,30 @@ public class PRODUCTPROPRIETARYQUANTITY {
          */
         public void setPRPQTYU(String value) {
             this.prpqtyu = value;
+        }
+
+        /**
+         * Ruft den Wert der approx-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isAPPROX() {
+            return approx;
+        }
+
+        /**
+         * Legt den Wert der approx-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setAPPROX(Boolean value) {
+            this.approx = value;
         }
 
         /**

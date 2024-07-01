@@ -44,6 +44,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="EMAIL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="WWW" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="GLN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="APPENDIX" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -76,6 +77,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -104,6 +106,8 @@ public class COMPANY {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the cp property.
@@ -230,6 +234,30 @@ public class COMPANY {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -256,6 +284,7 @@ public class COMPANY {
      *         &lt;element name="EMAIL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="WWW" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="GLN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="APPENDIX" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -283,6 +312,7 @@ public class COMPANY {
         "email",
         "www",
         "gln",
+        "appendix",
         "del"
     })
     public static class CP {
@@ -317,6 +347,8 @@ public class COMPANY {
         protected String www;
         @XmlElement(name = "GLN")
         protected String gln;
+        @XmlElement(name = "APPENDIX")
+        protected String appendix;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlAttribute(name = "DT")
@@ -681,6 +713,30 @@ public class COMPANY {
          */
         public void setGLN(String value) {
             this.gln = value;
+        }
+
+        /**
+         * Ruft den Wert der appendix-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getAPPENDIX() {
+            return appendix;
+        }
+
+        /**
+         * Legt den Wert der appendix-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setAPPENDIX(String value) {
+            this.appendix = value;
         }
 
         /**

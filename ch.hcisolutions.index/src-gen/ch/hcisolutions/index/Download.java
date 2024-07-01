@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "download", targetNamespace = "http://www.hcisolutions.ch/index", wsdlLocation = "file:/Users/marco/Development/elexis-master-neon/ws/ch.hcisolutions.index/rsc/hcisolutions_index_download.wsdl")
+@WebServiceClient(name = "download", targetNamespace = "http://www.hcisolutions.ch/index", wsdlLocation = "file:/home/thomas/artikelstamm/git/ch.hcisolutions.index/rsc/hcisolutions_index_download.wsdl")
 public class Download
     extends Service
 {
@@ -30,7 +30,7 @@ public class Download
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/marco/Development/elexis-master-neon/ws/ch.hcisolutions.index/rsc/hcisolutions_index_download.wsdl");
+            url = new URL("file:/home/thomas/artikelstamm/git/ch.hcisolutions.index/rsc/hcisolutions_index_download.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -104,50 +104,6 @@ public class Download
     @WebEndpoint(name = "downloadSoap12")
     public DownloadSoap getDownloadSoap12(WebServiceFeature... features) {
         return super.getPort(new QName("http://www.hcisolutions.ch/index", "downloadSoap12"), DownloadSoap.class, features);
-    }
-
-    /**
-     * 
-     * @return
-     *     returns DownloadHttpGet
-     */
-    @WebEndpoint(name = "downloadHttpGet")
-    public DownloadHttpGet getDownloadHttpGet() {
-        return super.getPort(new QName("http://www.hcisolutions.ch/index", "downloadHttpGet"), DownloadHttpGet.class);
-    }
-
-    /**
-     * 
-     * @param features
-     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
-     * @return
-     *     returns DownloadHttpGet
-     */
-    @WebEndpoint(name = "downloadHttpGet")
-    public DownloadHttpGet getDownloadHttpGet(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.hcisolutions.ch/index", "downloadHttpGet"), DownloadHttpGet.class, features);
-    }
-
-    /**
-     * 
-     * @return
-     *     returns DownloadHttpPost
-     */
-    @WebEndpoint(name = "downloadHttpPost")
-    public DownloadHttpPost getDownloadHttpPost() {
-        return super.getPort(new QName("http://www.hcisolutions.ch/index", "downloadHttpPost"), DownloadHttpPost.class);
-    }
-
-    /**
-     * 
-     * @param features
-     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
-     * @return
-     *     returns DownloadHttpPost
-     */
-    @WebEndpoint(name = "downloadHttpPost")
-    public DownloadHttpPost getDownloadHttpPost(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.hcisolutions.ch/index", "downloadHttpPost"), DownloadHttpPost.class, features);
     }
 
     private static URL __getWsdlLocation() {

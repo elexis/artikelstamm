@@ -23,15 +23,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="KI" maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element name="AP" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                   &lt;element name="PRTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                   &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *                   &lt;element name="PRICE" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *                   &lt;element name="MIGCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -74,16 +76,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ki",
+    "ap",
     "result"
 })
-@XmlRootElement(name = "KOMPENDIUM_IMAGE")
-public class KOMPENDIUMIMAGE {
+@XmlRootElement(name = "ARTICLE_PRICE")
+public class ARTICLEPRICE {
 
-    @XmlElement(name = "KI")
-    protected List<KOMPENDIUMIMAGE.KI> ki;
+    @XmlElement(name = "AP")
+    protected List<ARTICLEPRICE.AP> ap;
     @XmlElement(name = "RESULT")
-    protected KOMPENDIUMIMAGE.RESULT result;
+    protected ARTICLEPRICE.RESULT result;
     @XmlAttribute(name = "CREATION_DATETIME", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationdatetime;
@@ -97,32 +99,32 @@ public class KOMPENDIUMIMAGE {
     protected String release;
 
     /**
-     * Gets the value of the ki property.
+     * Gets the value of the ap property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ki property.
+     * This is why there is not a <CODE>set</CODE> method for the ap property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getKI().add(newItem);
+     *    getAP().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link KOMPENDIUMIMAGE.KI }
+     * {@link ARTICLEPRICE.AP }
      * 
      * 
      */
-    public List<KOMPENDIUMIMAGE.KI> getKI() {
-        if (ki == null) {
-            ki = new ArrayList<KOMPENDIUMIMAGE.KI>();
+    public List<ARTICLEPRICE.AP> getAP() {
+        if (ap == null) {
+            ap = new ArrayList<ARTICLEPRICE.AP>();
         }
-        return this.ki;
+        return this.ap;
     }
 
     /**
@@ -130,10 +132,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @return
      *     possible object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link ARTICLEPRICE.RESULT }
      *     
      */
-    public KOMPENDIUMIMAGE.RESULT getRESULT() {
+    public ARTICLEPRICE.RESULT getRESULT() {
         return result;
     }
 
@@ -142,10 +144,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @param value
      *     allowed object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link ARTICLEPRICE.RESULT }
      *     
      */
-    public void setRESULT(KOMPENDIUMIMAGE.RESULT value) {
+    public void setRESULT(ARTICLEPRICE.RESULT value) {
         this.result = value;
     }
 
@@ -256,10 +258,12 @@ public class KOMPENDIUMIMAGE {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *         &lt;element name="PRTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *         &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+     *         &lt;element name="PRICE" type="{http://www.w3.org/2001/XMLSchema}double"/>
+     *         &lt;element name="MIGCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -272,22 +276,29 @@ public class KOMPENDIUMIMAGE {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "imagename",
-        "imagetype",
-        "imageurl",
-        "imagecdata",
+        "pharmacode",
+        "prtno",
+        "ptyp",
+        "vdat",
+        "price",
+        "migcd",
         "del"
     })
-    public static class KI {
+    public static class AP {
 
-        @XmlElement(name = "IMAGENAME")
-        protected String imagename;
-        @XmlElement(name = "IMAGETYPE")
-        protected String imagetype;
-        @XmlElement(name = "IMAGEURL")
-        protected String imageurl;
-        @XmlElement(name = "IMAGECDATA")
-        protected String imagecdata;
+        @XmlElement(name = "PHARMACODE")
+        protected int pharmacode;
+        @XmlElement(name = "PRTNO")
+        protected int prtno;
+        @XmlElement(name = "PTYP")
+        protected String ptyp;
+        @XmlElement(name = "VDAT", required = true)
+        @XmlSchemaType(name = "dateTime")
+        protected XMLGregorianCalendar vdat;
+        @XmlElement(name = "PRICE")
+        protected double price;
+        @XmlElement(name = "MIGCD")
+        protected String migcd;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlAttribute(name = "DT", required = true)
@@ -295,99 +306,123 @@ public class KOMPENDIUMIMAGE {
         protected XMLGregorianCalendar dt;
 
         /**
-         * Ruft den Wert der imagename-Eigenschaft ab.
+         * Ruft den Wert der pharmacode-Eigenschaft ab.
+         * 
+         */
+        public int getPHARMACODE() {
+            return pharmacode;
+        }
+
+        /**
+         * Legt den Wert der pharmacode-Eigenschaft fest.
+         * 
+         */
+        public void setPHARMACODE(int value) {
+            this.pharmacode = value;
+        }
+
+        /**
+         * Ruft den Wert der prtno-Eigenschaft ab.
+         * 
+         */
+        public int getPRTNO() {
+            return prtno;
+        }
+
+        /**
+         * Legt den Wert der prtno-Eigenschaft fest.
+         * 
+         */
+        public void setPRTNO(int value) {
+            this.prtno = value;
+        }
+
+        /**
+         * Ruft den Wert der ptyp-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getIMAGENAME() {
-            return imagename;
+        public String getPTYP() {
+            return ptyp;
         }
 
         /**
-         * Legt den Wert der imagename-Eigenschaft fest.
+         * Legt den Wert der ptyp-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setIMAGENAME(String value) {
-            this.imagename = value;
+        public void setPTYP(String value) {
+            this.ptyp = value;
         }
 
         /**
-         * Ruft den Wert der imagetype-Eigenschaft ab.
+         * Ruft den Wert der vdat-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public XMLGregorianCalendar getVDAT() {
+            return vdat;
+        }
+
+        /**
+         * Legt den Wert der vdat-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *     
+         */
+        public void setVDAT(XMLGregorianCalendar value) {
+            this.vdat = value;
+        }
+
+        /**
+         * Ruft den Wert der price-Eigenschaft ab.
+         * 
+         */
+        public double getPRICE() {
+            return price;
+        }
+
+        /**
+         * Legt den Wert der price-Eigenschaft fest.
+         * 
+         */
+        public void setPRICE(double value) {
+            this.price = value;
+        }
+
+        /**
+         * Ruft den Wert der migcd-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getIMAGETYPE() {
-            return imagetype;
+        public String getMIGCD() {
+            return migcd;
         }
 
         /**
-         * Legt den Wert der imagetype-Eigenschaft fest.
+         * Legt den Wert der migcd-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setIMAGETYPE(String value) {
-            this.imagetype = value;
-        }
-
-        /**
-         * Ruft den Wert der imageurl-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGEURL() {
-            return imageurl;
-        }
-
-        /**
-         * Legt den Wert der imageurl-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGEURL(String value) {
-            this.imageurl = value;
-        }
-
-        /**
-         * Ruft den Wert der imagecdata-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGECDATA() {
-            return imagecdata;
-        }
-
-        /**
-         * Legt den Wert der imagecdata-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGECDATA(String value) {
-            this.imagecdata = value;
+        public void setMIGCD(String value) {
+            this.migcd = value;
         }
 
         /**

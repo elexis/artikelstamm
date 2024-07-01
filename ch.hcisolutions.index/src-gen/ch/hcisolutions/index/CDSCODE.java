@@ -38,6 +38,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="STATE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="SEX" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *                   &lt;element name="CHECKS" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="CHECKTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                   &lt;element name="CCHCCH" maxOccurs="unbounded" minOccurs="0">
  *                     &lt;complexType>
  *                       &lt;complexContent>
@@ -84,6 +95,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -112,6 +124,8 @@ public class CDSCODE {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the cch property.
@@ -238,6 +252,30 @@ public class CDSCODE {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -259,6 +297,17 @@ public class CDSCODE {
      *         &lt;element name="STATE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="SEX" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+     *         &lt;element name="CHECKS" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="CHECKTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *         &lt;element name="CCHCCH" maxOccurs="unbounded" minOccurs="0">
      *           &lt;complexType>
      *             &lt;complexContent>
@@ -295,6 +344,7 @@ public class CDSCODE {
         "state",
         "sex",
         "del",
+        "checks",
         "cchcch"
     })
     public static class CCH {
@@ -319,6 +369,8 @@ public class CDSCODE {
         protected int sex;
         @XmlElement(name = "DEL")
         protected boolean del;
+        @XmlElement(name = "CHECKS")
+        protected CDSCODE.CCH.CHECKS checks;
         @XmlElement(name = "CCHCCH")
         protected List<CDSCODE.CCH.CCHCCH> cchcch;
         @XmlAttribute(name = "DT")
@@ -534,6 +586,30 @@ public class CDSCODE {
         }
 
         /**
+         * Ruft den Wert der checks-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link CDSCODE.CCH.CHECKS }
+         *     
+         */
+        public CDSCODE.CCH.CHECKS getCHECKS() {
+            return checks;
+        }
+
+        /**
+         * Legt den Wert der checks-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link CDSCODE.CCH.CHECKS }
+         *     
+         */
+        public void setCHECKS(CDSCODE.CCH.CHECKS value) {
+            this.checks = value;
+        }
+
+        /**
          * Gets the value of the cchcch property.
          * 
          * <p>
@@ -733,6 +809,61 @@ public class CDSCODE {
              */
             public void setREMF(String value) {
                 this.remf = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="CHECKTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "checktype"
+        })
+        public static class CHECKS {
+
+            @XmlElement(name = "CHECKTYPE")
+            protected String checktype;
+
+            /**
+             * Ruft den Wert der checktype-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCHECKTYPE() {
+                return checktype;
+            }
+
+            /**
+             * Legt den Wert der checktype-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCHECKTYPE(String value) {
+                this.checktype = value;
             }
 
         }

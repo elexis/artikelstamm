@@ -69,6 +69,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -97,6 +98,8 @@ public class PRODUCTSUBSTANCEALTERNATIVEQUANTITY {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the paq property.
@@ -221,6 +224,30 @@ public class PRODUCTSUBSTANCEALTERNATIVEQUANTITY {
      */
     public void setVALIDDATE(XMLGregorianCalendar value) {
         this.validdate = value;
+    }
+
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
     }
 
 

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -23,18 +25,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="KI" maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element name="CAT" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *                   &lt;any/>
  *                 &lt;/sequence>
- *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -74,16 +71,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ki",
+    "cat",
     "result"
 })
-@XmlRootElement(name = "KOMPENDIUM_IMAGE")
-public class KOMPENDIUMIMAGE {
+@XmlRootElement(name = "CATALOG")
+public class CATALOG {
 
-    @XmlElement(name = "KI")
-    protected List<KOMPENDIUMIMAGE.KI> ki;
+    @XmlElement(name = "CAT")
+    protected CATALOG.CAT cat;
     @XmlElement(name = "RESULT")
-    protected KOMPENDIUMIMAGE.RESULT result;
+    protected CATALOG.RESULT result;
     @XmlAttribute(name = "CREATION_DATETIME", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationdatetime;
@@ -97,32 +94,27 @@ public class KOMPENDIUMIMAGE {
     protected String release;
 
     /**
-     * Gets the value of the ki property.
+     * Ruft den Wert der cat-Eigenschaft ab.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ki property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getKI().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link KOMPENDIUMIMAGE.KI }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link CATALOG.CAT }
+     *     
      */
-    public List<KOMPENDIUMIMAGE.KI> getKI() {
-        if (ki == null) {
-            ki = new ArrayList<KOMPENDIUMIMAGE.KI>();
-        }
-        return this.ki;
+    public CATALOG.CAT getCAT() {
+        return cat;
+    }
+
+    /**
+     * Legt den Wert der cat-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CATALOG.CAT }
+     *     
+     */
+    public void setCAT(CATALOG.CAT value) {
+        this.cat = value;
     }
 
     /**
@@ -130,10 +122,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @return
      *     possible object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CATALOG.RESULT }
      *     
      */
-    public KOMPENDIUMIMAGE.RESULT getRESULT() {
+    public CATALOG.RESULT getRESULT() {
         return result;
     }
 
@@ -142,10 +134,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @param value
      *     allowed object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CATALOG.RESULT }
      *     
      */
-    public void setRESULT(KOMPENDIUMIMAGE.RESULT value) {
+    public void setRESULT(CATALOG.RESULT value) {
         this.result = value;
     }
 
@@ -256,13 +248,8 @@ public class KOMPENDIUMIMAGE {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+     *         &lt;any/>
      *       &lt;/sequence>
-     *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -272,162 +259,42 @@ public class KOMPENDIUMIMAGE {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "imagename",
-        "imagetype",
-        "imageurl",
-        "imagecdata",
-        "del"
+        "content"
     })
-    public static class KI {
+    public static class CAT {
 
-        @XmlElement(name = "IMAGENAME")
-        protected String imagename;
-        @XmlElement(name = "IMAGETYPE")
-        protected String imagetype;
-        @XmlElement(name = "IMAGEURL")
-        protected String imageurl;
-        @XmlElement(name = "IMAGECDATA")
-        protected String imagecdata;
-        @XmlElement(name = "DEL")
-        protected boolean del;
-        @XmlAttribute(name = "DT", required = true)
-        @XmlSchemaType(name = "dateTime")
-        protected XMLGregorianCalendar dt;
+        @XmlMixed
+        @XmlAnyElement(lax = true)
+        protected List<Object> content;
 
         /**
-         * Ruft den Wert der imagename-Eigenschaft ab.
+         * Gets the value of the content property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGENAME() {
-            return imagename;
-        }
-
-        /**
-         * Legt den Wert der imagename-Eigenschaft fest.
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the content property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGENAME(String value) {
-            this.imagename = value;
-        }
-
-        /**
-         * Ruft den Wert der imagetype-Eigenschaft ab.
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getContent().add(newItem);
+         * </pre>
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGETYPE() {
-            return imagetype;
-        }
-
-        /**
-         * Legt den Wert der imagetype-Eigenschaft fest.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGETYPE(String value) {
-            this.imagetype = value;
-        }
-
-        /**
-         * Ruft den Wert der imageurl-Eigenschaft ab.
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Object }
+         * {@link String }
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGEURL() {
-            return imageurl;
-        }
-
-        /**
-         * Legt den Wert der imageurl-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGEURL(String value) {
-            this.imageurl = value;
-        }
-
-        /**
-         * Ruft den Wert der imagecdata-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGECDATA() {
-            return imagecdata;
-        }
-
-        /**
-         * Legt den Wert der imagecdata-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGECDATA(String value) {
-            this.imagecdata = value;
-        }
-
-        /**
-         * Ruft den Wert der del-Eigenschaft ab.
          * 
          */
-        public boolean isDEL() {
-            return del;
-        }
-
-        /**
-         * Legt den Wert der del-Eigenschaft fest.
-         * 
-         */
-        public void setDEL(boolean value) {
-            this.del = value;
-        }
-
-        /**
-         * Ruft den Wert der dt-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getDT() {
-            return dt;
-        }
-
-        /**
-         * Legt den Wert der dt-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setDT(XMLGregorianCalendar value) {
-            this.dt = value;
+        public List<Object> getContent() {
+            if (content == null) {
+                content = new ArrayList<Object>();
+            }
+            return this.content;
         }
 
     }
