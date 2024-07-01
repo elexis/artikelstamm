@@ -30,6 +30,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                 &lt;sequence>
  *                   &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *                   &lt;element name="CHECKS" type="{http://www.hcisolutions.ch/index}ArrayOfCDSCDSPRDCHECK" minOccurs="0"/>
  *                   &lt;element name="PRDCCH" maxOccurs="unbounded" minOccurs="0">
  *                     &lt;complexType>
  *                       &lt;complexContent>
@@ -203,6 +204,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -231,6 +233,8 @@ public class CDS {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the cdsprd property.
@@ -357,6 +361,30 @@ public class CDS {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -370,6 +398,7 @@ public class CDS {
      *       &lt;sequence>
      *         &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+     *         &lt;element name="CHECKS" type="{http://www.hcisolutions.ch/index}ArrayOfCDSCDSPRDCHECK" minOccurs="0"/>
      *         &lt;element name="PRDCCH" maxOccurs="unbounded" minOccurs="0">
      *           &lt;complexType>
      *             &lt;complexContent>
@@ -525,6 +554,7 @@ public class CDS {
     @XmlType(name = "", propOrder = {
         "prdno",
         "del",
+        "checks",
         "prdcch",
         "prddsm",
         "prddsk"
@@ -535,6 +565,8 @@ public class CDS {
         protected int prdno;
         @XmlElement(name = "DEL")
         protected boolean del;
+        @XmlElement(name = "CHECKS")
+        protected ArrayOfCDSCDSPRDCHECK checks;
         @XmlElement(name = "PRDCCH")
         protected List<CDS.CDSPRD.PRDCCH> prdcch;
         @XmlElement(name = "PRDDSM")
@@ -575,6 +607,30 @@ public class CDS {
          */
         public void setDEL(boolean value) {
             this.del = value;
+        }
+
+        /**
+         * Ruft den Wert der checks-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link ArrayOfCDSCDSPRDCHECK }
+         *     
+         */
+        public ArrayOfCDSCDSPRDCHECK getCHECKS() {
+            return checks;
+        }
+
+        /**
+         * Legt den Wert der checks-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link ArrayOfCDSCDSPRDCHECK }
+         *     
+         */
+        public void setCHECKS(ArrayOfCDSCDSPRDCHECK value) {
+            this.checks = value;
         }
 
         /**

@@ -46,7 +46,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fromdate",
     "filter"
 })
-public class DownloadProductInput {
+public class DownloadArticlePriceInput {
 
     @XmlElement(name = "INDEX")
     protected String index;

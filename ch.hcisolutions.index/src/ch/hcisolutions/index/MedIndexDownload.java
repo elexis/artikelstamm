@@ -64,6 +64,18 @@ public class MedIndexDownload {
 		ARTICLE downloadArticle = download.downloadArticle(dai);
 		marshallToFileSystem(downloadArticle, new File(medindexDir, "medindex_article.xml"), null,
 			ARTICLE.class);
+
+		DownloadArticlePriceInput dapi = new DownloadArticlePriceInput();
+		dapi.setINDEX(INDEX_MEDINDEX);
+		dapi.setFILTER(FILTER_ONLY_ACTIVE);
+		dapi.setFROMDATE(START_2000);
+		marshallToFileSystem(dapi, new File(medindexDir, "DownloadArticlePriceInput.xml"), null,
+			DownloadArticlePriceInput.class);
+		
+		System.out.println("Downloading article prices ...");
+		ARTICLEPRICE downloadArticlePrice = download.downloadArticlePrice(dapi);
+		marshallToFileSystem(downloadArticlePrice, new File(medindexDir, "medindex_article_price.xml"), null,
+			ARTICLEPRICE.class);
 		
 		DownloadProductInput dpi = new DownloadProductInput();
 		dpi.setINDEX(INDEX_MEDINDEX);

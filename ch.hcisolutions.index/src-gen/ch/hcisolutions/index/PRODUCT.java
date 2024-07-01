@@ -92,6 +92,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="MDNB" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="CDSMODULES" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="SMNR" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
+ *                   &lt;element name="SMSTRENGTHNR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="SMCAT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="STREHA" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="STREHADAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -101,9 +102,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="STREHAPRICEYCDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                   &lt;element name="EXPORTONLY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="LTC_ASC" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *                   &lt;element name="TR" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                   &lt;element name="TRE" type="{http://www.hcisolutions.ch/index}ArrayOfString1" minOccurs="0"/>
  *                   &lt;element name="SMNAS" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="KIDO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                   &lt;element name="AAP" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                   &lt;element name="GMN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="MDATTR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PPLUS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="UFI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                   &lt;element name="CPT" maxOccurs="unbounded" minOccurs="0">
  *                     &lt;complexType>
@@ -113,6 +119,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="CPTLNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                             &lt;element name="CNAMED" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="CNAMEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="GENGRPCPT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="IDXIND" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="DDDD" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="DDDU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -120,6 +127,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="IDXIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="IXREL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                             &lt;element name="GALF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="EDQMPDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="DRGGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="PRDGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="PRBSUIT" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -135,6 +143,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="EXCIPCF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="PQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="PQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="STDPRESCU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="SIZEMM" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
  *                             &lt;element name="WEIGHT" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
  *                             &lt;element name="LOOKD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -184,6 +193,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
+ *                             &lt;element name="EDQMROAS" maxOccurs="unbounded" minOccurs="0">
+ *                               &lt;complexType>
+ *                                 &lt;complexContent>
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;sequence>
+ *                                       &lt;element name="EDQMROA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="EDQMMOA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                     &lt;/sequence>
+ *                                   &lt;/restriction>
+ *                                 &lt;/complexContent>
+ *                               &lt;/complexType>
+ *                             &lt;/element>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -219,6 +240,29 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="ALTERNATIVESF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="EVIDENCELEVEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                             &lt;element name="REFERENCES" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="CAPSISOPENABLE" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                             &lt;element name="CAPSOPENABLEREMD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="CAPSOPENABLEREMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="CAPSOPENABLEREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="CAPSOPENABLEEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="LIQDURABILITYD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="LIQDURABILITYF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="LIQDURABILITYREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="LIQDURABILITYEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="DIVGSASA" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="DIVGSASAREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="DIVGSASAEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                   &lt;element name="DIETARYADVICE" maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="DIETTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -255,6 +299,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -283,6 +328,8 @@ public class PRODUCT {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the prd property.
@@ -409,6 +456,30 @@ public class PRODUCT {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -482,6 +553,7 @@ public class PRODUCT {
      *         &lt;element name="MDNB" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="CDSMODULES" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="SMNR" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
+     *         &lt;element name="SMSTRENGTHNR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="SMCAT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="STREHA" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="STREHADAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -491,9 +563,14 @@ public class PRODUCT {
      *         &lt;element name="STREHAPRICEYCDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *         &lt;element name="EXPORTONLY" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="LTC_ASC" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *         &lt;element name="TR" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *         &lt;element name="TRE" type="{http://www.hcisolutions.ch/index}ArrayOfString1" minOccurs="0"/>
      *         &lt;element name="SMNAS" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="KIDO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *         &lt;element name="AAP" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *         &lt;element name="GMN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="MDATTR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PPLUS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="UFI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *         &lt;element name="CPT" maxOccurs="unbounded" minOccurs="0">
      *           &lt;complexType>
@@ -503,6 +580,7 @@ public class PRODUCT {
      *                   &lt;element name="CPTLNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *                   &lt;element name="CNAMED" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="CNAMEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="GENGRPCPT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="IDXIND" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="DDDD" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="DDDU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -510,6 +588,7 @@ public class PRODUCT {
      *                   &lt;element name="IDXIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="IXREL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                   &lt;element name="GALF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="EDQMPDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="DRGGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="PRDGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="PRBSUIT" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -525,6 +604,7 @@ public class PRODUCT {
      *                   &lt;element name="EXCIPCF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="PQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="PQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="STDPRESCU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="SIZEMM" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
      *                   &lt;element name="WEIGHT" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
      *                   &lt;element name="LOOKD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -574,6 +654,18 @@ public class PRODUCT {
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
+     *                   &lt;element name="EDQMROAS" maxOccurs="unbounded" minOccurs="0">
+     *                     &lt;complexType>
+     *                       &lt;complexContent>
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;sequence>
+     *                             &lt;element name="EDQMROA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="EDQMMOA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                           &lt;/sequence>
+     *                         &lt;/restriction>
+     *                       &lt;/complexContent>
+     *                     &lt;/complexType>
+     *                   &lt;/element>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -609,6 +701,29 @@ public class PRODUCT {
      *                   &lt;element name="ALTERNATIVESF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="EVIDENCELEVEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                   &lt;element name="REFERENCES" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="CAPSISOPENABLE" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *                   &lt;element name="CAPSOPENABLEREMD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="CAPSOPENABLEREMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="CAPSOPENABLEREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="CAPSOPENABLEEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="LIQDURABILITYD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="LIQDURABILITYF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="LIQDURABILITYREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="LIQDURABILITYEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="DIVGSASA" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="DIVGSASAREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="DIVGSASAEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *         &lt;element name="DIETARYADVICE" maxOccurs="unbounded" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="DIETTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -687,6 +802,7 @@ public class PRODUCT {
         "mdnb",
         "cdsmodules",
         "smnr",
+        "smstrengthnr",
         "smcat",
         "streha",
         "strehadat",
@@ -696,13 +812,19 @@ public class PRODUCT {
         "strehapriceycdat",
         "exportonly",
         "ltcasc",
-        "tr",
+        "tre",
         "smnas",
         "kido",
+        "aap",
+        "gmn",
+        "mdattr",
+        "pplus",
+        "ufi",
         "del",
         "cpt",
         "prdicd",
-        "gsasa"
+        "gsasa",
+        "dietaryadvice"
     })
     public static class PRD {
 
@@ -834,6 +956,8 @@ public class PRODUCT {
         protected String cdsmodules;
         @XmlElement(name = "SMNR")
         protected BigInteger smnr;
+        @XmlElement(name = "SMSTRENGTHNR")
+        protected String smstrengthnr;
         @XmlElement(name = "SMCAT")
         protected String smcat;
         @XmlElement(name = "STREHA")
@@ -856,12 +980,22 @@ public class PRODUCT {
         protected Boolean exportonly;
         @XmlElement(name = "LTC_ASC")
         protected Integer ltcasc;
-        @XmlElement(name = "TR")
-        protected Integer tr;
+        @XmlElement(name = "TRE")
+        protected ArrayOfString1 tre;
         @XmlElement(name = "SMNAS")
         protected Boolean smnas;
         @XmlElement(name = "KIDO")
         protected Boolean kido;
+        @XmlElement(name = "AAP")
+        protected Boolean aap;
+        @XmlElement(name = "GMN")
+        protected String gmn;
+        @XmlElement(name = "MDATTR")
+        protected String mdattr;
+        @XmlElement(name = "PPLUS")
+        protected String pplus;
+        @XmlElement(name = "UFI")
+        protected String ufi;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlElement(name = "CPT")
@@ -870,6 +1004,8 @@ public class PRODUCT {
         protected List<PRODUCT.PRD.PRDICD> prdicd;
         @XmlElement(name = "GSASA")
         protected PRODUCT.PRD.GSASA gsasa;
+        @XmlElement(name = "DIETARYADVICE")
+        protected List<PRODUCT.PRD.DIETARYADVICE> dietaryadvice;
         @XmlAttribute(name = "DT", required = true)
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar dt;
@@ -2355,6 +2491,30 @@ public class PRODUCT {
         }
 
         /**
+         * Ruft den Wert der smstrengthnr-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getSMSTRENGTHNR() {
+            return smstrengthnr;
+        }
+
+        /**
+         * Legt den Wert der smstrengthnr-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setSMSTRENGTHNR(String value) {
+            this.smstrengthnr = value;
+        }
+
+        /**
          * Ruft den Wert der smcat-Eigenschaft ab.
          * 
          * @return
@@ -2571,27 +2731,27 @@ public class PRODUCT {
         }
 
         /**
-         * Ruft den Wert der tr-Eigenschaft ab.
+         * Ruft den Wert der tre-Eigenschaft ab.
          * 
          * @return
          *     possible object is
-         *     {@link Integer }
+         *     {@link ArrayOfString1 }
          *     
          */
-        public Integer getTR() {
-            return tr;
+        public ArrayOfString1 getTRE() {
+            return tre;
         }
 
         /**
-         * Legt den Wert der tr-Eigenschaft fest.
+         * Legt den Wert der tre-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
-         *     {@link Integer }
+         *     {@link ArrayOfString1 }
          *     
          */
-        public void setTR(Integer value) {
-            this.tr = value;
+        public void setTRE(ArrayOfString1 value) {
+            this.tre = value;
         }
 
         /**
@@ -2640,6 +2800,126 @@ public class PRODUCT {
          */
         public void setKIDO(Boolean value) {
             this.kido = value;
+        }
+
+        /**
+         * Ruft den Wert der aap-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isAAP() {
+            return aap;
+        }
+
+        /**
+         * Legt den Wert der aap-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setAAP(Boolean value) {
+            this.aap = value;
+        }
+
+        /**
+         * Ruft den Wert der gmn-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getGMN() {
+            return gmn;
+        }
+
+        /**
+         * Legt den Wert der gmn-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setGMN(String value) {
+            this.gmn = value;
+        }
+
+        /**
+         * Ruft den Wert der mdattr-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getMDATTR() {
+            return mdattr;
+        }
+
+        /**
+         * Legt den Wert der mdattr-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setMDATTR(String value) {
+            this.mdattr = value;
+        }
+
+        /**
+         * Ruft den Wert der pplus-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getPPLUS() {
+            return pplus;
+        }
+
+        /**
+         * Legt den Wert der pplus-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setPPLUS(String value) {
+            this.pplus = value;
+        }
+
+        /**
+         * Ruft den Wert der ufi-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getUFI() {
+            return ufi;
+        }
+
+        /**
+         * Legt den Wert der ufi-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setUFI(String value) {
+            this.ufi = value;
         }
 
         /**
@@ -2741,6 +3021,35 @@ public class PRODUCT {
         }
 
         /**
+         * Gets the value of the dietaryadvice property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the dietaryadvice property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getDIETARYADVICE().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link PRODUCT.PRD.DIETARYADVICE }
+         * 
+         * 
+         */
+        public List<PRODUCT.PRD.DIETARYADVICE> getDIETARYADVICE() {
+            if (dietaryadvice == null) {
+                dietaryadvice = new ArrayList<PRODUCT.PRD.DIETARYADVICE>();
+            }
+            return this.dietaryadvice;
+        }
+
+        /**
          * Ruft den Wert der dt-Eigenschaft ab.
          * 
          * @return
@@ -2778,6 +3087,7 @@ public class PRODUCT {
          *         &lt;element name="CPTLNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
          *         &lt;element name="CNAMED" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="CNAMEF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="GENGRPCPT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="IDXIND" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="DDDD" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="DDDU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -2785,6 +3095,7 @@ public class PRODUCT {
          *         &lt;element name="IDXIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="IXREL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *         &lt;element name="GALF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="EDQMPDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="DRGGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="PRDGRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="PRBSUIT" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -2800,6 +3111,7 @@ public class PRODUCT {
          *         &lt;element name="EXCIPCF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="PQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="PQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="STDPRESCU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="SIZEMM" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
          *         &lt;element name="WEIGHT" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
          *         &lt;element name="LOOKD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -2849,6 +3161,18 @@ public class PRODUCT {
          *             &lt;/complexContent>
          *           &lt;/complexType>
          *         &lt;/element>
+         *         &lt;element name="EDQMROAS" maxOccurs="unbounded" minOccurs="0">
+         *           &lt;complexType>
+         *             &lt;complexContent>
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;sequence>
+         *                   &lt;element name="EDQMROA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="EDQMMOA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                 &lt;/sequence>
+         *               &lt;/restriction>
+         *             &lt;/complexContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -2862,6 +3186,7 @@ public class PRODUCT {
             "cptlno",
             "cnamed",
             "cnamef",
+            "gengrpcpt",
             "idxind",
             "dddd",
             "dddu",
@@ -2869,6 +3194,7 @@ public class PRODUCT {
             "idxia",
             "ixrel",
             "galf",
+            "edqmpdf",
             "drggrpcd",
             "prdgrpcd",
             "prbsuit",
@@ -2884,6 +3210,7 @@ public class PRODUCT {
             "excipcf",
             "pqty",
             "pqtyu",
+            "stdprescu",
             "sizemm",
             "weight",
             "lookd",
@@ -2891,7 +3218,8 @@ public class PRODUCT {
             "img2",
             "cptcmp",
             "cptix",
-            "cptroa"
+            "cptroa",
+            "edqmroas"
         })
         public static class CPT {
 
@@ -2901,6 +3229,8 @@ public class PRODUCT {
             protected String cnamed;
             @XmlElement(name = "CNAMEF")
             protected String cnamef;
+            @XmlElement(name = "GENGRPCPT", defaultValue = "")
+            protected String gengrpcpt;
             @XmlElement(name = "IDXIND")
             protected String idxind;
             @XmlElement(name = "DDDD")
@@ -2915,6 +3245,8 @@ public class PRODUCT {
             protected Integer ixrel;
             @XmlElement(name = "GALF")
             protected String galf;
+            @XmlElement(name = "EDQMPDF")
+            protected String edqmpdf;
             @XmlElement(name = "DRGGRPCD")
             protected String drggrpcd;
             @XmlElement(name = "PRDGRPCD")
@@ -2945,6 +3277,8 @@ public class PRODUCT {
             protected Double pqty;
             @XmlElement(name = "PQTYU")
             protected String pqtyu;
+            @XmlElement(name = "STDPRESCU")
+            protected String stdprescu;
             @XmlElement(name = "SIZEMM")
             protected BigDecimal sizemm;
             @XmlElement(name = "WEIGHT")
@@ -2961,6 +3295,8 @@ public class PRODUCT {
             protected List<PRODUCT.PRD.CPT.CPTIX> cptix;
             @XmlElement(name = "CPTROA")
             protected List<PRODUCT.PRD.CPT.CPTROA> cptroa;
+            @XmlElement(name = "EDQMROAS")
+            protected List<PRODUCT.PRD.CPT.EDQMROAS> edqmroas;
 
             /**
              * Ruft den Wert der cptlno-Eigenschaft ab.
@@ -3024,6 +3360,30 @@ public class PRODUCT {
              */
             public void setCNAMEF(String value) {
                 this.cnamef = value;
+            }
+
+            /**
+             * Ruft den Wert der gengrpcpt-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getGENGRPCPT() {
+                return gengrpcpt;
+            }
+
+            /**
+             * Legt den Wert der gengrpcpt-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setGENGRPCPT(String value) {
+                this.gengrpcpt = value;
             }
 
             /**
@@ -3192,6 +3552,30 @@ public class PRODUCT {
              */
             public void setGALF(String value) {
                 this.galf = value;
+            }
+
+            /**
+             * Ruft den Wert der edqmpdf-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getEDQMPDF() {
+                return edqmpdf;
+            }
+
+            /**
+             * Legt den Wert der edqmpdf-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setEDQMPDF(String value) {
+                this.edqmpdf = value;
             }
 
             /**
@@ -3555,6 +3939,30 @@ public class PRODUCT {
             }
 
             /**
+             * Ruft den Wert der stdprescu-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getSTDPRESCU() {
+                return stdprescu;
+            }
+
+            /**
+             * Legt den Wert der stdprescu-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setSTDPRESCU(String value) {
+                this.stdprescu = value;
+            }
+
+            /**
              * Ruft den Wert der sizemm-Eigenschaft ab.
              * 
              * @return
@@ -3759,6 +4167,35 @@ public class PRODUCT {
                     cptroa = new ArrayList<PRODUCT.PRD.CPT.CPTROA>();
                 }
                 return this.cptroa;
+            }
+
+            /**
+             * Gets the value of the edqmroas property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the edqmroas property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getEDQMROAS().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link PRODUCT.PRD.CPT.EDQMROAS }
+             * 
+             * 
+             */
+            public List<PRODUCT.PRD.CPT.EDQMROAS> getEDQMROAS() {
+                if (edqmroas == null) {
+                    edqmroas = new ArrayList<PRODUCT.PRD.CPT.EDQMROAS>();
+                }
+                return this.edqmroas;
             }
 
 
@@ -4202,6 +4639,144 @@ public class PRODUCT {
 
             }
 
+
+            /**
+             * <p>Java-Klasse für anonymous complex type.
+             * 
+             * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *       &lt;sequence>
+             *         &lt;element name="EDQMROA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="EDQMMOA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *       &lt;/sequence>
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "edqmroa",
+                "edqmmoa"
+            })
+            public static class EDQMROAS {
+
+                @XmlElement(name = "EDQMROA")
+                protected String edqmroa;
+                @XmlElement(name = "EDQMMOA")
+                protected String edqmmoa;
+
+                /**
+                 * Ruft den Wert der edqmroa-Eigenschaft ab.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getEDQMROA() {
+                    return edqmroa;
+                }
+
+                /**
+                 * Legt den Wert der edqmroa-Eigenschaft fest.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setEDQMROA(String value) {
+                    this.edqmroa = value;
+                }
+
+                /**
+                 * Ruft den Wert der edqmmoa-Eigenschaft ab.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getEDQMMOA() {
+                    return edqmmoa;
+                }
+
+                /**
+                 * Legt den Wert der edqmmoa-Eigenschaft fest.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setEDQMMOA(String value) {
+                    this.edqmmoa = value;
+                }
+
+            }
+
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="DIETTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "diettype"
+        })
+        public static class DIETARYADVICE {
+
+            @XmlElement(name = "DIETTYPE")
+            protected String diettype;
+
+            /**
+             * Ruft den Wert der diettype-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getDIETTYPE() {
+                return diettype;
+            }
+
+            /**
+             * Legt den Wert der diettype-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setDIETTYPE(String value) {
+                this.diettype = value;
+            }
+
         }
 
 
@@ -4225,6 +4800,18 @@ public class PRODUCT {
          *         &lt;element name="ALTERNATIVESF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="EVIDENCELEVEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *         &lt;element name="REFERENCES" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="CAPSISOPENABLE" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+         *         &lt;element name="CAPSOPENABLEREMD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="CAPSOPENABLEREMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="CAPSOPENABLEREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="CAPSOPENABLEEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="LIQDURABILITYD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="LIQDURABILITYF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="LIQDURABILITYREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="LIQDURABILITYEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="DIVGSASA" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="DIVGSASAREF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="DIVGSASAEL" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -4244,7 +4831,19 @@ public class PRODUCT {
             "alternativesd",
             "alternativesf",
             "evidencelevel",
-            "references"
+            "references",
+            "capsisopenable",
+            "capsopenableremd",
+            "capsopenableremf",
+            "capsopenableref",
+            "capsopenableel",
+            "liqdurabilityd",
+            "liqdurabilityf",
+            "liqdurabilityref",
+            "liqdurabilityel",
+            "divgsasa",
+            "divgsasaref",
+            "divgsasael"
         })
         public static class GSASA {
 
@@ -4268,6 +4867,30 @@ public class PRODUCT {
             protected Integer evidencelevel;
             @XmlElement(name = "REFERENCES")
             protected String references;
+            @XmlElement(name = "CAPSISOPENABLE")
+            protected Boolean capsisopenable;
+            @XmlElement(name = "CAPSOPENABLEREMD")
+            protected String capsopenableremd;
+            @XmlElement(name = "CAPSOPENABLEREMF")
+            protected String capsopenableremf;
+            @XmlElement(name = "CAPSOPENABLEREF")
+            protected String capsopenableref;
+            @XmlElement(name = "CAPSOPENABLEEL")
+            protected Integer capsopenableel;
+            @XmlElement(name = "LIQDURABILITYD")
+            protected String liqdurabilityd;
+            @XmlElement(name = "LIQDURABILITYF")
+            protected String liqdurabilityf;
+            @XmlElement(name = "LIQDURABILITYREF")
+            protected String liqdurabilityref;
+            @XmlElement(name = "LIQDURABILITYEL")
+            protected Integer liqdurabilityel;
+            @XmlElement(name = "DIVGSASA")
+            protected Integer divgsasa;
+            @XmlElement(name = "DIVGSASAREF")
+            protected String divgsasaref;
+            @XmlElement(name = "DIVGSASAEL")
+            protected Integer divgsasael;
 
             /**
              * Ruft den Wert der iscrushable-Eigenschaft ab.
@@ -4507,6 +5130,294 @@ public class PRODUCT {
              */
             public void setREFERENCES(String value) {
                 this.references = value;
+            }
+
+            /**
+             * Ruft den Wert der capsisopenable-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Boolean }
+             *     
+             */
+            public Boolean isCAPSISOPENABLE() {
+                return capsisopenable;
+            }
+
+            /**
+             * Legt den Wert der capsisopenable-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Boolean }
+             *     
+             */
+            public void setCAPSISOPENABLE(Boolean value) {
+                this.capsisopenable = value;
+            }
+
+            /**
+             * Ruft den Wert der capsopenableremd-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCAPSOPENABLEREMD() {
+                return capsopenableremd;
+            }
+
+            /**
+             * Legt den Wert der capsopenableremd-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCAPSOPENABLEREMD(String value) {
+                this.capsopenableremd = value;
+            }
+
+            /**
+             * Ruft den Wert der capsopenableremf-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCAPSOPENABLEREMF() {
+                return capsopenableremf;
+            }
+
+            /**
+             * Legt den Wert der capsopenableremf-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCAPSOPENABLEREMF(String value) {
+                this.capsopenableremf = value;
+            }
+
+            /**
+             * Ruft den Wert der capsopenableref-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCAPSOPENABLEREF() {
+                return capsopenableref;
+            }
+
+            /**
+             * Legt den Wert der capsopenableref-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCAPSOPENABLEREF(String value) {
+                this.capsopenableref = value;
+            }
+
+            /**
+             * Ruft den Wert der capsopenableel-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getCAPSOPENABLEEL() {
+                return capsopenableel;
+            }
+
+            /**
+             * Legt den Wert der capsopenableel-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setCAPSOPENABLEEL(Integer value) {
+                this.capsopenableel = value;
+            }
+
+            /**
+             * Ruft den Wert der liqdurabilityd-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getLIQDURABILITYD() {
+                return liqdurabilityd;
+            }
+
+            /**
+             * Legt den Wert der liqdurabilityd-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setLIQDURABILITYD(String value) {
+                this.liqdurabilityd = value;
+            }
+
+            /**
+             * Ruft den Wert der liqdurabilityf-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getLIQDURABILITYF() {
+                return liqdurabilityf;
+            }
+
+            /**
+             * Legt den Wert der liqdurabilityf-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setLIQDURABILITYF(String value) {
+                this.liqdurabilityf = value;
+            }
+
+            /**
+             * Ruft den Wert der liqdurabilityref-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getLIQDURABILITYREF() {
+                return liqdurabilityref;
+            }
+
+            /**
+             * Legt den Wert der liqdurabilityref-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setLIQDURABILITYREF(String value) {
+                this.liqdurabilityref = value;
+            }
+
+            /**
+             * Ruft den Wert der liqdurabilityel-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getLIQDURABILITYEL() {
+                return liqdurabilityel;
+            }
+
+            /**
+             * Legt den Wert der liqdurabilityel-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setLIQDURABILITYEL(Integer value) {
+                this.liqdurabilityel = value;
+            }
+
+            /**
+             * Ruft den Wert der divgsasa-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getDIVGSASA() {
+                return divgsasa;
+            }
+
+            /**
+             * Legt den Wert der divgsasa-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setDIVGSASA(Integer value) {
+                this.divgsasa = value;
+            }
+
+            /**
+             * Ruft den Wert der divgsasaref-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getDIVGSASAREF() {
+                return divgsasaref;
+            }
+
+            /**
+             * Legt den Wert der divgsasaref-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setDIVGSASAREF(String value) {
+                this.divgsasaref = value;
+            }
+
+            /**
+             * Ruft den Wert der divgsasael-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getDIVGSASAEL() {
+                return divgsasael;
+            }
+
+            /**
+             * Legt den Wert der divgsasael-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setDIVGSASAEL(Integer value) {
+                this.divgsasael = value;
             }
 
         }

@@ -23,15 +23,26 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="KI" maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element name="CCODE" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PV" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="LANGUAGE" maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="LANG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="DESCR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -74,16 +85,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ki",
+    "ccode",
     "result"
 })
-@XmlRootElement(name = "KOMPENDIUM_IMAGE")
-public class KOMPENDIUMIMAGE {
+@XmlRootElement(name = "CONSUMERCODE")
+public class CONSUMERCODE {
 
-    @XmlElement(name = "KI")
-    protected List<KOMPENDIUMIMAGE.KI> ki;
+    @XmlElement(name = "CCODE")
+    protected List<CONSUMERCODE.CCODE> ccode;
     @XmlElement(name = "RESULT")
-    protected KOMPENDIUMIMAGE.RESULT result;
+    protected CONSUMERCODE.RESULT result;
     @XmlAttribute(name = "CREATION_DATETIME", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationdatetime;
@@ -97,32 +108,32 @@ public class KOMPENDIUMIMAGE {
     protected String release;
 
     /**
-     * Gets the value of the ki property.
+     * Gets the value of the ccode property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ki property.
+     * This is why there is not a <CODE>set</CODE> method for the ccode property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getKI().add(newItem);
+     *    getCCODE().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link KOMPENDIUMIMAGE.KI }
+     * {@link CONSUMERCODE.CCODE }
      * 
      * 
      */
-    public List<KOMPENDIUMIMAGE.KI> getKI() {
-        if (ki == null) {
-            ki = new ArrayList<KOMPENDIUMIMAGE.KI>();
+    public List<CONSUMERCODE.CCODE> getCCODE() {
+        if (ccode == null) {
+            ccode = new ArrayList<CONSUMERCODE.CCODE>();
         }
-        return this.ki;
+        return this.ccode;
     }
 
     /**
@@ -130,10 +141,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @return
      *     possible object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CONSUMERCODE.RESULT }
      *     
      */
-    public KOMPENDIUMIMAGE.RESULT getRESULT() {
+    public CONSUMERCODE.RESULT getRESULT() {
         return result;
     }
 
@@ -142,10 +153,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @param value
      *     allowed object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CONSUMERCODE.RESULT }
      *     
      */
-    public void setRESULT(KOMPENDIUMIMAGE.RESULT value) {
+    public void setRESULT(CONSUMERCODE.RESULT value) {
         this.result = value;
     }
 
@@ -256,10 +267,21 @@ public class KOMPENDIUMIMAGE {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PV" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="LANGUAGE" maxOccurs="unbounded" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="LANG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="DESCR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -272,22 +294,22 @@ public class KOMPENDIUMIMAGE {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "imagename",
-        "imagetype",
-        "imageurl",
-        "imagecdata",
+        "cdtyp",
+        "cdval",
+        "pv",
+        "language",
         "del"
     })
-    public static class KI {
+    public static class CCODE {
 
-        @XmlElement(name = "IMAGENAME")
-        protected String imagename;
-        @XmlElement(name = "IMAGETYPE")
-        protected String imagetype;
-        @XmlElement(name = "IMAGEURL")
-        protected String imageurl;
-        @XmlElement(name = "IMAGECDATA")
-        protected String imagecdata;
+        @XmlElement(name = "CDTYP")
+        protected String cdtyp;
+        @XmlElement(name = "CDVAL")
+        protected String cdval;
+        @XmlElement(name = "PV")
+        protected String pv;
+        @XmlElement(name = "LANGUAGE")
+        protected List<CONSUMERCODE.CCODE.LANGUAGE> language;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlAttribute(name = "DT", required = true)
@@ -295,99 +317,104 @@ public class KOMPENDIUMIMAGE {
         protected XMLGregorianCalendar dt;
 
         /**
-         * Ruft den Wert der imagename-Eigenschaft ab.
+         * Ruft den Wert der cdtyp-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getIMAGENAME() {
-            return imagename;
+        public String getCDTYP() {
+            return cdtyp;
         }
 
         /**
-         * Legt den Wert der imagename-Eigenschaft fest.
+         * Legt den Wert der cdtyp-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setIMAGENAME(String value) {
-            this.imagename = value;
+        public void setCDTYP(String value) {
+            this.cdtyp = value;
         }
 
         /**
-         * Ruft den Wert der imagetype-Eigenschaft ab.
+         * Ruft den Wert der cdval-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getIMAGETYPE() {
-            return imagetype;
+        public String getCDVAL() {
+            return cdval;
         }
 
         /**
-         * Legt den Wert der imagetype-Eigenschaft fest.
+         * Legt den Wert der cdval-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setIMAGETYPE(String value) {
-            this.imagetype = value;
+        public void setCDVAL(String value) {
+            this.cdval = value;
         }
 
         /**
-         * Ruft den Wert der imageurl-Eigenschaft ab.
+         * Ruft den Wert der pv-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getIMAGEURL() {
-            return imageurl;
+        public String getPV() {
+            return pv;
         }
 
         /**
-         * Legt den Wert der imageurl-Eigenschaft fest.
+         * Legt den Wert der pv-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setIMAGEURL(String value) {
-            this.imageurl = value;
+        public void setPV(String value) {
+            this.pv = value;
         }
 
         /**
-         * Ruft den Wert der imagecdata-Eigenschaft ab.
+         * Gets the value of the language property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGECDATA() {
-            return imagecdata;
-        }
-
-        /**
-         * Legt den Wert der imagecdata-Eigenschaft fest.
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the language property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getLANGUAGE().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link CONSUMERCODE.CCODE.LANGUAGE }
+         * 
+         * 
          */
-        public void setIMAGECDATA(String value) {
-            this.imagecdata = value;
+        public List<CONSUMERCODE.CCODE.LANGUAGE> getLANGUAGE() {
+            if (language == null) {
+                language = new ArrayList<CONSUMERCODE.CCODE.LANGUAGE>();
+            }
+            return this.language;
         }
 
         /**
@@ -428,6 +455,89 @@ public class KOMPENDIUMIMAGE {
          */
         public void setDT(XMLGregorianCalendar value) {
             this.dt = value;
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="LANG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="DESCR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "lang",
+            "descr"
+        })
+        public static class LANGUAGE {
+
+            @XmlElement(name = "LANG")
+            protected String lang;
+            @XmlElement(name = "DESCR")
+            protected String descr;
+
+            /**
+             * Ruft den Wert der lang-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getLANG() {
+                return lang;
+            }
+
+            /**
+             * Legt den Wert der lang-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setLANG(String value) {
+                this.lang = value;
+            }
+
+            /**
+             * Ruft den Wert der descr-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getDESCR() {
+                return descr;
+            }
+
+            /**
+             * Legt den Wert der descr-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setDESCR(String value) {
+                this.descr = value;
+            }
+
         }
 
     }

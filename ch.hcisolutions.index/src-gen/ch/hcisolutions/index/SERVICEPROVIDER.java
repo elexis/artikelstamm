@@ -124,6 +124,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
+ *                   &lt;element name="ROLESREFDATA" maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="ROLECODEREFDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *               &lt;/restriction>
@@ -155,6 +166,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -183,6 +195,8 @@ public class SERVICEPROVIDER {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the sp property.
@@ -307,6 +321,30 @@ public class SERVICEPROVIDER {
      */
     public void setVALIDDATE(XMLGregorianCalendar value) {
         this.validdate = value;
+    }
+
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
     }
 
 
@@ -562,6 +600,17 @@ public class SERVICEPROVIDER {
      *             &lt;/complexContent>
      *           &lt;/complexType>
      *         &lt;/element>
+     *         &lt;element name="ROLESREFDATA" maxOccurs="unbounded" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="ROLECODEREFDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
      *     &lt;/restriction>
@@ -586,7 +635,8 @@ public class SERVICEPROVIDER {
         "addr",
         "refno",
         "nda",
-        "roles"
+        "roles",
+        "rolesrefdata"
     })
     public static class SP {
 
@@ -618,6 +668,8 @@ public class SERVICEPROVIDER {
         protected List<SERVICEPROVIDER.SP.NDA> nda;
         @XmlElement(name = "ROLES")
         protected List<SERVICEPROVIDER.SP.ROLES> roles;
+        @XmlElement(name = "ROLESREFDATA")
+        protected List<SERVICEPROVIDER.SP.ROLESREFDATA> rolesrefdata;
         @XmlAttribute(name = "DT")
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar dt;
@@ -968,6 +1020,35 @@ public class SERVICEPROVIDER {
                 roles = new ArrayList<SERVICEPROVIDER.SP.ROLES>();
             }
             return this.roles;
+        }
+
+        /**
+         * Gets the value of the rolesrefdata property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the rolesrefdata property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getROLESREFDATA().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SERVICEPROVIDER.SP.ROLESREFDATA }
+         * 
+         * 
+         */
+        public List<SERVICEPROVIDER.SP.ROLESREFDATA> getROLESREFDATA() {
+            if (rolesrefdata == null) {
+                rolesrefdata = new ArrayList<SERVICEPROVIDER.SP.ROLESREFDATA>();
+            }
+            return this.rolesrefdata;
         }
 
         /**
@@ -1974,6 +2055,61 @@ public class SERVICEPROVIDER {
              */
             public void setROLECODE(String value) {
                 this.rolecode = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="ROLECODEREFDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "rolecoderefdata"
+        })
+        public static class ROLESREFDATA {
+
+            @XmlElement(name = "ROLECODEREFDATA")
+            protected String rolecoderefdata;
+
+            /**
+             * Ruft den Wert der rolecoderefdata-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getROLECODEREFDATA() {
+                return rolecoderefdata;
+            }
+
+            /**
+             * Legt den Wert der rolecoderefdata-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setROLECODEREFDATA(String value) {
+                this.rolecoderefdata = value;
             }
 
         }

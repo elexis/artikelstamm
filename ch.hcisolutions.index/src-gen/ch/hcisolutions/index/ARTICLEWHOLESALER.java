@@ -30,8 +30,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                 &lt;sequence>
  *                   &lt;element name="WHSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="ARTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="STCK" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="GSCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="RPTYP" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
@@ -115,6 +115,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -143,6 +144,8 @@ public class ARTICLEWHOLESALER {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the aw property.
@@ -269,6 +272,30 @@ public class ARTICLEWHOLESALER {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -282,8 +309,8 @@ public class ARTICLEWHOLESALER {
      *       &lt;sequence>
      *         &lt;element name="WHSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="ARTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="STCK" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="GSCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="RPTYP" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
@@ -349,8 +376,8 @@ public class ARTICLEWHOLESALER {
     @XmlType(name = "", propOrder = {
         "whsno",
         "plf",
+        "pharmacode",
         "phar",
-        "artno",
         "stck",
         "gscd",
         "rptyp",
@@ -379,10 +406,10 @@ public class ARTICLEWHOLESALER {
         protected int whsno;
         @XmlElement(name = "PLF")
         protected String plf;
+        @XmlElement(name = "PHARMACODE")
+        protected int pharmacode;
         @XmlElement(name = "PHAR")
         protected String phar;
-        @XmlElement(name = "ARTNO")
-        protected int artno;
         @XmlElement(name = "STCK")
         protected Integer stck;
         @XmlElement(name = "GSCD")
@@ -470,6 +497,22 @@ public class ARTICLEWHOLESALER {
         }
 
         /**
+         * Ruft den Wert der pharmacode-Eigenschaft ab.
+         * 
+         */
+        public int getPHARMACODE() {
+            return pharmacode;
+        }
+
+        /**
+         * Legt den Wert der pharmacode-Eigenschaft fest.
+         * 
+         */
+        public void setPHARMACODE(int value) {
+            this.pharmacode = value;
+        }
+
+        /**
          * Ruft den Wert der phar-Eigenschaft ab.
          * 
          * @return
@@ -491,22 +534,6 @@ public class ARTICLEWHOLESALER {
          */
         public void setPHAR(String value) {
             this.phar = value;
-        }
-
-        /**
-         * Ruft den Wert der artno-Eigenschaft ab.
-         * 
-         */
-        public int getARTNO() {
-            return artno;
-        }
-
-        /**
-         * Legt den Wert der artno-Eigenschaft fest.
-         * 
-         */
-        public void setARTNO(int value) {
-            this.artno = value;
         }
 
         /**

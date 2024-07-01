@@ -67,6 +67,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -95,6 +96,8 @@ public class LIMITATION {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the lim property.
@@ -221,6 +224,30 @@ public class LIMITATION {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -274,14 +301,7 @@ public class LIMITATION {
         protected String dscrd;
         @XmlElement(name = "DSCRF")
         protected String dscrf;
-        @Override
-		public String toString(){
-			return "LIM [limcd=" + limcd + ", itbag=" + itbag + ", limtyp=" + limtyp + ", limval="
-				+ limval + ", dscrd=" + dscrd + ", dscrf=" + dscrf + ", vdat=" + vdat + ", del="
-				+ del + ", dt=" + dt + "]";
-		}
-
-		@XmlElement(name = "VDAT")
+        @XmlElement(name = "VDAT")
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar vdat;
         @XmlElement(name = "DEL", required = true, type = Boolean.class, nillable = true)

@@ -28,10 +28,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                   &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="GTIN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="ARTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                   &lt;element name="GRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="CDSO1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="CDSO2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -43,15 +42,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="ARTTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="VAT" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="SALECD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="LIMPTS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                   &lt;element name="GRDFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="COOL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="TEMP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="CDBG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="BG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="EXP" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                   &lt;element name="PAOS" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="QTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                   &lt;element name="QTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRLONGD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -60,23 +59,20 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="SORTF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="QTYUD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="QTYUF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="IMG2" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="DSCRPACKD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRPACKF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PCKTYPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PCKTYPD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PCKTYPF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="MULT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="SYN1D" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="SYN1F" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="SLOPLUS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="NOPCS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="HSCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="MINI" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="DEPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEPOT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="BAGSL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *                   &lt;element name="BAGSLC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                   &lt;element name="LOACD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="OUTSAL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                   &lt;element name="STTOX" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -90,10 +86,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="BIOCID" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="BAGNO" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="LIGHT" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *                   &lt;element name="BAGDOSSIER" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="TRADEABLE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="WEIGHT" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                   &lt;element name="COLDCHAIN" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                   &lt;element name="FOODINFO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                   &lt;element name="CHEMGROUP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="XYXLEINFO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                   &lt;element name="ARTCOMP" maxOccurs="unbounded" minOccurs="0">
  *                     &lt;complexType>
@@ -118,6 +116,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="BC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="BCSTAT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                             &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
@@ -129,23 +128,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
+ *                             &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                             &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="CHTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="LINENO" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *                             &lt;element name="NOUNITS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="ARTPRI" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *                             &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                             &lt;element name="PRICE" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -162,6 +149,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="MIGPRI" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="VDATPRI" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="MIGPRICARE" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                             &lt;element name="VDATPRICARE" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -186,6 +176,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
  *                             &lt;element name="LIMCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="VTDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="INDCDS" maxOccurs="unbounded" minOccurs="0">
+ *                               &lt;complexType>
+ *                                 &lt;complexContent>
+ *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;sequence>
+ *                                       &lt;element name="INDCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                     &lt;/sequence>
+ *                                   &lt;/restriction>
+ *                                 &lt;/complexContent>
+ *                               &lt;/complexType>
+ *                             &lt;/element>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -199,6 +202,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *                             &lt;element name="INCD" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                             &lt;element name="NINCD" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                             &lt;element name="FDATARIFFTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="FDATARIFFCODE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -214,6 +219,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="NETQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                             &lt;element name="NETQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="UNREC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="HAZARDINDUCERD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                             &lt;element name="ADRPACKAGE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
@@ -225,21 +231,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
- *                             &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                             &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                             &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="PIC" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                             &lt;element name="PDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -254,11 +248,34 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                             &lt;element name="FR" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                             &lt;element name="IT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                             &lt;element name="EN" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="DOC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
+ *                   &lt;element name="ARTSL" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="BAGDOSSIER" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="BAGSL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="BAGSLC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="LIMPTS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                             &lt;element name="LIM_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="SLOPLUS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                             &lt;element name="SLOPLUS_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="PM" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                             &lt;element name="BAGSLT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                             &lt;element name="GGSL" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                   &lt;element name="REGULATIONS" type="{http://www.hcisolutions.ch/index}ArrayOfString" minOccurs="0"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *               &lt;/restriction>
@@ -290,6 +307,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -318,6 +336,8 @@ public class ARTICLE {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the art property.
@@ -444,6 +464,30 @@ public class ARTICLE {
         this.validdate = value;
     }
 
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
 
     /**
      * <p>Java-Klasse für anonymous complex type.
@@ -455,10 +499,9 @@ public class ARTICLE {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PHARMACODE" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *         &lt;element name="PHAR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="GTIN" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="ARTNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *         &lt;element name="GRPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="CDSO1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="CDSO2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -470,15 +513,15 @@ public class ARTICLE {
      *         &lt;element name="ARTTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="VAT" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="SALECD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="LIMPTS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *         &lt;element name="GRDFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="COOL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="TEMP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="CDBG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="BG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="EXP" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *         &lt;element name="PAOS" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="QTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *         &lt;element name="QTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRLONGD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -487,23 +530,20 @@ public class ARTICLE {
      *         &lt;element name="SORTF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="QTYUD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="QTYUF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMG" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="IMG2" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="DSCRPACKD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRPACKF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PCKTYPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PCKTYPD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PCKTYPF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="MULT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="SYN1D" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="SYN1F" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="SLOPLUS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="NOPCS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="HSCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="MINI" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="DEPCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEPOT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="BAGSL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
-     *         &lt;element name="BAGSLC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *         &lt;element name="LOACD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="OUTSAL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *         &lt;element name="STTOX" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -517,10 +557,12 @@ public class ARTICLE {
      *         &lt;element name="BIOCID" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="BAGNO" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="LIGHT" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-     *         &lt;element name="BAGDOSSIER" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="TRADEABLE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="WEIGHT" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *         &lt;element name="COLDCHAIN" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *         &lt;element name="FOODINFO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *         &lt;element name="CHEMGROUP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="XYXLEINFO" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *         &lt;element name="ARTCOMP" maxOccurs="unbounded" minOccurs="0">
      *           &lt;complexType>
@@ -545,6 +587,7 @@ public class ARTICLE {
      *                   &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="BC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="BCSTAT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                   &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
@@ -556,23 +599,11 @@ public class ARTICLE {
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
+     *                   &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *                   &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="CHTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="LINENO" type="{http://www.w3.org/2001/XMLSchema}int"/>
      *                   &lt;element name="NOUNITS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="ARTPRI" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
-     *                   &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="PRICE" type="{http://www.w3.org/2001/XMLSchema}double"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -589,6 +620,9 @@ public class ARTICLE {
      *                   &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="MIGPRI" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="VDATPRI" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="MIGPRICARE" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *                   &lt;element name="VDATPRICARE" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -613,6 +647,19 @@ public class ARTICLE {
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
      *                   &lt;element name="LIMCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="VTDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="INDCDS" maxOccurs="unbounded" minOccurs="0">
+     *                     &lt;complexType>
+     *                       &lt;complexContent>
+     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;sequence>
+     *                             &lt;element name="INDCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                           &lt;/sequence>
+     *                         &lt;/restriction>
+     *                       &lt;/complexContent>
+     *                     &lt;/complexType>
+     *                   &lt;/element>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -626,6 +673,8 @@ public class ARTICLE {
      *                   &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
      *                   &lt;element name="INCD" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                   &lt;element name="NINCD" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *                   &lt;element name="FDATARIFFTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="FDATARIFFCODE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -641,6 +690,7 @@ public class ARTICLE {
      *                   &lt;element name="NETQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                   &lt;element name="NETQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="UNREC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="HAZARDINDUCERD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                   &lt;element name="ADRPACKAGE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
@@ -652,21 +702,9 @@ public class ARTICLE {
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
-     *                   &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="PIC" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="PDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -681,11 +719,34 @@ public class ARTICLE {
      *                   &lt;element name="FR" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *                   &lt;element name="IT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *                   &lt;element name="EN" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="DOC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
      *         &lt;/element>
+     *         &lt;element name="ARTSL" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="BAGDOSSIER" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="BAGSL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="BAGSLC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="LIMPTS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *                   &lt;element name="LIM_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="SLOPLUS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *                   &lt;element name="SLOPLUS_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="PM" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *                   &lt;element name="BAGSLT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *                   &lt;element name="GGSL" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *         &lt;element name="REGULATIONS" type="{http://www.hcisolutions.ch/index}ArrayOfString" minOccurs="0"/>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
      *     &lt;/restriction>
@@ -697,10 +758,9 @@ public class ARTICLE {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "phar",
         "pharmacode",
+        "phar",
         "gtin",
-        "artno",
         "grpcd",
         "cdso1",
         "cdso2",
@@ -712,15 +772,15 @@ public class ARTICLE {
         "arttyp",
         "vat",
         "salecd",
-        "inslim",
-        "limpts",
         "grdfr",
         "cool",
         "temp",
         "cdbg",
         "bg",
         "exp",
+        "paos",
         "qty",
+        "qtyu",
         "dscrd",
         "dscrf",
         "dscrlongd",
@@ -729,23 +789,20 @@ public class ARTICLE {
         "sortf",
         "qtyud",
         "qtyuf",
-        "img",
         "img2",
         "dscrpackd",
         "dscrpackf",
+        "pcktypcd",
         "pcktypd",
         "pcktypf",
         "mult",
         "syn1D",
         "syn1F",
-        "sloplus",
         "nopcs",
         "hscd",
         "mini",
         "depcd",
         "depot",
-        "bagsl",
-        "bagslc",
         "loacd",
         "outsal",
         "sttox",
@@ -759,34 +816,34 @@ public class ARTICLE {
         "biocid",
         "bagno",
         "light",
-        "bagdossier",
         "tradeable",
         "weight",
         "coldchain",
+        "foodinfo",
+        "chemgroup",
+        "xyxleinfo",
         "del",
         "artcomp",
         "artbar",
         "artch",
-        "artpri",
         "artmig",
         "artdan",
         "artlim",
         "artins",
         "artadr",
         "size",
-        "pic",
-        "sds"
+        "sds",
+        "artsl",
+        "regulations"
     })
     public static class ART {
 
-        @XmlElement(name = "PHAR")
-        protected String phar;
         @XmlElement(name = "PHARMACODE")
         protected int pharmacode;
+        @XmlElement(name = "PHAR")
+        protected String phar;
         @XmlElement(name = "GTIN")
         protected String gtin;
-        @XmlElement(name = "ARTNO")
-        protected int artno;
         @XmlElement(name = "GRPCD")
         protected String grpcd;
         @XmlElement(name = "CDSO1")
@@ -809,10 +866,6 @@ public class ARTICLE {
         protected Integer vat;
         @XmlElement(name = "SALECD")
         protected String salecd;
-        @XmlElement(name = "INSLIM")
-        protected String inslim;
-        @XmlElement(name = "LIMPTS")
-        protected Double limpts;
         @XmlElement(name = "GRDFR")
         protected String grdfr;
         @XmlElement(name = "COOL")
@@ -825,8 +878,12 @@ public class ARTICLE {
         protected String bg;
         @XmlElement(name = "EXP")
         protected Integer exp;
+        @XmlElement(name = "PAOS")
+        protected Boolean paos;
         @XmlElement(name = "QTY")
         protected Double qty;
+        @XmlElement(name = "QTYU")
+        protected String qtyu;
         @XmlElement(name = "DSCRD")
         protected String dscrd;
         @XmlElement(name = "DSCRF")
@@ -843,14 +900,14 @@ public class ARTICLE {
         protected String qtyud;
         @XmlElement(name = "QTYUF")
         protected String qtyuf;
-        @XmlElement(name = "IMG")
-        protected String img;
         @XmlElement(name = "IMG2")
         protected Boolean img2;
         @XmlElement(name = "DSCRPACKD")
         protected String dscrpackd;
         @XmlElement(name = "DSCRPACKF")
         protected String dscrpackf;
+        @XmlElement(name = "PCKTYPCD")
+        protected String pcktypcd;
         @XmlElement(name = "PCKTYPD")
         protected String pcktypd;
         @XmlElement(name = "PCKTYPF")
@@ -861,8 +918,6 @@ public class ARTICLE {
         protected String syn1D;
         @XmlElement(name = "SYN1F")
         protected String syn1F;
-        @XmlElement(name = "SLOPLUS")
-        protected Integer sloplus;
         @XmlElement(name = "NOPCS")
         protected Integer nopcs;
         @XmlElement(name = "HSCD")
@@ -873,12 +928,6 @@ public class ARTICLE {
         protected String depcd;
         @XmlElement(name = "DEPOT")
         protected String depot;
-        @XmlElement(name = "BAGSL")
-        @XmlSchemaType(name = "dateTime")
-        protected XMLGregorianCalendar bagsl;
-        @XmlElement(name = "BAGSLC")
-        @XmlSchemaType(name = "dateTime")
-        protected XMLGregorianCalendar bagslc;
         @XmlElement(name = "LOACD")
         protected String loacd;
         @XmlElement(name = "OUTSAL")
@@ -910,14 +959,18 @@ public class ARTICLE {
         protected String bagno;
         @XmlElement(name = "LIGHT")
         protected Boolean light;
-        @XmlElement(name = "BAGDOSSIER")
-        protected Integer bagdossier;
         @XmlElement(name = "TRADEABLE")
         protected String tradeable;
         @XmlElement(name = "WEIGHT")
         protected Double weight;
         @XmlElement(name = "COLDCHAIN")
         protected Boolean coldchain;
+        @XmlElement(name = "FOODINFO")
+        protected Boolean foodinfo;
+        @XmlElement(name = "CHEMGROUP")
+        protected String chemgroup;
+        @XmlElement(name = "XYXLEINFO")
+        protected Boolean xyxleinfo;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlElement(name = "ARTCOMP")
@@ -926,8 +979,6 @@ public class ARTICLE {
         protected List<ARTICLE.ART.ARTBAR> artbar;
         @XmlElement(name = "ARTCH")
         protected List<ARTICLE.ART.ARTCH> artch;
-        @XmlElement(name = "ARTPRI")
-        protected List<ARTICLE.ART.ARTPRI> artpri;
         @XmlElement(name = "ARTMIG")
         protected List<ARTICLE.ART.ARTMIG> artmig;
         @XmlElement(name = "ARTDAN")
@@ -940,13 +991,31 @@ public class ARTICLE {
         protected List<ARTICLE.ART.ARTADR> artadr;
         @XmlElement(name = "SIZE")
         protected ARTICLE.ART.SIZE size;
-        @XmlElement(name = "PIC")
-        protected List<ARTICLE.ART.PIC> pic;
         @XmlElement(name = "SDS")
         protected ARTICLE.ART.SDS sds;
+        @XmlElement(name = "ARTSL")
+        protected ARTICLE.ART.ARTSL artsl;
+        @XmlElement(name = "REGULATIONS")
+        protected ArrayOfString regulations;
         @XmlAttribute(name = "DT", required = true)
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar dt;
+
+        /**
+         * Ruft den Wert der pharmacode-Eigenschaft ab.
+         * 
+         */
+        public int getPHARMACODE() {
+            return pharmacode;
+        }
+
+        /**
+         * Legt den Wert der pharmacode-Eigenschaft fest.
+         * 
+         */
+        public void setPHARMACODE(int value) {
+            this.pharmacode = value;
+        }
 
         /**
          * Ruft den Wert der phar-Eigenschaft ab.
@@ -973,22 +1042,6 @@ public class ARTICLE {
         }
 
         /**
-         * Ruft den Wert der pharmacode-Eigenschaft ab.
-         * 
-         */
-        public int getPHARMACODE() {
-            return pharmacode;
-        }
-
-        /**
-         * Legt den Wert der pharmacode-Eigenschaft fest.
-         * 
-         */
-        public void setPHARMACODE(int value) {
-            this.pharmacode = value;
-        }
-
-        /**
          * Ruft den Wert der gtin-Eigenschaft ab.
          * 
          * @return
@@ -1010,22 +1063,6 @@ public class ARTICLE {
          */
         public void setGTIN(String value) {
             this.gtin = value;
-        }
-
-        /**
-         * Ruft den Wert der artno-Eigenschaft ab.
-         * 
-         */
-        public int getARTNO() {
-            return artno;
-        }
-
-        /**
-         * Legt den Wert der artno-Eigenschaft fest.
-         * 
-         */
-        public void setARTNO(int value) {
-            this.artno = value;
         }
 
         /**
@@ -1285,54 +1322,6 @@ public class ARTICLE {
         }
 
         /**
-         * Ruft den Wert der inslim-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getINSLIM() {
-            return inslim;
-        }
-
-        /**
-         * Legt den Wert der inslim-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setINSLIM(String value) {
-            this.inslim = value;
-        }
-
-        /**
-         * Ruft den Wert der limpts-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Double }
-         *     
-         */
-        public Double getLIMPTS() {
-            return limpts;
-        }
-
-        /**
-         * Legt den Wert der limpts-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Double }
-         *     
-         */
-        public void setLIMPTS(Double value) {
-            this.limpts = value;
-        }
-
-        /**
          * Ruft den Wert der grdfr-Eigenschaft ab.
          * 
          * @return
@@ -1477,6 +1466,30 @@ public class ARTICLE {
         }
 
         /**
+         * Ruft den Wert der paos-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isPAOS() {
+            return paos;
+        }
+
+        /**
+         * Legt den Wert der paos-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setPAOS(Boolean value) {
+            this.paos = value;
+        }
+
+        /**
          * Ruft den Wert der qty-Eigenschaft ab.
          * 
          * @return
@@ -1498,6 +1511,30 @@ public class ARTICLE {
          */
         public void setQTY(Double value) {
             this.qty = value;
+        }
+
+        /**
+         * Ruft den Wert der qtyu-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getQTYU() {
+            return qtyu;
+        }
+
+        /**
+         * Legt den Wert der qtyu-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setQTYU(String value) {
+            this.qtyu = value;
         }
 
         /**
@@ -1693,30 +1730,6 @@ public class ARTICLE {
         }
 
         /**
-         * Ruft den Wert der img-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMG() {
-            return img;
-        }
-
-        /**
-         * Legt den Wert der img-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMG(String value) {
-            this.img = value;
-        }
-
-        /**
          * Ruft den Wert der img2-Eigenschaft ab.
          * 
          * @return
@@ -1786,6 +1799,30 @@ public class ARTICLE {
          */
         public void setDSCRPACKF(String value) {
             this.dscrpackf = value;
+        }
+
+        /**
+         * Ruft den Wert der pcktypcd-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getPCKTYPCD() {
+            return pcktypcd;
+        }
+
+        /**
+         * Legt den Wert der pcktypcd-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setPCKTYPCD(String value) {
+            this.pcktypcd = value;
         }
 
         /**
@@ -1909,30 +1946,6 @@ public class ARTICLE {
         }
 
         /**
-         * Ruft den Wert der sloplus-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Integer }
-         *     
-         */
-        public Integer getSLOPLUS() {
-            return sloplus;
-        }
-
-        /**
-         * Legt den Wert der sloplus-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Integer }
-         *     
-         */
-        public void setSLOPLUS(Integer value) {
-            this.sloplus = value;
-        }
-
-        /**
          * Ruft den Wert der nopcs-Eigenschaft ab.
          * 
          * @return
@@ -2050,54 +2063,6 @@ public class ARTICLE {
          */
         public void setDEPOT(String value) {
             this.depot = value;
-        }
-
-        /**
-         * Ruft den Wert der bagsl-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getBAGSL() {
-            return bagsl;
-        }
-
-        /**
-         * Legt den Wert der bagsl-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setBAGSL(XMLGregorianCalendar value) {
-            this.bagsl = value;
-        }
-
-        /**
-         * Ruft den Wert der bagslc-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public XMLGregorianCalendar getBAGSLC() {
-            return bagslc;
-        }
-
-        /**
-         * Legt den Wert der bagslc-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *     
-         */
-        public void setBAGSLC(XMLGregorianCalendar value) {
-            this.bagslc = value;
         }
 
         /**
@@ -2413,30 +2378,6 @@ public class ARTICLE {
         }
 
         /**
-         * Ruft den Wert der bagdossier-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Integer }
-         *     
-         */
-        public Integer getBAGDOSSIER() {
-            return bagdossier;
-        }
-
-        /**
-         * Legt den Wert der bagdossier-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Integer }
-         *     
-         */
-        public void setBAGDOSSIER(Integer value) {
-            this.bagdossier = value;
-        }
-
-        /**
          * Ruft den Wert der tradeable-Eigenschaft ab.
          * 
          * @return
@@ -2506,6 +2447,78 @@ public class ARTICLE {
          */
         public void setCOLDCHAIN(Boolean value) {
             this.coldchain = value;
+        }
+
+        /**
+         * Ruft den Wert der foodinfo-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isFOODINFO() {
+            return foodinfo;
+        }
+
+        /**
+         * Legt den Wert der foodinfo-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setFOODINFO(Boolean value) {
+            this.foodinfo = value;
+        }
+
+        /**
+         * Ruft den Wert der chemgroup-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getCHEMGROUP() {
+            return chemgroup;
+        }
+
+        /**
+         * Legt den Wert der chemgroup-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setCHEMGROUP(String value) {
+            this.chemgroup = value;
+        }
+
+        /**
+         * Ruft den Wert der xyxleinfo-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Boolean }
+         *     
+         */
+        public Boolean isXYXLEINFO() {
+            return xyxleinfo;
+        }
+
+        /**
+         * Legt den Wert der xyxleinfo-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Boolean }
+         *     
+         */
+        public void setXYXLEINFO(Boolean value) {
+            this.xyxleinfo = value;
         }
 
         /**
@@ -2609,35 +2622,6 @@ public class ARTICLE {
                 artch = new ArrayList<ARTICLE.ART.ARTCH>();
             }
             return this.artch;
-        }
-
-        /**
-         * Gets the value of the artpri property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the artpri property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getARTPRI().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ARTICLE.ART.ARTPRI }
-         * 
-         * 
-         */
-        public List<ARTICLE.ART.ARTPRI> getARTPRI() {
-            if (artpri == null) {
-                artpri = new ArrayList<ARTICLE.ART.ARTPRI>();
-            }
-            return this.artpri;
         }
 
         /**
@@ -2810,35 +2794,6 @@ public class ARTICLE {
         }
 
         /**
-         * Gets the value of the pic property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the pic property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getPIC().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ARTICLE.ART.PIC }
-         * 
-         * 
-         */
-        public List<ARTICLE.ART.PIC> getPIC() {
-            if (pic == null) {
-                pic = new ArrayList<ARTICLE.ART.PIC>();
-            }
-            return this.pic;
-        }
-
-        /**
          * Ruft den Wert der sds-Eigenschaft ab.
          * 
          * @return
@@ -2860,6 +2815,54 @@ public class ARTICLE {
          */
         public void setSDS(ARTICLE.ART.SDS value) {
             this.sds = value;
+        }
+
+        /**
+         * Ruft den Wert der artsl-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link ARTICLE.ART.ARTSL }
+         *     
+         */
+        public ARTICLE.ART.ARTSL getARTSL() {
+            return artsl;
+        }
+
+        /**
+         * Legt den Wert der artsl-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link ARTICLE.ART.ARTSL }
+         *     
+         */
+        public void setARTSL(ARTICLE.ART.ARTSL value) {
+            this.artsl = value;
+        }
+
+        /**
+         * Ruft den Wert der regulations-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link ArrayOfString }
+         *     
+         */
+        public ArrayOfString getREGULATIONS() {
+            return regulations;
+        }
+
+        /**
+         * Legt den Wert der regulations-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link ArrayOfString }
+         *     
+         */
+        public void setREGULATIONS(ArrayOfString value) {
+            this.regulations = value;
         }
 
         /**
@@ -2902,6 +2905,7 @@ public class ARTICLE {
          *         &lt;element name="NETQTY" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="NETQTYU" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="UNREC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="HAZARDINDUCERD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="ADRPACKAGE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
@@ -2918,6 +2922,7 @@ public class ARTICLE {
             "netqty",
             "netqtyu",
             "unrec",
+            "hazardinducerd",
             "adrpackage"
         })
         public static class ARTADR {
@@ -2932,6 +2937,8 @@ public class ARTICLE {
             protected String netqtyu;
             @XmlElement(name = "UNREC")
             protected String unrec;
+            @XmlElement(name = "HAZARDINDUCERD")
+            protected String hazardinducerd;
             @XmlElement(name = "ADRPACKAGE")
             protected Integer adrpackage;
 
@@ -3056,6 +3063,30 @@ public class ARTICLE {
             }
 
             /**
+             * Ruft den Wert der hazardinducerd-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getHAZARDINDUCERD() {
+                return hazardinducerd;
+            }
+
+            /**
+             * Legt den Wert der hazardinducerd-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setHAZARDINDUCERD(String value) {
+                this.hazardinducerd = value;
+            }
+
+            /**
              * Ruft den Wert der adrpackage-Eigenschaft ab.
              * 
              * @return
@@ -3095,6 +3126,7 @@ public class ARTICLE {
          *         &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="BC" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="BCSTAT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *         &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
@@ -3109,6 +3141,7 @@ public class ARTICLE {
             "cdtyp",
             "bc",
             "bcstat",
+            "pharmacode2",
             "phar2"
         })
         public static class ARTBAR {
@@ -3119,6 +3152,8 @@ public class ARTICLE {
             protected String bc;
             @XmlElement(name = "BCSTAT")
             protected String bcstat;
+            @XmlElement(name = "PHARMACODE2")
+            protected Integer pharmacode2;
             @XmlElement(name = "PHAR2")
             protected String phar2;
 
@@ -3195,6 +3230,30 @@ public class ARTICLE {
             }
 
             /**
+             * Ruft den Wert der pharmacode2-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getPHARMACODE2() {
+                return pharmacode2;
+            }
+
+            /**
+             * Legt den Wert der pharmacode2-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setPHARMACODE2(Integer value) {
+                this.pharmacode2 = value;
+            }
+
+            /**
              * Ruft den Wert der phar2-Eigenschaft ab.
              * 
              * @return
@@ -3231,6 +3290,7 @@ public class ARTICLE {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
+         *         &lt;element name="PHARMACODE2" type="{http://www.w3.org/2001/XMLSchema}int"/>
          *         &lt;element name="PHAR2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="CHTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="LINENO" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -3245,6 +3305,7 @@ public class ARTICLE {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
+            "pharmacode2",
             "phar2",
             "chtype",
             "lineno",
@@ -3252,6 +3313,8 @@ public class ARTICLE {
         })
         public static class ARTCH {
 
+            @XmlElement(name = "PHARMACODE2")
+            protected int pharmacode2;
             @XmlElement(name = "PHAR2")
             protected String phar2;
             @XmlElement(name = "CHTYPE")
@@ -3260,6 +3323,22 @@ public class ARTICLE {
             protected int lineno;
             @XmlElement(name = "NOUNITS")
             protected Double nounits;
+
+            /**
+             * Ruft den Wert der pharmacode2-Eigenschaft ab.
+             * 
+             */
+            public int getPHARMACODE2() {
+                return pharmacode2;
+            }
+
+            /**
+             * Legt den Wert der pharmacode2-Eigenschaft fest.
+             * 
+             */
+            public void setPHARMACODE2(int value) {
+                this.pharmacode2 = value;
+            }
 
             /**
              * Ruft den Wert der phar2-Eigenschaft ab.
@@ -3627,6 +3706,8 @@ public class ARTICLE {
          *         &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
          *         &lt;element name="INCD" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *         &lt;element name="NINCD" type="{http://www.w3.org/2001/XMLSchema}int"/>
+         *         &lt;element name="FDATARIFFTYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="FDATARIFFCODE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -3639,7 +3720,9 @@ public class ARTICLE {
         @XmlType(name = "", propOrder = {
             "vdat",
             "incd",
-            "nincd"
+            "nincd",
+            "fdatarifftype",
+            "fdatariffcode"
         })
         public static class ARTINS {
 
@@ -3650,6 +3733,10 @@ public class ARTICLE {
             protected Integer incd;
             @XmlElement(name = "NINCD")
             protected int nincd;
+            @XmlElement(name = "FDATARIFFTYPE")
+            protected String fdatarifftype;
+            @XmlElement(name = "FDATARIFFCODE")
+            protected String fdatariffcode;
 
             /**
              * Ruft den Wert der vdat-Eigenschaft ab.
@@ -3715,6 +3802,54 @@ public class ARTICLE {
                 this.nincd = value;
             }
 
+            /**
+             * Ruft den Wert der fdatarifftype-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getFDATARIFFTYPE() {
+                return fdatarifftype;
+            }
+
+            /**
+             * Legt den Wert der fdatarifftype-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setFDATARIFFTYPE(String value) {
+                this.fdatarifftype = value;
+            }
+
+            /**
+             * Ruft den Wert der fdatariffcode-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getFDATARIFFCODE() {
+                return fdatariffcode;
+            }
+
+            /**
+             * Legt den Wert der fdatariffcode-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setFDATARIFFCODE(String value) {
+                this.fdatariffcode = value;
+            }
+
         }
 
 
@@ -3729,6 +3864,19 @@ public class ARTICLE {
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
          *         &lt;element name="LIMCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="VTDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="INDCDS" maxOccurs="unbounded" minOccurs="0">
+         *           &lt;complexType>
+         *             &lt;complexContent>
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;sequence>
+         *                   &lt;element name="INDCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                 &lt;/sequence>
+         *               &lt;/restriction>
+         *             &lt;/complexContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -3739,12 +3887,23 @@ public class ARTICLE {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "limcd"
+            "limcd",
+            "vdat",
+            "vtdat",
+            "indcds"
         })
         public static class ARTLIM {
 
             @XmlElement(name = "LIMCD")
             protected String limcd;
+            @XmlElement(name = "VDAT")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar vdat;
+            @XmlElement(name = "VTDAT")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar vtdat;
+            @XmlElement(name = "INDCDS")
+            protected List<ARTICLE.ART.ARTLIM.INDCDS> indcds;
 
             /**
              * Ruft den Wert der limcd-Eigenschaft ab.
@@ -3770,6 +3929,138 @@ public class ARTICLE {
                 this.limcd = value;
             }
 
+            /**
+             * Ruft den Wert der vdat-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getVDAT() {
+                return vdat;
+            }
+
+            /**
+             * Legt den Wert der vdat-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setVDAT(XMLGregorianCalendar value) {
+                this.vdat = value;
+            }
+
+            /**
+             * Ruft den Wert der vtdat-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getVTDAT() {
+                return vtdat;
+            }
+
+            /**
+             * Legt den Wert der vtdat-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setVTDAT(XMLGregorianCalendar value) {
+                this.vtdat = value;
+            }
+
+            /**
+             * Gets the value of the indcds property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the indcds property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getINDCDS().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link ARTICLE.ART.ARTLIM.INDCDS }
+             * 
+             * 
+             */
+            public List<ARTICLE.ART.ARTLIM.INDCDS> getINDCDS() {
+                if (indcds == null) {
+                    indcds = new ArrayList<ARTICLE.ART.ARTLIM.INDCDS>();
+                }
+                return this.indcds;
+            }
+
+
+            /**
+             * <p>Java-Klasse für anonymous complex type.
+             * 
+             * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *       &lt;sequence>
+             *         &lt;element name="INDCD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *       &lt;/sequence>
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "indcd"
+            })
+            public static class INDCDS {
+
+                @XmlElement(name = "INDCD")
+                protected String indcd;
+
+                /**
+                 * Ruft den Wert der indcd-Eigenschaft ab.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getINDCD() {
+                    return indcd;
+                }
+
+                /**
+                 * Legt den Wert der indcd-Eigenschaft fest.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setINDCD(String value) {
+                    this.indcd = value;
+                }
+
+            }
+
         }
 
 
@@ -3789,6 +4080,9 @@ public class ARTICLE {
          *         &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *         &lt;element name="MIGPRI" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *         &lt;element name="VDATPRI" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="MIGPRICARE" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *         &lt;element name="VDATPRICARE" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -3804,7 +4098,10 @@ public class ARTICLE {
             "lineno",
             "ptyp",
             "migpri",
-            "vdatpri"
+            "vdatpri",
+            "migpricare",
+            "vdatpricare",
+            "inslim"
         })
         public static class ARTMIG {
 
@@ -3822,6 +4119,13 @@ public class ARTICLE {
             @XmlElement(name = "VDATPRI")
             @XmlSchemaType(name = "dateTime")
             protected XMLGregorianCalendar vdatpri;
+            @XmlElement(name = "MIGPRICARE")
+            protected Double migpricare;
+            @XmlElement(name = "VDATPRICARE")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar vdatpricare;
+            @XmlElement(name = "INSLIM")
+            protected String inslim;
 
             /**
              * Ruft den Wert der vdat-Eigenschaft ab.
@@ -3959,108 +4263,76 @@ public class ARTICLE {
                 this.vdatpri = value;
             }
 
-        }
-
-
-        /**
-         * <p>Java-Klasse für anonymous complex type.
-         * 
-         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
-         *         &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="PRICE" type="{http://www.w3.org/2001/XMLSchema}double"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "vdat",
-            "ptyp",
-            "price"
-        })
-        public static class ARTPRI {
-
-            @XmlElement(name = "VDAT", required = true)
-            @XmlSchemaType(name = "dateTime")
-            protected XMLGregorianCalendar vdat;
-            @XmlElement(name = "PTYP")
-            protected String ptyp;
-            @XmlElement(name = "PRICE")
-            protected double price;
+            /**
+             * Ruft den Wert der migpricare-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getMIGPRICARE() {
+                return migpricare;
+            }
 
             /**
-             * Ruft den Wert der vdat-Eigenschaft ab.
+             * Legt den Wert der migpricare-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setMIGPRICARE(Double value) {
+                this.migpricare = value;
+            }
+
+            /**
+             * Ruft den Wert der vdatpricare-Eigenschaft ab.
              * 
              * @return
              *     possible object is
              *     {@link XMLGregorianCalendar }
              *     
              */
-            public XMLGregorianCalendar getVDAT() {
-                return vdat;
+            public XMLGregorianCalendar getVDATPRICARE() {
+                return vdatpricare;
             }
 
             /**
-             * Legt den Wert der vdat-Eigenschaft fest.
+             * Legt den Wert der vdatpricare-Eigenschaft fest.
              * 
              * @param value
              *     allowed object is
              *     {@link XMLGregorianCalendar }
              *     
              */
-            public void setVDAT(XMLGregorianCalendar value) {
-                this.vdat = value;
+            public void setVDATPRICARE(XMLGregorianCalendar value) {
+                this.vdatpricare = value;
             }
 
             /**
-             * Ruft den Wert der ptyp-Eigenschaft ab.
+             * Ruft den Wert der inslim-Eigenschaft ab.
              * 
              * @return
              *     possible object is
              *     {@link String }
              *     
              */
-            public String getPTYP() {
-                return ptyp;
+            public String getINSLIM() {
+                return inslim;
             }
 
             /**
-             * Legt den Wert der ptyp-Eigenschaft fest.
+             * Legt den Wert der inslim-Eigenschaft fest.
              * 
              * @param value
              *     allowed object is
              *     {@link String }
              *     
              */
-            public void setPTYP(String value) {
-                this.ptyp = value;
-            }
-
-            /**
-             * Ruft den Wert der price-Eigenschaft ab.
-             * 
-             */
-            public double getPRICE() {
-                return price;
-            }
-
-            /**
-             * Legt den Wert der price-Eigenschaft fest.
-             * 
-             */
-            public void setPRICE(double value) {
-                this.price = value;
+            public void setINSLIM(String value) {
+                this.inslim = value;
             }
 
         }
@@ -4076,8 +4348,17 @@ public class ARTICLE {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
-         *         &lt;element name="PTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="PDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="BAGDOSSIER" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="BAGSL" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="BAGSLC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="INSLIM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="LIMPTS" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *         &lt;element name="LIM_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="SLOPLUS" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="SLOPLUS_VDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="PM" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+         *         &lt;element name="BAGSLT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="GGSL" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -4088,63 +4369,310 @@ public class ARTICLE {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "ptyp",
-            "pdat"
+            "bagdossier",
+            "bagsl",
+            "bagslc",
+            "inslim",
+            "limpts",
+            "limvdat",
+            "sloplus",
+            "sloplusvdat",
+            "pm",
+            "bagslt",
+            "ggsl"
         })
-        public static class PIC {
+        public static class ARTSL {
 
-            @XmlElement(name = "PTYP")
-            protected String ptyp;
-            @XmlElement(name = "PDAT")
+            @XmlElement(name = "BAGDOSSIER")
+            protected Integer bagdossier;
+            @XmlElement(name = "BAGSL")
             @XmlSchemaType(name = "dateTime")
-            protected XMLGregorianCalendar pdat;
+            protected XMLGregorianCalendar bagsl;
+            @XmlElement(name = "BAGSLC")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar bagslc;
+            @XmlElement(name = "INSLIM")
+            protected String inslim;
+            @XmlElement(name = "LIMPTS")
+            protected Double limpts;
+            @XmlElement(name = "LIM_VDAT")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar limvdat;
+            @XmlElement(name = "SLOPLUS")
+            protected Integer sloplus;
+            @XmlElement(name = "SLOPLUS_VDAT")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar sloplusvdat;
+            @XmlElement(name = "PM")
+            protected Boolean pm;
+            @XmlElement(name = "BAGSLT")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar bagslt;
+            @XmlElement(name = "GGSL")
+            protected Boolean ggsl;
 
             /**
-             * Ruft den Wert der ptyp-Eigenschaft ab.
+             * Ruft den Wert der bagdossier-Eigenschaft ab.
              * 
              * @return
              *     possible object is
-             *     {@link String }
+             *     {@link Integer }
              *     
              */
-            public String getPTYP() {
-                return ptyp;
+            public Integer getBAGDOSSIER() {
+                return bagdossier;
             }
 
             /**
-             * Legt den Wert der ptyp-Eigenschaft fest.
+             * Legt den Wert der bagdossier-Eigenschaft fest.
              * 
              * @param value
              *     allowed object is
-             *     {@link String }
+             *     {@link Integer }
              *     
              */
-            public void setPTYP(String value) {
-                this.ptyp = value;
+            public void setBAGDOSSIER(Integer value) {
+                this.bagdossier = value;
             }
 
             /**
-             * Ruft den Wert der pdat-Eigenschaft ab.
+             * Ruft den Wert der bagsl-Eigenschaft ab.
              * 
              * @return
              *     possible object is
              *     {@link XMLGregorianCalendar }
              *     
              */
-            public XMLGregorianCalendar getPDAT() {
-                return pdat;
+            public XMLGregorianCalendar getBAGSL() {
+                return bagsl;
             }
 
             /**
-             * Legt den Wert der pdat-Eigenschaft fest.
+             * Legt den Wert der bagsl-Eigenschaft fest.
              * 
              * @param value
              *     allowed object is
              *     {@link XMLGregorianCalendar }
              *     
              */
-            public void setPDAT(XMLGregorianCalendar value) {
-                this.pdat = value;
+            public void setBAGSL(XMLGregorianCalendar value) {
+                this.bagsl = value;
+            }
+
+            /**
+             * Ruft den Wert der bagslc-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getBAGSLC() {
+                return bagslc;
+            }
+
+            /**
+             * Legt den Wert der bagslc-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setBAGSLC(XMLGregorianCalendar value) {
+                this.bagslc = value;
+            }
+
+            /**
+             * Ruft den Wert der inslim-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getINSLIM() {
+                return inslim;
+            }
+
+            /**
+             * Legt den Wert der inslim-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setINSLIM(String value) {
+                this.inslim = value;
+            }
+
+            /**
+             * Ruft den Wert der limpts-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getLIMPTS() {
+                return limpts;
+            }
+
+            /**
+             * Legt den Wert der limpts-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setLIMPTS(Double value) {
+                this.limpts = value;
+            }
+
+            /**
+             * Ruft den Wert der limvdat-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getLIMVDAT() {
+                return limvdat;
+            }
+
+            /**
+             * Legt den Wert der limvdat-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setLIMVDAT(XMLGregorianCalendar value) {
+                this.limvdat = value;
+            }
+
+            /**
+             * Ruft den Wert der sloplus-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getSLOPLUS() {
+                return sloplus;
+            }
+
+            /**
+             * Legt den Wert der sloplus-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setSLOPLUS(Integer value) {
+                this.sloplus = value;
+            }
+
+            /**
+             * Ruft den Wert der sloplusvdat-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getSLOPLUSVDAT() {
+                return sloplusvdat;
+            }
+
+            /**
+             * Legt den Wert der sloplusvdat-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setSLOPLUSVDAT(XMLGregorianCalendar value) {
+                this.sloplusvdat = value;
+            }
+
+            /**
+             * Ruft den Wert der pm-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Boolean }
+             *     
+             */
+            public Boolean isPM() {
+                return pm;
+            }
+
+            /**
+             * Legt den Wert der pm-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Boolean }
+             *     
+             */
+            public void setPM(Boolean value) {
+                this.pm = value;
+            }
+
+            /**
+             * Ruft den Wert der bagslt-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getBAGSLT() {
+                return bagslt;
+            }
+
+            /**
+             * Legt den Wert der bagslt-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setBAGSLT(XMLGregorianCalendar value) {
+                this.bagslt = value;
+            }
+
+            /**
+             * Ruft den Wert der ggsl-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Boolean }
+             *     
+             */
+            public Boolean isGGSL() {
+                return ggsl;
+            }
+
+            /**
+             * Legt den Wert der ggsl-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Boolean }
+             *     
+             */
+            public void setGGSL(Boolean value) {
+                this.ggsl = value;
             }
 
         }
@@ -4164,6 +4692,7 @@ public class ARTICLE {
          *         &lt;element name="FR" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
          *         &lt;element name="IT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
          *         &lt;element name="EN" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+         *         &lt;element name="DOC" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -4177,7 +4706,8 @@ public class ARTICLE {
             "de",
             "fr",
             "it",
-            "en"
+            "en",
+            "doc"
         })
         public static class SDS {
 
@@ -4193,6 +4723,9 @@ public class ARTICLE {
             @XmlElement(name = "EN")
             @XmlSchemaType(name = "dateTime")
             protected XMLGregorianCalendar en;
+            @XmlElement(name = "DOC")
+            @XmlSchemaType(name = "dateTime")
+            protected XMLGregorianCalendar doc;
 
             /**
              * Ruft den Wert der de-Eigenschaft ab.
@@ -4290,6 +4823,30 @@ public class ARTICLE {
                 this.en = value;
             }
 
+            /**
+             * Ruft den Wert der doc-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public XMLGregorianCalendar getDOC() {
+                return doc;
+            }
+
+            /**
+             * Legt den Wert der doc-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link XMLGregorianCalendar }
+             *     
+             */
+            public void setDOC(XMLGregorianCalendar value) {
+                this.doc = value;
+            }
+
         }
 
 
@@ -4303,9 +4860,9 @@ public class ARTICLE {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
-         *         &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *         &lt;element name="WIDTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="HEIGHT" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         *         &lt;element name="DEPTH" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -4323,21 +4880,21 @@ public class ARTICLE {
         public static class SIZE {
 
             @XmlElement(name = "WIDTH")
-            protected Double width;
+            protected Integer width;
             @XmlElement(name = "HEIGHT")
-            protected Double height;
+            protected Integer height;
             @XmlElement(name = "DEPTH")
-            protected Double depth;
+            protected Integer depth;
 
             /**
              * Ruft den Wert der width-Eigenschaft ab.
              * 
              * @return
              *     possible object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public Double getWIDTH() {
+            public Integer getWIDTH() {
                 return width;
             }
 
@@ -4346,10 +4903,10 @@ public class ARTICLE {
              * 
              * @param value
              *     allowed object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public void setWIDTH(Double value) {
+            public void setWIDTH(Integer value) {
                 this.width = value;
             }
 
@@ -4358,10 +4915,10 @@ public class ARTICLE {
              * 
              * @return
              *     possible object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public Double getHEIGHT() {
+            public Integer getHEIGHT() {
                 return height;
             }
 
@@ -4370,10 +4927,10 @@ public class ARTICLE {
              * 
              * @param value
              *     allowed object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public void setHEIGHT(Double value) {
+            public void setHEIGHT(Integer value) {
                 this.height = value;
             }
 
@@ -4382,10 +4939,10 @@ public class ARTICLE {
              * 
              * @return
              *     possible object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public Double getDEPTH() {
+            public Integer getDEPTH() {
                 return depth;
             }
 
@@ -4394,10 +4951,10 @@ public class ARTICLE {
              * 
              * @param value
              *     allowed object is
-             *     {@link Double }
+             *     {@link Integer }
              *     
              */
-            public void setDEPTH(Double value) {
+            public void setDEPTH(Integer value) {
                 this.depth = value;
             }
 

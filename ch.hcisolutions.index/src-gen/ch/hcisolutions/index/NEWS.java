@@ -1,7 +1,6 @@
 
 package ch.hcisolutions.index;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,27 +23,38 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="CDX" maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element name="NWS" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="MONO" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
- *                   &lt;element name="TITD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="TITF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CMPD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CMPF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CHRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CHRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="INDD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="INDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CINDD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="CINDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="POSD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="POSF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="NEWSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                   &lt;element name="PDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *                   &lt;element name="TITLEDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="LEADDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="LEADTEXTDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="ADDTEXTDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="TITLEFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="LEADFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="LEADTEXTFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="ADDTEXTFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="SUBJECTAREACD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="RELEVANCECD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="COMPANY" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PRD" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
- *                 &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -84,16 +94,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "cdx",
+    "nws",
     "result"
 })
-@XmlRootElement(name = "CODEX")
-public class CODEX {
+@XmlRootElement(name = "NEWS")
+public class NEWS {
 
-    @XmlElement(name = "CDX")
-    protected List<CODEX.CDX> cdx;
+    @XmlElement(name = "NWS")
+    protected List<NEWS.NWS> nws;
     @XmlElement(name = "RESULT")
-    protected CODEX.RESULT result;
+    protected NEWS.RESULT result;
     @XmlAttribute(name = "CREATION_DATETIME", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationdatetime;
@@ -107,32 +117,32 @@ public class CODEX {
     protected String release;
 
     /**
-     * Gets the value of the cdx property.
+     * Gets the value of the nws property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the cdx property.
+     * This is why there is not a <CODE>set</CODE> method for the nws property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCDX().add(newItem);
+     *    getNWS().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CODEX.CDX }
+     * {@link NEWS.NWS }
      * 
      * 
      */
-    public List<CODEX.CDX> getCDX() {
-        if (cdx == null) {
-            cdx = new ArrayList<CODEX.CDX>();
+    public List<NEWS.NWS> getNWS() {
+        if (nws == null) {
+            nws = new ArrayList<NEWS.NWS>();
         }
-        return this.cdx;
+        return this.nws;
     }
 
     /**
@@ -140,10 +150,10 @@ public class CODEX {
      * 
      * @return
      *     possible object is
-     *     {@link CODEX.RESULT }
+     *     {@link NEWS.RESULT }
      *     
      */
-    public CODEX.RESULT getRESULT() {
+    public NEWS.RESULT getRESULT() {
         return result;
     }
 
@@ -152,10 +162,10 @@ public class CODEX {
      * 
      * @param value
      *     allowed object is
-     *     {@link CODEX.RESULT }
+     *     {@link NEWS.RESULT }
      *     
      */
-    public void setRESULT(CODEX.RESULT value) {
+    public void setRESULT(NEWS.RESULT value) {
         this.result = value;
     }
 
@@ -266,22 +276,33 @@ public class CODEX {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="MONO" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-     *         &lt;element name="TITD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="TITF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CMPD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CMPF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CHRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CHRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="INDD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="INDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CINDD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="CINDF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="POSD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="POSF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="NEWSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *         &lt;element name="PDAT" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+     *         &lt;element name="TITLEDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="LEADDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="LEADTEXTDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="ADDTEXTDE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="TITLEFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="LEADFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="LEADTEXTFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="ADDTEXTFR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="SUBJECTAREACD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="RELEVANCECD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="COMPANY" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PRD" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
-     *       &lt;attribute name="DT" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+     *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -291,365 +312,385 @@ public class CODEX {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "mono",
-        "titd",
-        "titf",
-        "cmpd",
-        "cmpf",
-        "chrd",
-        "chrf",
-        "indd",
-        "indf",
-        "cindd",
-        "cindf",
-        "posd",
-        "posf",
+        "newsno",
+        "pdat",
+        "titlede",
+        "leadde",
+        "leadtextde",
+        "addtextde",
+        "titlefr",
+        "leadfr",
+        "leadtextfr",
+        "addtextfr",
+        "subjectareacd",
+        "relevancecd",
+        "company",
+        "prd",
         "del"
     })
-    public static class CDX {
+    public static class NWS {
 
-        @XmlElement(name = "MONO")
-        protected BigInteger mono;
-        @XmlElement(name = "TITD")
-        protected String titd;
-        @XmlElement(name = "TITF")
-        protected String titf;
-        @XmlElement(name = "CMPD")
-        protected String cmpd;
-        @XmlElement(name = "CMPF")
-        protected String cmpf;
-        @XmlElement(name = "CHRD")
-        protected String chrd;
-        @XmlElement(name = "CHRF")
-        protected String chrf;
-        @XmlElement(name = "INDD")
-        protected String indd;
-        @XmlElement(name = "INDF")
-        protected String indf;
-        @XmlElement(name = "CINDD")
-        protected String cindd;
-        @XmlElement(name = "CINDF")
-        protected String cindf;
-        @XmlElement(name = "POSD")
-        protected String posd;
-        @XmlElement(name = "POSF")
-        protected String posf;
+        @XmlElement(name = "NEWSNO")
+        protected int newsno;
+        @XmlElement(name = "PDAT")
+        @XmlSchemaType(name = "dateTime")
+        protected XMLGregorianCalendar pdat;
+        @XmlElement(name = "TITLEDE")
+        protected String titlede;
+        @XmlElement(name = "LEADDE")
+        protected String leadde;
+        @XmlElement(name = "LEADTEXTDE")
+        protected String leadtextde;
+        @XmlElement(name = "ADDTEXTDE")
+        protected String addtextde;
+        @XmlElement(name = "TITLEFR")
+        protected String titlefr;
+        @XmlElement(name = "LEADFR")
+        protected String leadfr;
+        @XmlElement(name = "LEADTEXTFR")
+        protected String leadtextfr;
+        @XmlElement(name = "ADDTEXTFR")
+        protected String addtextfr;
+        @XmlElement(name = "SUBJECTAREACD")
+        protected String subjectareacd;
+        @XmlElement(name = "RELEVANCECD")
+        protected String relevancecd;
+        @XmlElement(name = "COMPANY")
+        protected String company;
+        @XmlElement(name = "PRD")
+        protected NEWS.NWS.PRD prd;
         @XmlElement(name = "DEL")
         protected boolean del;
-        @XmlAttribute(name = "DT")
+        @XmlAttribute(name = "DT", required = true)
         @XmlSchemaType(name = "dateTime")
         protected XMLGregorianCalendar dt;
 
         /**
-         * Ruft den Wert der mono-Eigenschaft ab.
+         * Ruft den Wert der newsno-Eigenschaft ab.
+         * 
+         */
+        public int getNEWSNO() {
+            return newsno;
+        }
+
+        /**
+         * Legt den Wert der newsno-Eigenschaft fest.
+         * 
+         */
+        public void setNEWSNO(int value) {
+            this.newsno = value;
+        }
+
+        /**
+         * Ruft den Wert der pdat-Eigenschaft ab.
          * 
          * @return
          *     possible object is
-         *     {@link BigInteger }
+         *     {@link XMLGregorianCalendar }
          *     
          */
-        public BigInteger getMONO() {
-            return mono;
+        public XMLGregorianCalendar getPDAT() {
+            return pdat;
         }
 
         /**
-         * Legt den Wert der mono-Eigenschaft fest.
+         * Legt den Wert der pdat-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
-         *     {@link BigInteger }
+         *     {@link XMLGregorianCalendar }
          *     
          */
-        public void setMONO(BigInteger value) {
-            this.mono = value;
+        public void setPDAT(XMLGregorianCalendar value) {
+            this.pdat = value;
         }
 
         /**
-         * Ruft den Wert der titd-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getTITD() {
-            return titd;
-        }
-
-        /**
-         * Legt den Wert der titd-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setTITD(String value) {
-            this.titd = value;
-        }
-
-        /**
-         * Ruft den Wert der titf-Eigenschaft ab.
+         * Ruft den Wert der titlede-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getTITF() {
-            return titf;
+        public String getTITLEDE() {
+            return titlede;
         }
 
         /**
-         * Legt den Wert der titf-Eigenschaft fest.
+         * Legt den Wert der titlede-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setTITF(String value) {
-            this.titf = value;
+        public void setTITLEDE(String value) {
+            this.titlede = value;
         }
 
         /**
-         * Ruft den Wert der cmpd-Eigenschaft ab.
+         * Ruft den Wert der leadde-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCMPD() {
-            return cmpd;
+        public String getLEADDE() {
+            return leadde;
         }
 
         /**
-         * Legt den Wert der cmpd-Eigenschaft fest.
+         * Legt den Wert der leadde-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCMPD(String value) {
-            this.cmpd = value;
+        public void setLEADDE(String value) {
+            this.leadde = value;
         }
 
         /**
-         * Ruft den Wert der cmpf-Eigenschaft ab.
+         * Ruft den Wert der leadtextde-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCMPF() {
-            return cmpf;
+        public String getLEADTEXTDE() {
+            return leadtextde;
         }
 
         /**
-         * Legt den Wert der cmpf-Eigenschaft fest.
+         * Legt den Wert der leadtextde-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCMPF(String value) {
-            this.cmpf = value;
+        public void setLEADTEXTDE(String value) {
+            this.leadtextde = value;
         }
 
         /**
-         * Ruft den Wert der chrd-Eigenschaft ab.
+         * Ruft den Wert der addtextde-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCHRD() {
-            return chrd;
+        public String getADDTEXTDE() {
+            return addtextde;
         }
 
         /**
-         * Legt den Wert der chrd-Eigenschaft fest.
+         * Legt den Wert der addtextde-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCHRD(String value) {
-            this.chrd = value;
+        public void setADDTEXTDE(String value) {
+            this.addtextde = value;
         }
 
         /**
-         * Ruft den Wert der chrf-Eigenschaft ab.
+         * Ruft den Wert der titlefr-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCHRF() {
-            return chrf;
+        public String getTITLEFR() {
+            return titlefr;
         }
 
         /**
-         * Legt den Wert der chrf-Eigenschaft fest.
+         * Legt den Wert der titlefr-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCHRF(String value) {
-            this.chrf = value;
+        public void setTITLEFR(String value) {
+            this.titlefr = value;
         }
 
         /**
-         * Ruft den Wert der indd-Eigenschaft ab.
+         * Ruft den Wert der leadfr-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getINDD() {
-            return indd;
+        public String getLEADFR() {
+            return leadfr;
         }
 
         /**
-         * Legt den Wert der indd-Eigenschaft fest.
+         * Legt den Wert der leadfr-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setINDD(String value) {
-            this.indd = value;
+        public void setLEADFR(String value) {
+            this.leadfr = value;
         }
 
         /**
-         * Ruft den Wert der indf-Eigenschaft ab.
+         * Ruft den Wert der leadtextfr-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getINDF() {
-            return indf;
+        public String getLEADTEXTFR() {
+            return leadtextfr;
         }
 
         /**
-         * Legt den Wert der indf-Eigenschaft fest.
+         * Legt den Wert der leadtextfr-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setINDF(String value) {
-            this.indf = value;
+        public void setLEADTEXTFR(String value) {
+            this.leadtextfr = value;
         }
 
         /**
-         * Ruft den Wert der cindd-Eigenschaft ab.
+         * Ruft den Wert der addtextfr-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCINDD() {
-            return cindd;
+        public String getADDTEXTFR() {
+            return addtextfr;
         }
 
         /**
-         * Legt den Wert der cindd-Eigenschaft fest.
+         * Legt den Wert der addtextfr-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCINDD(String value) {
-            this.cindd = value;
+        public void setADDTEXTFR(String value) {
+            this.addtextfr = value;
         }
 
         /**
-         * Ruft den Wert der cindf-Eigenschaft ab.
+         * Ruft den Wert der subjectareacd-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getCINDF() {
-            return cindf;
+        public String getSUBJECTAREACD() {
+            return subjectareacd;
         }
 
         /**
-         * Legt den Wert der cindf-Eigenschaft fest.
+         * Legt den Wert der subjectareacd-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setCINDF(String value) {
-            this.cindf = value;
+        public void setSUBJECTAREACD(String value) {
+            this.subjectareacd = value;
         }
 
         /**
-         * Ruft den Wert der posd-Eigenschaft ab.
+         * Ruft den Wert der relevancecd-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getPOSD() {
-            return posd;
+        public String getRELEVANCECD() {
+            return relevancecd;
         }
 
         /**
-         * Legt den Wert der posd-Eigenschaft fest.
+         * Legt den Wert der relevancecd-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setPOSD(String value) {
-            this.posd = value;
+        public void setRELEVANCECD(String value) {
+            this.relevancecd = value;
         }
 
         /**
-         * Ruft den Wert der posf-Eigenschaft ab.
+         * Ruft den Wert der company-Eigenschaft ab.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getPOSF() {
-            return posf;
+        public String getCOMPANY() {
+            return company;
         }
 
         /**
-         * Legt den Wert der posf-Eigenschaft fest.
+         * Legt den Wert der company-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setPOSF(String value) {
-            this.posf = value;
+        public void setCOMPANY(String value) {
+            this.company = value;
+        }
+
+        /**
+         * Ruft den Wert der prd-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NEWS.NWS.PRD }
+         *     
+         */
+        public NEWS.NWS.PRD getPRD() {
+            return prd;
+        }
+
+        /**
+         * Legt den Wert der prd-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NEWS.NWS.PRD }
+         *     
+         */
+        public void setPRD(NEWS.NWS.PRD value) {
+            this.prd = value;
         }
 
         /**
@@ -690,6 +731,53 @@ public class CODEX {
          */
         public void setDT(XMLGregorianCalendar value) {
             this.dt = value;
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "prdno"
+        })
+        public static class PRD {
+
+            @XmlElement(name = "PRDNO")
+            protected int prdno;
+
+            /**
+             * Ruft den Wert der prdno-Eigenschaft ab.
+             * 
+             */
+            public int getPRDNO() {
+                return prdno;
+            }
+
+            /**
+             * Legt den Wert der prdno-Eigenschaft fest.
+             * 
+             */
+            public void setPRDNO(int value) {
+                this.prdno = value;
+            }
+
         }
 
     }

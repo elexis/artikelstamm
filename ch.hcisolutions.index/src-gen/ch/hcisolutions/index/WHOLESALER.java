@@ -1,6 +1,7 @@
 
 package ch.hcisolutions.index;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,8 +30,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
  *                   &lt;element name="WHSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *                   &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PRTNO" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
  *                   &lt;element name="WHSNAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PLFNAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
@@ -64,6 +66,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -92,6 +95,8 @@ public class WHOLESALER {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the whs property.
@@ -216,6 +221,30 @@ public class WHOLESALER {
      */
     public void setVALIDDATE(XMLGregorianCalendar value) {
         this.validdate = value;
+    }
+
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
     }
 
 
@@ -376,8 +405,9 @@ public class WHOLESALER {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
      *         &lt;element name="WHSNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
-     *         &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PRTNO" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
      *         &lt;element name="WHSNAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PLF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PLFNAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
@@ -392,8 +422,9 @@ public class WHOLESALER {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "whsno",
-        "plf",
+        "prtno",
         "whsname",
+        "plf",
         "plfname",
         "del"
     })
@@ -401,10 +432,12 @@ public class WHOLESALER {
 
         @XmlElement(name = "WHSNO")
         protected int whsno;
-        @XmlElement(name = "PLF")
-        protected String plf;
+        @XmlElement(name = "PRTNO")
+        protected BigInteger prtno;
         @XmlElement(name = "WHSNAME")
         protected String whsname;
+        @XmlElement(name = "PLF")
+        protected String plf;
         @XmlElement(name = "PLFNAME")
         protected String plfname;
         @XmlElement(name = "DEL")
@@ -430,27 +463,27 @@ public class WHOLESALER {
         }
 
         /**
-         * Ruft den Wert der plf-Eigenschaft ab.
+         * Ruft den Wert der prtno-Eigenschaft ab.
          * 
          * @return
          *     possible object is
-         *     {@link String }
+         *     {@link BigInteger }
          *     
          */
-        public String getPLF() {
-            return plf;
+        public BigInteger getPRTNO() {
+            return prtno;
         }
 
         /**
-         * Legt den Wert der plf-Eigenschaft fest.
+         * Legt den Wert der prtno-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
-         *     {@link String }
+         *     {@link BigInteger }
          *     
          */
-        public void setPLF(String value) {
-            this.plf = value;
+        public void setPRTNO(BigInteger value) {
+            this.prtno = value;
         }
 
         /**
@@ -475,6 +508,30 @@ public class WHOLESALER {
          */
         public void setWHSNAME(String value) {
             this.whsname = value;
+        }
+
+        /**
+         * Ruft den Wert der plf-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getPLF() {
+            return plf;
+        }
+
+        /**
+         * Legt den Wert der plf-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setPLF(String value) {
+            this.plf = value;
         }
 
         /**

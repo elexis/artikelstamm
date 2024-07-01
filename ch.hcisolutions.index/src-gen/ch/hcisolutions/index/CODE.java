@@ -32,10 +32,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRSD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRSF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="DSCRSI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRMD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="DSCRMI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="DSCRI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="PV" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
@@ -69,6 +72,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="schemaLocation" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -98,6 +102,8 @@ public class CODE {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
     @XmlAttribute(name = "schemaLocation")
     protected String schemaLocation;
 
@@ -227,6 +233,30 @@ public class CODE {
     }
 
     /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
+    }
+
+    /**
      * Ruft den Wert der schemaLocation-Eigenschaft ab.
      * 
      * @return
@@ -265,10 +295,13 @@ public class CODE {
      *         &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRSD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRSF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="DSCRSI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRMD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRMF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="DSCRMI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRD" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DSCRF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="DSCRI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="PV" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
@@ -286,10 +319,13 @@ public class CODE {
         "cdval",
         "dscrsd",
         "dscrsf",
+        "dscrsi",
         "dscrmd",
         "dscrmf",
+        "dscrmi",
         "dscrd",
         "dscrf",
+        "dscri",
         "pv",
         "del"
     })
@@ -303,14 +339,20 @@ public class CODE {
         protected String dscrsd;
         @XmlElement(name = "DSCRSF")
         protected String dscrsf;
+        @XmlElement(name = "DSCRSI")
+        protected String dscrsi;
         @XmlElement(name = "DSCRMD")
         protected String dscrmd;
         @XmlElement(name = "DSCRMF")
         protected String dscrmf;
+        @XmlElement(name = "DSCRMI")
+        protected String dscrmi;
         @XmlElement(name = "DSCRD")
         protected String dscrd;
         @XmlElement(name = "DSCRF")
         protected String dscrf;
+        @XmlElement(name = "DSCRI")
+        protected String dscri;
         @XmlElement(name = "PV")
         protected String pv;
         @XmlElement(name = "DEL")
@@ -408,6 +450,30 @@ public class CODE {
         }
 
         /**
+         * Ruft den Wert der dscrsi-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDSCRSI() {
+            return dscrsi;
+        }
+
+        /**
+         * Legt den Wert der dscrsi-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDSCRSI(String value) {
+            this.dscrsi = value;
+        }
+
+        /**
          * Ruft den Wert der dscrmd-Eigenschaft ab.
          * 
          * @return
@@ -456,6 +522,30 @@ public class CODE {
         }
 
         /**
+         * Ruft den Wert der dscrmi-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDSCRMI() {
+            return dscrmi;
+        }
+
+        /**
+         * Legt den Wert der dscrmi-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDSCRMI(String value) {
+            this.dscrmi = value;
+        }
+
+        /**
          * Ruft den Wert der dscrd-Eigenschaft ab.
          * 
          * @return
@@ -501,6 +591,30 @@ public class CODE {
          */
         public void setDSCRF(String value) {
             this.dscrf = value;
+        }
+
+        /**
+         * Ruft den Wert der dscri-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDSCRI() {
+            return dscri;
+        }
+
+        /**
+         * Legt den Wert der dscri-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDSCRI(String value) {
+            this.dscri = value;
         }
 
         /**

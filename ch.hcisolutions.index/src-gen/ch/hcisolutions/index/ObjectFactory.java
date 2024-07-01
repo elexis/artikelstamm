@@ -24,25 +24,32 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _DownloadCDSInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCDSInput");
+    private final static QName _DownloadConsumerProductInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadConsumerProductInput");
     private final static QName _DownloadKompendiumImageInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadKompendium_ImageInput");
     private final static QName _DownloadWholesalerInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadWholesalerInput");
+    private final static QName _DownloadCatalogInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCatalogInput");
     private final static QName _DownloadCodeInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCodeInput");
     private final static QName _DownloadKompendiumProductInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadKompendium_ProductInput");
     private final static QName _DownloadSubstanceInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadSubstanceInput");
-    private final static QName _DownloadCompanyInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCompanyInput");
     private final static QName _DownloadInsuranceInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadInsuranceInput");
+    private final static QName _DownloadCompanyInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCompanyInput");
     private final static QName _DownloadProductProprietaryQuantityInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadProduct_Proprietary_QuantityInput");
     private final static QName _DownloadCodexInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCodexInput");
-    private final static QName _DownloadBrevierInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadBrevierInput");
-    private final static QName _DownloadArticleWholesalerInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticle_WholesalerInput");
     private final static QName _DownloadLimitationInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadLimitationInput");
-    private final static QName _DownloadServiceProviderInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadServiceProviderInput");
+    private final static QName _DownloadArticleWholesalerInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticle_WholesalerInput");
+    private final static QName _DownloadNewsInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadNewsInput");
     private final static QName _DownloadInteractionInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadInteractionInput");
     private final static QName _DownloadArticleInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticleInput");
     private final static QName _DownloadArticleProprietaryQuantityInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticle_Proprietary_QuantityInput");
     private final static QName _DownloadCompendiumInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCompendiumInput");
     private final static QName _DownloadProductSubstanceAlternativeQuantityInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadProduct_Substance_Alternative_QuantityInput");
+    private final static QName _DownloadConsumerCodeInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadConsumerCodeInput");
+    private final static QName _DownloadCDSInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCDSInput");
+    private final static QName _DownloadArticlePriceInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticle_PriceInput");
+    private final static QName _DownloadBrevierInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadBrevierInput");
+    private final static QName _DownloadServiceProviderInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadServiceProviderInput");
+    private final static QName _DownloadArticleImageInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadArticle_ImageInput");
+    private final static QName _DownloadConsumerFolderInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadConsumerFolderInput");
     private final static QName _DownloadCDSCodeInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCDSCodeInput");
     private final static QName _DownloadCDSDSPInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadCDSDSPInput");
     private final static QName _DownloadProductInput_QNAME = new QName("http://www.hcisolutions.ch/index", "DownloadProductInput");
@@ -60,6 +67,94 @@ public class ObjectFactory {
      */
     public CDSCODE createCDSCODE() {
         return new CDSCODE();
+    }
+
+    /**
+     * Create an instance of {@link CDS }
+     * 
+     */
+    public CDS createCDS() {
+        return new CDS();
+    }
+
+    /**
+     * Create an instance of {@link CATALOG }
+     * 
+     */
+    public CATALOG createCATALOG() {
+        return new CATALOG();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT }
+     * 
+     */
+    public PRODUCT createPRODUCT() {
+        return new PRODUCT();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEPRICE }
+     * 
+     */
+    public ARTICLEPRICE createARTICLEPRICE() {
+        return new ARTICLEPRICE();
+    }
+
+    /**
+     * Create an instance of {@link BREVIER }
+     * 
+     */
+    public BREVIER createBREVIER() {
+        return new BREVIER();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY }
+     * 
+     */
+    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY createPRODUCTSUBSTANCEALTERNATIVEQUANTITY() {
+        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEIMAGE }
+     * 
+     */
+    public ARTICLEIMAGE createARTICLEIMAGE() {
+        return new ARTICLEIMAGE();
+    }
+
+    /**
+     * Create an instance of {@link COMPANY }
+     * 
+     */
+    public COMPANY createCOMPANY() {
+        return new COMPANY();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEWHOLESALER }
+     * 
+     */
+    public ARTICLEWHOLESALER createARTICLEWHOLESALER() {
+        return new ARTICLEWHOLESALER();
+    }
+
+    /**
+     * Create an instance of {@link KOMPENDIUMIMAGE }
+     * 
+     */
+    public KOMPENDIUMIMAGE createKOMPENDIUMIMAGE() {
+        return new KOMPENDIUMIMAGE();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER }
+     * 
+     */
+    public SERVICEPROVIDER createSERVICEPROVIDER() {
+        return new SERVICEPROVIDER();
     }
 
     /**
@@ -95,27 +190,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CONSUMERPRODUCT }
+     * 
+     */
+    public CONSUMERPRODUCT createCONSUMERPRODUCT() {
+        return new CONSUMERPRODUCT();
+    }
+
+    /**
      * Create an instance of {@link WHOLESALER }
      * 
      */
     public WHOLESALER createWHOLESALER() {
         return new WHOLESALER();
-    }
-
-    /**
-     * Create an instance of {@link CDS }
-     * 
-     */
-    public CDS createCDS() {
-        return new CDS();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCT }
-     * 
-     */
-    public PRODUCT createPRODUCT() {
-        return new PRODUCT();
     }
 
     /**
@@ -143,51 +230,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BREVIER }
+     * Create an instance of {@link CONSUMERCODE }
      * 
      */
-    public BREVIER createBREVIER() {
-        return new BREVIER();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY }
-     * 
-     */
-    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY createPRODUCTSUBSTANCEALTERNATIVEQUANTITY() {
-        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY();
-    }
-
-    /**
-     * Create an instance of {@link DownloadCatalogResponse }
-     * 
-     */
-    public DownloadCatalogResponse createDownloadCatalogResponse() {
-        return new DownloadCatalogResponse();
-    }
-
-    /**
-     * Create an instance of {@link COMPANY }
-     * 
-     */
-    public COMPANY createCOMPANY() {
-        return new COMPANY();
-    }
-
-    /**
-     * Create an instance of {@link ARTICLEWHOLESALER }
-     * 
-     */
-    public ARTICLEWHOLESALER createARTICLEWHOLESALER() {
-        return new ARTICLEWHOLESALER();
-    }
-
-    /**
-     * Create an instance of {@link KOMPENDIUMIMAGE }
-     * 
-     */
-    public KOMPENDIUMIMAGE createKOMPENDIUMIMAGE() {
-        return new KOMPENDIUMIMAGE();
+    public CONSUMERCODE createCONSUMERCODE() {
+        return new CONSUMERCODE();
     }
 
     /**
@@ -215,6 +262,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NEWS }
+     * 
+     */
+    public NEWS createNEWS() {
+        return new NEWS();
+    }
+
+    /**
      * Create an instance of {@link COMPENDIUM }
      * 
      */
@@ -223,11 +278,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER }
+     * Create an instance of {@link CONSUMERFOLDER }
      * 
      */
-    public SERVICEPROVIDER createSERVICEPROVIDER() {
-        return new SERVICEPROVIDER();
+    public CONSUMERFOLDER createCONSUMERFOLDER() {
+        return new CONSUMERFOLDER();
     }
 
     /**
@@ -239,19 +294,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP }
+     * Create an instance of {@link ArrayOfCDSCDSPRDCHECK }
      * 
      */
-    public SERVICEPROVIDER.SP createSERVICEPROVIDERSP() {
-        return new SERVICEPROVIDER.SP();
+    public ArrayOfCDSCDSPRDCHECK createArrayOfCDSCDSPRDCHECK() {
+        return new ArrayOfCDSCDSPRDCHECK();
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR }
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER }
      * 
      */
-    public SERVICEPROVIDER.SP.ADDR createSERVICEPROVIDERSPADDR() {
-        return new SERVICEPROVIDER.SP.ADDR();
+    public CONSUMERFOLDER.CFOLDER createCONSUMERFOLDERCFOLDER() {
+        return new CONSUMERFOLDER.CFOLDER();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE createCONSUMERFOLDERCFOLDERLANGUAGE() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRC() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCNUTRITION() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION();
     }
 
     /**
@@ -271,6 +350,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NEWS.NWS }
+     * 
+     */
+    public NEWS.NWS createNEWSNWS() {
+        return new NEWS.NWS();
+    }
+
+    /**
      * Create an instance of {@link CDSDSP.DSP }
      * 
      */
@@ -284,6 +371,62 @@ public class ObjectFactory {
      */
     public ARTICLE.ART createARTICLEART() {
         return new ARTICLE.ART();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLE.ART.ARTLIM }
+     * 
+     */
+    public ARTICLE.ART.ARTLIM createARTICLEARTARTLIM() {
+        return new ARTICLE.ART.ARTLIM();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERCODE.CCODE }
+     * 
+     */
+    public CONSUMERCODE.CCODE createCONSUMERCODECCODE() {
+        return new CONSUMERCODE.CCODE();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERPRODUCT.CPRODUCT }
+     * 
+     */
+    public CONSUMERPRODUCT.CPRODUCT createCONSUMERPRODUCTCPRODUCT() {
+        return new CONSUMERPRODUCT.CPRODUCT();
+    }
+
+    /**
+     * Create an instance of {@link INTERACTION.IX }
+     * 
+     */
+    public INTERACTION.IX createINTERACTIONIX() {
+        return new INTERACTION.IX();
+    }
+
+    /**
+     * Create an instance of {@link INSURANCE.INS }
+     * 
+     */
+    public INSURANCE.INS createINSURANCEINS() {
+        return new INSURANCE.INS();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP }
+     * 
+     */
+    public SERVICEPROVIDER.SP createSERVICEPROVIDERSP() {
+        return new SERVICEPROVIDER.SP();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR }
+     * 
+     */
+    public SERVICEPROVIDER.SP.ADDR createSERVICEPROVIDERSPADDR() {
+        return new SERVICEPROVIDER.SP.ADDR();
     }
 
     /**
@@ -351,22 +494,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link INTERACTION.IX }
-     * 
-     */
-    public INTERACTION.IX createINTERACTIONIX() {
-        return new INTERACTION.IX();
-    }
-
-    /**
-     * Create an instance of {@link INSURANCE.INS }
-     * 
-     */
-    public INSURANCE.INS createINSURANCEINS() {
-        return new INSURANCE.INS();
-    }
-
-    /**
      * Create an instance of {@link CDSCODE.CCH }
      * 
      */
@@ -383,6 +510,262 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CDSCODE.RESULT }
+     * 
+     */
+    public CDSCODE.RESULT createCDSCODERESULT() {
+        return new CDSCODE.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link DownloadInsuranceInput }
+     * 
+     */
+    public DownloadInsuranceInput createDownloadInsuranceInput() {
+        return new DownloadInsuranceInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadSubstanceInput }
+     * 
+     */
+    public DownloadSubstanceInput createDownloadSubstanceInput() {
+        return new DownloadSubstanceInput();
+    }
+
+    /**
+     * Create an instance of {@link CDS.RESULT }
+     * 
+     */
+    public CDS.RESULT createCDSRESULT() {
+        return new CDS.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link CATALOG.CAT }
+     * 
+     */
+    public CATALOG.CAT createCATALOGCAT() {
+        return new CATALOG.CAT();
+    }
+
+    /**
+     * Create an instance of {@link CATALOG.RESULT }
+     * 
+     */
+    public CATALOG.RESULT createCATALOGRESULT() {
+        return new CATALOG.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link DownloadLimitationInput }
+     * 
+     */
+    public DownloadLimitationInput createDownloadLimitationInput() {
+        return new DownloadLimitationInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadNewsInput }
+     * 
+     */
+    public DownloadNewsInput createDownloadNewsInput() {
+        return new DownloadNewsInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadCodexInput }
+     * 
+     */
+    public DownloadCodexInput createDownloadCodexInput() {
+        return new DownloadCodexInput();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.RESULT }
+     * 
+     */
+    public PRODUCT.RESULT createPRODUCTRESULT() {
+        return new PRODUCT.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link DownloadCompendiumInput }
+     * 
+     */
+    public DownloadCompendiumInput createDownloadCompendiumInput() {
+        return new DownloadCompendiumInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadProductSubstanceAlternativeQuantityInput }
+     * 
+     */
+    public DownloadProductSubstanceAlternativeQuantityInput createDownloadProductSubstanceAlternativeQuantityInput() {
+        return new DownloadProductSubstanceAlternativeQuantityInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadArticleInput }
+     * 
+     */
+    public DownloadArticleInput createDownloadArticleInput() {
+        return new DownloadArticleInput();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEPRICE.AP }
+     * 
+     */
+    public ARTICLEPRICE.AP createARTICLEPRICEAP() {
+        return new ARTICLEPRICE.AP();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEPRICE.RESULT }
+     * 
+     */
+    public ARTICLEPRICE.RESULT createARTICLEPRICERESULT() {
+        return new ARTICLEPRICE.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link BREVIER.BRV }
+     * 
+     */
+    public BREVIER.BRV createBREVIERBRV() {
+        return new BREVIER.BRV();
+    }
+
+    /**
+     * Create an instance of {@link BREVIER.RESULT }
+     * 
+     */
+    public BREVIER.RESULT createBREVIERRESULT() {
+        return new BREVIER.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link DownloadArticlePriceInput }
+     * 
+     */
+    public DownloadArticlePriceInput createDownloadArticlePriceInput() {
+        return new DownloadArticlePriceInput();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ }
+     * 
+     */
+    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ createPRODUCTSUBSTANCEALTERNATIVEQUANTITYPAQ() {
+        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT }
+     * 
+     */
+    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT createPRODUCTSUBSTANCEALTERNATIVEQUANTITYRESULT() {
+        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEIMAGE.AI }
+     * 
+     */
+    public ARTICLEIMAGE.AI createARTICLEIMAGEAI() {
+        return new ARTICLEIMAGE.AI();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEIMAGE.RESULT }
+     * 
+     */
+    public ARTICLEIMAGE.RESULT createARTICLEIMAGERESULT() {
+        return new ARTICLEIMAGE.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link COMPANY.CP }
+     * 
+     */
+    public COMPANY.CP createCOMPANYCP() {
+        return new COMPANY.CP();
+    }
+
+    /**
+     * Create an instance of {@link COMPANY.RESULT }
+     * 
+     */
+    public COMPANY.RESULT createCOMPANYRESULT() {
+        return new COMPANY.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEWHOLESALER.RESULT }
+     * 
+     */
+    public ARTICLEWHOLESALER.RESULT createARTICLEWHOLESALERRESULT() {
+        return new ARTICLEWHOLESALER.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link KOMPENDIUMIMAGE.KI }
+     * 
+     */
+    public KOMPENDIUMIMAGE.KI createKOMPENDIUMIMAGEKI() {
+        return new KOMPENDIUMIMAGE.KI();
+    }
+
+    /**
+     * Create an instance of {@link KOMPENDIUMIMAGE.RESULT }
+     * 
+     */
+    public KOMPENDIUMIMAGE.RESULT createKOMPENDIUMIMAGERESULT() {
+        return new KOMPENDIUMIMAGE.RESULT();
+    }
+
+    /**
+     * Create an instance of {@link DownloadArticleImageInput }
+     * 
+     */
+    public DownloadArticleImageInput createDownloadArticleImageInput() {
+        return new DownloadArticleImageInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadServiceProviderInput }
+     * 
+     */
+    public DownloadServiceProviderInput createDownloadServiceProviderInput() {
+        return new DownloadServiceProviderInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadCDSCodeInput }
+     * 
+     */
+    public DownloadCDSCodeInput createDownloadCDSCodeInput() {
+        return new DownloadCDSCodeInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadCDSDSPInput }
+     * 
+     */
+    public DownloadCDSDSPInput createDownloadCDSDSPInput() {
+        return new DownloadCDSDSPInput();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.RESULT }
+     * 
+     */
+    public SERVICEPROVIDER.RESULT createSERVICEPROVIDERRESULT() {
+        return new SERVICEPROVIDER.RESULT();
+    }
+
+    /**
      * Create an instance of {@link DownloadWholesalerInput }
      * 
      */
@@ -391,11 +774,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CDSCODE.RESULT }
+     * Create an instance of {@link DownloadCatalogInput }
      * 
      */
-    public CDSCODE.RESULT createCDSCODERESULT() {
-        return new CDSCODE.RESULT();
+    public DownloadCatalogInput createDownloadCatalogInput() {
+        return new DownloadCatalogInput();
+    }
+
+    /**
+     * Create an instance of {@link DownloadConsumerProductInput }
+     * 
+     */
+    public DownloadConsumerProductInput createDownloadConsumerProductInput() {
+        return new DownloadConsumerProductInput();
     }
 
     /**
@@ -439,14 +830,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadInsuranceInput }
-     * 
-     */
-    public DownloadInsuranceInput createDownloadInsuranceInput() {
-        return new DownloadInsuranceInput();
-    }
-
-    /**
      * Create an instance of {@link ARTICLEPROPRIETARYQUANTITY.APQ }
      * 
      */
@@ -479,11 +862,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadSubstanceInput }
+     * Create an instance of {@link CONSUMERPRODUCT.RESULT }
      * 
      */
-    public DownloadSubstanceInput createDownloadSubstanceInput() {
-        return new DownloadSubstanceInput();
+    public CONSUMERPRODUCT.RESULT createCONSUMERPRODUCTRESULT() {
+        return new CONSUMERPRODUCT.RESULT();
     }
 
     /**
@@ -519,14 +902,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CDS.RESULT }
-     * 
-     */
-    public CDS.RESULT createCDSRESULT() {
-        return new CDS.RESULT();
-    }
-
-    /**
      * Create an instance of {@link DownloadArticleWholesalerInput }
      * 
      */
@@ -535,51 +910,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadLimitationInput }
+     * Create an instance of {@link DownloadConsumerCodeInput }
      * 
      */
-    public DownloadLimitationInput createDownloadLimitationInput() {
-        return new DownloadLimitationInput();
-    }
-
-    /**
-     * Create an instance of {@link DownloadCodexInput }
-     * 
-     */
-    public DownloadCodexInput createDownloadCodexInput() {
-        return new DownloadCodexInput();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCT.RESULT }
-     * 
-     */
-    public PRODUCT.RESULT createPRODUCTRESULT() {
-        return new PRODUCT.RESULT();
-    }
-
-    /**
-     * Create an instance of {@link DownloadCompendiumInput }
-     * 
-     */
-    public DownloadCompendiumInput createDownloadCompendiumInput() {
-        return new DownloadCompendiumInput();
-    }
-
-    /**
-     * Create an instance of {@link DownloadProductSubstanceAlternativeQuantityInput }
-     * 
-     */
-    public DownloadProductSubstanceAlternativeQuantityInput createDownloadProductSubstanceAlternativeQuantityInput() {
-        return new DownloadProductSubstanceAlternativeQuantityInput();
-    }
-
-    /**
-     * Create an instance of {@link DownloadArticleInput }
-     * 
-     */
-    public DownloadArticleInput createDownloadArticleInput() {
-        return new DownloadArticleInput();
+    public DownloadConsumerCodeInput createDownloadConsumerCodeInput() {
+        return new DownloadConsumerCodeInput();
     }
 
     /**
@@ -647,91 +982,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BREVIER.BRV }
+     * Create an instance of {@link CONSUMERCODE.RESULT }
      * 
      */
-    public BREVIER.BRV createBREVIERBRV() {
-        return new BREVIER.BRV();
-    }
-
-    /**
-     * Create an instance of {@link BREVIER.RESULT }
-     * 
-     */
-    public BREVIER.RESULT createBREVIERRESULT() {
-        return new BREVIER.RESULT();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ }
-     * 
-     */
-    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ createPRODUCTSUBSTANCEALTERNATIVEQUANTITYPAQ() {
-        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY.PAQ();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT }
-     * 
-     */
-    public PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT createPRODUCTSUBSTANCEALTERNATIVEQUANTITYRESULT() {
-        return new PRODUCTSUBSTANCEALTERNATIVEQUANTITY.RESULT();
-    }
-
-    /**
-     * Create an instance of {@link DownloadCatalogResponse.DownloadCatalogResult }
-     * 
-     */
-    public DownloadCatalogResponse.DownloadCatalogResult createDownloadCatalogResponseDownloadCatalogResult() {
-        return new DownloadCatalogResponse.DownloadCatalogResult();
-    }
-
-    /**
-     * Create an instance of {@link COMPANY.CP }
-     * 
-     */
-    public COMPANY.CP createCOMPANYCP() {
-        return new COMPANY.CP();
-    }
-
-    /**
-     * Create an instance of {@link COMPANY.RESULT }
-     * 
-     */
-    public COMPANY.RESULT createCOMPANYRESULT() {
-        return new COMPANY.RESULT();
-    }
-
-    /**
-     * Create an instance of {@link DownloadCatalog }
-     * 
-     */
-    public DownloadCatalog createDownloadCatalog() {
-        return new DownloadCatalog();
-    }
-
-    /**
-     * Create an instance of {@link ARTICLEWHOLESALER.RESULT }
-     * 
-     */
-    public ARTICLEWHOLESALER.RESULT createARTICLEWHOLESALERRESULT() {
-        return new ARTICLEWHOLESALER.RESULT();
-    }
-
-    /**
-     * Create an instance of {@link KOMPENDIUMIMAGE.KI }
-     * 
-     */
-    public KOMPENDIUMIMAGE.KI createKOMPENDIUMIMAGEKI() {
-        return new KOMPENDIUMIMAGE.KI();
-    }
-
-    /**
-     * Create an instance of {@link KOMPENDIUMIMAGE.RESULT }
-     * 
-     */
-    public KOMPENDIUMIMAGE.RESULT createKOMPENDIUMIMAGERESULT() {
-        return new KOMPENDIUMIMAGE.RESULT();
+    public CONSUMERCODE.RESULT createCONSUMERCODERESULT() {
+        return new CONSUMERCODE.RESULT();
     }
 
     /**
@@ -759,14 +1014,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadServiceProviderInput }
-     * 
-     */
-    public DownloadServiceProviderInput createDownloadServiceProviderInput() {
-        return new DownloadServiceProviderInput();
-    }
-
-    /**
      * Create an instance of {@link CDSDSP.RESULT }
      * 
      */
@@ -780,6 +1027,14 @@ public class ObjectFactory {
      */
     public DownloadBrevierInput createDownloadBrevierInput() {
         return new DownloadBrevierInput();
+    }
+
+    /**
+     * Create an instance of {@link NEWS.RESULT }
+     * 
+     */
+    public NEWS.RESULT createNEWSRESULT() {
+        return new NEWS.RESULT();
     }
 
     /**
@@ -799,27 +1054,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DownloadCDSCodeInput }
+     * Create an instance of {@link DownloadConsumerFolderInput }
      * 
      */
-    public DownloadCDSCodeInput createDownloadCDSCodeInput() {
-        return new DownloadCDSCodeInput();
+    public DownloadConsumerFolderInput createDownloadConsumerFolderInput() {
+        return new DownloadConsumerFolderInput();
     }
 
     /**
-     * Create an instance of {@link DownloadCDSDSPInput }
+     * Create an instance of {@link CONSUMERFOLDER.RESULT }
      * 
      */
-    public DownloadCDSDSPInput createDownloadCDSDSPInput() {
-        return new DownloadCDSDSPInput();
-    }
-
-    /**
-     * Create an instance of {@link SERVICEPROVIDER.RESULT }
-     * 
-     */
-    public SERVICEPROVIDER.RESULT createSERVICEPROVIDERRESULT() {
-        return new SERVICEPROVIDER.RESULT();
+    public CONSUMERFOLDER.RESULT createCONSUMERFOLDERRESULT() {
+        return new CONSUMERFOLDER.RESULT();
     }
 
     /**
@@ -839,43 +1086,115 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.REFNO }
+     * Create an instance of {@link ArrayOfString }
      * 
      */
-    public SERVICEPROVIDER.SP.REFNO createSERVICEPROVIDERSPREFNO() {
-        return new SERVICEPROVIDER.SP.REFNO();
+    public ArrayOfString createArrayOfString() {
+        return new ArrayOfString();
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.NDA }
+     * Create an instance of {@link ArrayOfString1 }
      * 
      */
-    public SERVICEPROVIDER.SP.NDA createSERVICEPROVIDERSPNDA() {
-        return new SERVICEPROVIDER.SP.NDA();
+    public ArrayOfString1 createArrayOfString1() {
+        return new ArrayOfString1();
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.ROLES }
+     * Create an instance of {@link ArrayOfCDSCDSPRDCHECK.CHECK }
      * 
      */
-    public SERVICEPROVIDER.SP.ROLES createSERVICEPROVIDERSPROLES() {
-        return new SERVICEPROVIDER.SP.ROLES();
+    public ArrayOfCDSCDSPRDCHECK.CHECK createArrayOfCDSCDSPRDCHECKCHECK() {
+        return new ArrayOfCDSCDSPRDCHECK.CHECK();
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR.ADDRCOM }
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CONTENT }
      * 
      */
-    public SERVICEPROVIDER.SP.ADDR.ADDRCOM createSERVICEPROVIDERSPADDRADDRCOM() {
-        return new SERVICEPROVIDER.SP.ADDR.ADDRCOM();
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CONTENT createCONSUMERFOLDERCFOLDERLANGUAGECONTENT() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CONTENT();
     }
 
     /**
-     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR.ADDRECOM }
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.LINK }
      * 
      */
-    public SERVICEPROVIDER.SP.ADDR.ADDRECOM createSERVICEPROVIDERSPADDRADDRECOM() {
-        return new SERVICEPROVIDER.SP.ADDR.ADDRECOM();
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.LINK createCONSUMERFOLDERCFOLDERLANGUAGELINK() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.LINK();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.DSCR }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.DSCR createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCDSCR() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.DSCR();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.CHAR }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.CHAR createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCCHAR() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.CHAR();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.USAGE }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.USAGE createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCUSAGE() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.USAGE();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.INFO }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.INFO createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCINFO() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.INFO();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ADDINFO }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ADDINFO createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCADDINFO() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ADDINFO();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMPDSCR }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMPDSCR createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCCOMPDSCR() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMPDSCR();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMP }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMP createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCCOMP() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.COMP();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ALLERGEN }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ALLERGEN createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCALLERGEN() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.ALLERGEN();
+    }
+
+    /**
+     * Create an instance of {@link CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION.CONTENT }
+     * 
+     */
+    public CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION.CONTENT createCONSUMERFOLDERCFOLDERLANGUAGECFOLDERSRCNUTRITIONCONTENT() {
+        return new CONSUMERFOLDER.CFOLDER.LANGUAGE.CFOLDERSRC.NUTRITION.CONTENT();
     }
 
     /**
@@ -900,6 +1219,14 @@ public class ObjectFactory {
      */
     public COMPENDIUM.CP.PARAGRAPHS.TITLE createCOMPENDIUMCPPARAGRAPHSTITLE() {
         return new COMPENDIUM.CP.PARAGRAPHS.TITLE();
+    }
+
+    /**
+     * Create an instance of {@link NEWS.NWS.PRD }
+     * 
+     */
+    public NEWS.NWS.PRD createNEWSNWSPRD() {
+        return new NEWS.NWS.PRD();
     }
 
     /**
@@ -951,14 +1278,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ARTICLE.ART.ARTPRI }
-     * 
-     */
-    public ARTICLE.ART.ARTPRI createARTICLEARTARTPRI() {
-        return new ARTICLE.ART.ARTPRI();
-    }
-
-    /**
      * Create an instance of {@link ARTICLE.ART.ARTMIG }
      * 
      */
@@ -972,14 +1291,6 @@ public class ObjectFactory {
      */
     public ARTICLE.ART.ARTDAN createARTICLEARTARTDAN() {
         return new ARTICLE.ART.ARTDAN();
-    }
-
-    /**
-     * Create an instance of {@link ARTICLE.ART.ARTLIM }
-     * 
-     */
-    public ARTICLE.ART.ARTLIM createARTICLEARTARTLIM() {
-        return new ARTICLE.ART.ARTLIM();
     }
 
     /**
@@ -1007,14 +1318,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ARTICLE.ART.PIC }
-     * 
-     */
-    public ARTICLE.ART.PIC createARTICLEARTPIC() {
-        return new ARTICLE.ART.PIC();
-    }
-
-    /**
      * Create an instance of {@link ARTICLE.ART.SDS }
      * 
      */
@@ -1023,91 +1326,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ARTICLEWHOLESALER.AW.WHSACT }
+     * Create an instance of {@link ARTICLE.ART.ARTSL }
      * 
      */
-    public ARTICLEWHOLESALER.AW.WHSACT createARTICLEWHOLESALERAWWHSACT() {
-        return new ARTICLEWHOLESALER.AW.WHSACT();
+    public ARTICLE.ART.ARTSL createARTICLEARTARTSL() {
+        return new ARTICLE.ART.ARTSL();
     }
 
     /**
-     * Create an instance of {@link ARTICLEWHOLESALER.AW.WHSPRI }
+     * Create an instance of {@link ARTICLE.ART.ARTLIM.INDCDS }
      * 
      */
-    public ARTICLEWHOLESALER.AW.WHSPRI createARTICLEWHOLESALERAWWHSPRI() {
-        return new ARTICLEWHOLESALER.AW.WHSPRI();
+    public ARTICLE.ART.ARTLIM.INDCDS createARTICLEARTARTLIMINDCDS() {
+        return new ARTICLE.ART.ARTLIM.INDCDS();
     }
 
     /**
-     * Create an instance of {@link PRODUCT.PRD.PRDICD }
+     * Create an instance of {@link CONSUMERCODE.CCODE.LANGUAGE }
      * 
      */
-    public PRODUCT.PRD.PRDICD createPRODUCTPRDPRDICD() {
-        return new PRODUCT.PRD.PRDICD();
+    public CONSUMERCODE.CCODE.LANGUAGE createCONSUMERCODECCODELANGUAGE() {
+        return new CONSUMERCODE.CCODE.LANGUAGE();
     }
 
     /**
-     * Create an instance of {@link PRODUCT.PRD.GSASA }
+     * Create an instance of {@link CONSUMERPRODUCT.CPRODUCT.CCODE }
      * 
      */
-    public PRODUCT.PRD.GSASA createPRODUCTPRDGSASA() {
-        return new PRODUCT.PRD.GSASA();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCT.PRD.CPT.CPTCMP }
-     * 
-     */
-    public PRODUCT.PRD.CPT.CPTCMP createPRODUCTPRDCPTCPTCMP() {
-        return new PRODUCT.PRD.CPT.CPTCMP();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCT.PRD.CPT.CPTIX }
-     * 
-     */
-    public PRODUCT.PRD.CPT.CPTIX createPRODUCTPRDCPTCPTIX() {
-        return new PRODUCT.PRD.CPT.CPTIX();
-    }
-
-    /**
-     * Create an instance of {@link PRODUCT.PRD.CPT.CPTROA }
-     * 
-     */
-    public PRODUCT.PRD.CPT.CPTROA createPRODUCTPRDCPTCPTROA() {
-        return new PRODUCT.PRD.CPT.CPTROA();
-    }
-
-    /**
-     * Create an instance of {@link CDS.CDSPRD.PRDDSK.DSKDSP }
-     * 
-     */
-    public CDS.CDSPRD.PRDDSK.DSKDSP createCDSCDSPRDPRDDSKDSKDSP() {
-        return new CDS.CDSPRD.PRDDSK.DSKDSP();
-    }
-
-    /**
-     * Create an instance of {@link CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT }
-     * 
-     */
-    public CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT createCDSCDSPRDPRDDSMDSMDOSDOSUNIT() {
-        return new CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT();
-    }
-
-    /**
-     * Create an instance of {@link CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP }
-     * 
-     */
-    public CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP createCDSCDSPRDPRDDSMDSMDOSDOSDSP() {
-        return new CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP();
-    }
-
-    /**
-     * Create an instance of {@link CDS.CDSPRD.PRDCCH.CCHDSP }
-     * 
-     */
-    public CDS.CDSPRD.PRDCCH.CCHDSP createCDSCDSPRDPRDCCHCCHDSP() {
-        return new CDS.CDSPRD.PRDCCH.CCHDSP();
+    public CONSUMERPRODUCT.CPRODUCT.CCODE createCONSUMERPRODUCTCPRODUCTCCODE() {
+        return new CONSUMERPRODUCT.CPRODUCT.CCODE();
     }
 
     /**
@@ -1151,6 +1398,166 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.REFNO }
+     * 
+     */
+    public SERVICEPROVIDER.SP.REFNO createSERVICEPROVIDERSPREFNO() {
+        return new SERVICEPROVIDER.SP.REFNO();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.NDA }
+     * 
+     */
+    public SERVICEPROVIDER.SP.NDA createSERVICEPROVIDERSPNDA() {
+        return new SERVICEPROVIDER.SP.NDA();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.ROLES }
+     * 
+     */
+    public SERVICEPROVIDER.SP.ROLES createSERVICEPROVIDERSPROLES() {
+        return new SERVICEPROVIDER.SP.ROLES();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.ROLESREFDATA }
+     * 
+     */
+    public SERVICEPROVIDER.SP.ROLESREFDATA createSERVICEPROVIDERSPROLESREFDATA() {
+        return new SERVICEPROVIDER.SP.ROLESREFDATA();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR.ADDRCOM }
+     * 
+     */
+    public SERVICEPROVIDER.SP.ADDR.ADDRCOM createSERVICEPROVIDERSPADDRADDRCOM() {
+        return new SERVICEPROVIDER.SP.ADDR.ADDRCOM();
+    }
+
+    /**
+     * Create an instance of {@link SERVICEPROVIDER.SP.ADDR.ADDRECOM }
+     * 
+     */
+    public SERVICEPROVIDER.SP.ADDR.ADDRECOM createSERVICEPROVIDERSPADDRADDRECOM() {
+        return new SERVICEPROVIDER.SP.ADDR.ADDRECOM();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEWHOLESALER.AW.WHSACT }
+     * 
+     */
+    public ARTICLEWHOLESALER.AW.WHSACT createARTICLEWHOLESALERAWWHSACT() {
+        return new ARTICLEWHOLESALER.AW.WHSACT();
+    }
+
+    /**
+     * Create an instance of {@link ARTICLEWHOLESALER.AW.WHSPRI }
+     * 
+     */
+    public ARTICLEWHOLESALER.AW.WHSPRI createARTICLEWHOLESALERAWWHSPRI() {
+        return new ARTICLEWHOLESALER.AW.WHSPRI();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.PRDICD }
+     * 
+     */
+    public PRODUCT.PRD.PRDICD createPRODUCTPRDPRDICD() {
+        return new PRODUCT.PRD.PRDICD();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.GSASA }
+     * 
+     */
+    public PRODUCT.PRD.GSASA createPRODUCTPRDGSASA() {
+        return new PRODUCT.PRD.GSASA();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.DIETARYADVICE }
+     * 
+     */
+    public PRODUCT.PRD.DIETARYADVICE createPRODUCTPRDDIETARYADVICE() {
+        return new PRODUCT.PRD.DIETARYADVICE();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.CPT.CPTCMP }
+     * 
+     */
+    public PRODUCT.PRD.CPT.CPTCMP createPRODUCTPRDCPTCPTCMP() {
+        return new PRODUCT.PRD.CPT.CPTCMP();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.CPT.CPTIX }
+     * 
+     */
+    public PRODUCT.PRD.CPT.CPTIX createPRODUCTPRDCPTCPTIX() {
+        return new PRODUCT.PRD.CPT.CPTIX();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.CPT.CPTROA }
+     * 
+     */
+    public PRODUCT.PRD.CPT.CPTROA createPRODUCTPRDCPTCPTROA() {
+        return new PRODUCT.PRD.CPT.CPTROA();
+    }
+
+    /**
+     * Create an instance of {@link PRODUCT.PRD.CPT.EDQMROAS }
+     * 
+     */
+    public PRODUCT.PRD.CPT.EDQMROAS createPRODUCTPRDCPTEDQMROAS() {
+        return new PRODUCT.PRD.CPT.EDQMROAS();
+    }
+
+    /**
+     * Create an instance of {@link CDS.CDSPRD.PRDDSK.DSKDSP }
+     * 
+     */
+    public CDS.CDSPRD.PRDDSK.DSKDSP createCDSCDSPRDPRDDSKDSKDSP() {
+        return new CDS.CDSPRD.PRDDSK.DSKDSP();
+    }
+
+    /**
+     * Create an instance of {@link CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT }
+     * 
+     */
+    public CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT createCDSCDSPRDPRDDSMDSMDOSDOSUNIT() {
+        return new CDS.CDSPRD.PRDDSM.DSMDOS.DOSUNIT();
+    }
+
+    /**
+     * Create an instance of {@link CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP }
+     * 
+     */
+    public CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP createCDSCDSPRDPRDDSMDSMDOSDOSDSP() {
+        return new CDS.CDSPRD.PRDDSM.DSMDOS.DOSDSP();
+    }
+
+    /**
+     * Create an instance of {@link CDS.CDSPRD.PRDCCH.CCHDSP }
+     * 
+     */
+    public CDS.CDSPRD.PRDCCH.CCHDSP createCDSCDSPRDPRDCCHCCHDSP() {
+        return new CDS.CDSPRD.PRDCCH.CCHDSP();
+    }
+
+    /**
+     * Create an instance of {@link CDSCODE.CCH.CHECKS }
+     * 
+     */
+    public CDSCODE.CCH.CHECKS createCDSCODECCHCHECKS() {
+        return new CDSCODE.CCH.CHECKS();
+    }
+
+    /**
      * Create an instance of {@link CDSCODE.CCH.CCHCCH }
      * 
      */
@@ -1159,12 +1566,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadCDSInput }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadConsumerProductInput }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadCDSInput")
-    public JAXBElement<DownloadCDSInput> createDownloadCDSInput(DownloadCDSInput value) {
-        return new JAXBElement<DownloadCDSInput>(_DownloadCDSInput_QNAME, DownloadCDSInput.class, null, value);
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadConsumerProductInput")
+    public JAXBElement<DownloadConsumerProductInput> createDownloadConsumerProductInput(DownloadConsumerProductInput value) {
+        return new JAXBElement<DownloadConsumerProductInput>(_DownloadConsumerProductInput_QNAME, DownloadConsumerProductInput.class, null, value);
     }
 
     /**
@@ -1183,6 +1590,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadWholesalerInput")
     public JAXBElement<DownloadWholesalerInput> createDownloadWholesalerInput(DownloadWholesalerInput value) {
         return new JAXBElement<DownloadWholesalerInput>(_DownloadWholesalerInput_QNAME, DownloadWholesalerInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadCatalogInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadCatalogInput")
+    public JAXBElement<DownloadCatalogInput> createDownloadCatalogInput(DownloadCatalogInput value) {
+        return new JAXBElement<DownloadCatalogInput>(_DownloadCatalogInput_QNAME, DownloadCatalogInput.class, null, value);
     }
 
     /**
@@ -1213,21 +1629,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadCompanyInput }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadCompanyInput")
-    public JAXBElement<DownloadCompanyInput> createDownloadCompanyInput(DownloadCompanyInput value) {
-        return new JAXBElement<DownloadCompanyInput>(_DownloadCompanyInput_QNAME, DownloadCompanyInput.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DownloadInsuranceInput }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadInsuranceInput")
     public JAXBElement<DownloadInsuranceInput> createDownloadInsuranceInput(DownloadInsuranceInput value) {
         return new JAXBElement<DownloadInsuranceInput>(_DownloadInsuranceInput_QNAME, DownloadInsuranceInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadCompanyInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadCompanyInput")
+    public JAXBElement<DownloadCompanyInput> createDownloadCompanyInput(DownloadCompanyInput value) {
+        return new JAXBElement<DownloadCompanyInput>(_DownloadCompanyInput_QNAME, DownloadCompanyInput.class, null, value);
     }
 
     /**
@@ -1249,12 +1665,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadBrevierInput }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadLimitationInput }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadBrevierInput")
-    public JAXBElement<DownloadBrevierInput> createDownloadBrevierInput(DownloadBrevierInput value) {
-        return new JAXBElement<DownloadBrevierInput>(_DownloadBrevierInput_QNAME, DownloadBrevierInput.class, null, value);
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadLimitationInput")
+    public JAXBElement<DownloadLimitationInput> createDownloadLimitationInput(DownloadLimitationInput value) {
+        return new JAXBElement<DownloadLimitationInput>(_DownloadLimitationInput_QNAME, DownloadLimitationInput.class, null, value);
     }
 
     /**
@@ -1267,21 +1683,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadLimitationInput }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadNewsInput }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadLimitationInput")
-    public JAXBElement<DownloadLimitationInput> createDownloadLimitationInput(DownloadLimitationInput value) {
-        return new JAXBElement<DownloadLimitationInput>(_DownloadLimitationInput_QNAME, DownloadLimitationInput.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadServiceProviderInput }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadServiceProviderInput")
-    public JAXBElement<DownloadServiceProviderInput> createDownloadServiceProviderInput(DownloadServiceProviderInput value) {
-        return new JAXBElement<DownloadServiceProviderInput>(_DownloadServiceProviderInput_QNAME, DownloadServiceProviderInput.class, null, value);
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadNewsInput")
+    public JAXBElement<DownloadNewsInput> createDownloadNewsInput(DownloadNewsInput value) {
+        return new JAXBElement<DownloadNewsInput>(_DownloadNewsInput_QNAME, DownloadNewsInput.class, null, value);
     }
 
     /**
@@ -1327,6 +1734,69 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadProduct_Substance_Alternative_QuantityInput")
     public JAXBElement<DownloadProductSubstanceAlternativeQuantityInput> createDownloadProductSubstanceAlternativeQuantityInput(DownloadProductSubstanceAlternativeQuantityInput value) {
         return new JAXBElement<DownloadProductSubstanceAlternativeQuantityInput>(_DownloadProductSubstanceAlternativeQuantityInput_QNAME, DownloadProductSubstanceAlternativeQuantityInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadConsumerCodeInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadConsumerCodeInput")
+    public JAXBElement<DownloadConsumerCodeInput> createDownloadConsumerCodeInput(DownloadConsumerCodeInput value) {
+        return new JAXBElement<DownloadConsumerCodeInput>(_DownloadConsumerCodeInput_QNAME, DownloadConsumerCodeInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadCDSInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadCDSInput")
+    public JAXBElement<DownloadCDSInput> createDownloadCDSInput(DownloadCDSInput value) {
+        return new JAXBElement<DownloadCDSInput>(_DownloadCDSInput_QNAME, DownloadCDSInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadArticlePriceInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadArticle_PriceInput")
+    public JAXBElement<DownloadArticlePriceInput> createDownloadArticlePriceInput(DownloadArticlePriceInput value) {
+        return new JAXBElement<DownloadArticlePriceInput>(_DownloadArticlePriceInput_QNAME, DownloadArticlePriceInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadBrevierInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadBrevierInput")
+    public JAXBElement<DownloadBrevierInput> createDownloadBrevierInput(DownloadBrevierInput value) {
+        return new JAXBElement<DownloadBrevierInput>(_DownloadBrevierInput_QNAME, DownloadBrevierInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadServiceProviderInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadServiceProviderInput")
+    public JAXBElement<DownloadServiceProviderInput> createDownloadServiceProviderInput(DownloadServiceProviderInput value) {
+        return new JAXBElement<DownloadServiceProviderInput>(_DownloadServiceProviderInput_QNAME, DownloadServiceProviderInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadArticleImageInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadArticle_ImageInput")
+    public JAXBElement<DownloadArticleImageInput> createDownloadArticleImageInput(DownloadArticleImageInput value) {
+        return new JAXBElement<DownloadArticleImageInput>(_DownloadArticleImageInput_QNAME, DownloadArticleImageInput.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DownloadConsumerFolderInput }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.hcisolutions.ch/index", name = "DownloadConsumerFolderInput")
+    public JAXBElement<DownloadConsumerFolderInput> createDownloadConsumerFolderInput(DownloadConsumerFolderInput value) {
+        return new JAXBElement<DownloadConsumerFolderInput>(_DownloadConsumerFolderInput_QNAME, DownloadConsumerFolderInput.class, null, value);
     }
 
     /**

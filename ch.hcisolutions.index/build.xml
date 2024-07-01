@@ -1,7 +1,7 @@
 <!-- Build the Web service client for Article and Product using JAX-WS -->
 <project default="wsimport">
 	<target name="wsimport">
-		<exec executable="/usr/bin/wsimport">
+		<exec executable="wsimport">
 			<arg line="-keep -extension -d src-gen -p ch.hcisolutions.index -extension ./rsc/hcisolutions_index_download.wsdl" />
 		</exec>
 	</target>

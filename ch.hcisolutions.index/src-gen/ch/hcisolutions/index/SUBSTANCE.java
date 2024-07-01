@@ -36,6 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                   &lt;element name="NAML" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="ABDANO" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *                   &lt;element name="CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="SCTID" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" minOccurs="0"/>
  *                   &lt;element name="MMASS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="FORMULA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
@@ -70,6 +71,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="CREATION_DATETIME" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="PROD_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *       &lt;attribute name="VALID_DATE" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="RELEASE" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -98,6 +100,8 @@ public class SUBSTANCE {
     @XmlAttribute(name = "VALID_DATE", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar validdate;
+    @XmlAttribute(name = "RELEASE")
+    protected String release;
 
     /**
      * Gets the value of the sb property.
@@ -222,6 +226,30 @@ public class SUBSTANCE {
      */
     public void setVALIDDATE(XMLGregorianCalendar value) {
         this.validdate = value;
+    }
+
+    /**
+     * Ruft den Wert der release-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRELEASE() {
+        return release;
+    }
+
+    /**
+     * Legt den Wert der release-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRELEASE(String value) {
+        this.release = value;
     }
 
 
@@ -388,6 +416,7 @@ public class SUBSTANCE {
      *         &lt;element name="NAML" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="ABDANO" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
      *         &lt;element name="CAS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="SCTID" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" minOccurs="0"/>
      *         &lt;element name="MMASS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="FORMULA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
@@ -409,6 +438,7 @@ public class SUBSTANCE {
         "naml",
         "abdano",
         "cas",
+        "sctid",
         "mmass",
         "formula",
         "del"
@@ -429,6 +459,9 @@ public class SUBSTANCE {
         protected Integer abdano;
         @XmlElement(name = "CAS")
         protected String cas;
+        @XmlElement(name = "SCTID")
+        @XmlSchemaType(name = "unsignedLong")
+        protected BigInteger sctid;
         @XmlElement(name = "MMASS")
         protected String mmass;
         @XmlElement(name = "FORMULA")
@@ -605,6 +638,30 @@ public class SUBSTANCE {
          */
         public void setCAS(String value) {
             this.cas = value;
+        }
+
+        /**
+         * Ruft den Wert der sctid-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *     
+         */
+        public BigInteger getSCTID() {
+            return sctid;
+        }
+
+        /**
+         * Legt den Wert der sctid-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *     
+         */
+        public void setSCTID(BigInteger value) {
+            this.sctid = value;
         }
 
         /**

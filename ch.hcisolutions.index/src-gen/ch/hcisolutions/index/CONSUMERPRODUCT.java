@@ -23,15 +23,25 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="KI" maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element name="CPRODUCT" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                   &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *                   &lt;element name="FOLDERID" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *                   &lt;element name="CCODE" maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                             &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                   &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -74,16 +84,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ki",
+    "cproduct",
     "result"
 })
-@XmlRootElement(name = "KOMPENDIUM_IMAGE")
-public class KOMPENDIUMIMAGE {
+@XmlRootElement(name = "CONSUMERPRODUCT")
+public class CONSUMERPRODUCT {
 
-    @XmlElement(name = "KI")
-    protected List<KOMPENDIUMIMAGE.KI> ki;
+    @XmlElement(name = "CPRODUCT")
+    protected List<CONSUMERPRODUCT.CPRODUCT> cproduct;
     @XmlElement(name = "RESULT")
-    protected KOMPENDIUMIMAGE.RESULT result;
+    protected CONSUMERPRODUCT.RESULT result;
     @XmlAttribute(name = "CREATION_DATETIME", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar creationdatetime;
@@ -97,32 +107,32 @@ public class KOMPENDIUMIMAGE {
     protected String release;
 
     /**
-     * Gets the value of the ki property.
+     * Gets the value of the cproduct property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ki property.
+     * This is why there is not a <CODE>set</CODE> method for the cproduct property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getKI().add(newItem);
+     *    getCPRODUCT().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link KOMPENDIUMIMAGE.KI }
+     * {@link CONSUMERPRODUCT.CPRODUCT }
      * 
      * 
      */
-    public List<KOMPENDIUMIMAGE.KI> getKI() {
-        if (ki == null) {
-            ki = new ArrayList<KOMPENDIUMIMAGE.KI>();
+    public List<CONSUMERPRODUCT.CPRODUCT> getCPRODUCT() {
+        if (cproduct == null) {
+            cproduct = new ArrayList<CONSUMERPRODUCT.CPRODUCT>();
         }
-        return this.ki;
+        return this.cproduct;
     }
 
     /**
@@ -130,10 +140,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @return
      *     possible object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CONSUMERPRODUCT.RESULT }
      *     
      */
-    public KOMPENDIUMIMAGE.RESULT getRESULT() {
+    public CONSUMERPRODUCT.RESULT getRESULT() {
         return result;
     }
 
@@ -142,10 +152,10 @@ public class KOMPENDIUMIMAGE {
      * 
      * @param value
      *     allowed object is
-     *     {@link KOMPENDIUMIMAGE.RESULT }
+     *     {@link CONSUMERPRODUCT.RESULT }
      *     
      */
-    public void setRESULT(KOMPENDIUMIMAGE.RESULT value) {
+    public void setRESULT(CONSUMERPRODUCT.RESULT value) {
         this.result = value;
     }
 
@@ -256,10 +266,20 @@ public class KOMPENDIUMIMAGE {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="IMAGENAME" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGETYPE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGEURL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="IMAGECDATA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="PRDNO" type="{http://www.w3.org/2001/XMLSchema}int"/>
+     *         &lt;element name="FOLDERID" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+     *         &lt;element name="CCODE" maxOccurs="unbounded" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                   &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *         &lt;element name="DEL" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
      *       &lt;/sequence>
      *       &lt;attribute name="DT" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
@@ -272,22 +292,19 @@ public class KOMPENDIUMIMAGE {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "imagename",
-        "imagetype",
-        "imageurl",
-        "imagecdata",
+        "prdno",
+        "folderid",
+        "ccode",
         "del"
     })
-    public static class KI {
+    public static class CPRODUCT {
 
-        @XmlElement(name = "IMAGENAME")
-        protected String imagename;
-        @XmlElement(name = "IMAGETYPE")
-        protected String imagetype;
-        @XmlElement(name = "IMAGEURL")
-        protected String imageurl;
-        @XmlElement(name = "IMAGECDATA")
-        protected String imagecdata;
+        @XmlElement(name = "PRDNO")
+        protected int prdno;
+        @XmlElement(name = "FOLDERID")
+        protected Integer folderid;
+        @XmlElement(name = "CCODE")
+        protected List<CONSUMERPRODUCT.CPRODUCT.CCODE> ccode;
         @XmlElement(name = "DEL")
         protected boolean del;
         @XmlAttribute(name = "DT", required = true)
@@ -295,99 +312,72 @@ public class KOMPENDIUMIMAGE {
         protected XMLGregorianCalendar dt;
 
         /**
-         * Ruft den Wert der imagename-Eigenschaft ab.
+         * Ruft den Wert der prdno-Eigenschaft ab.
+         * 
+         */
+        public int getPRDNO() {
+            return prdno;
+        }
+
+        /**
+         * Legt den Wert der prdno-Eigenschaft fest.
+         * 
+         */
+        public void setPRDNO(int value) {
+            this.prdno = value;
+        }
+
+        /**
+         * Ruft den Wert der folderid-Eigenschaft ab.
          * 
          * @return
          *     possible object is
-         *     {@link String }
+         *     {@link Integer }
          *     
          */
-        public String getIMAGENAME() {
-            return imagename;
+        public Integer getFOLDERID() {
+            return folderid;
         }
 
         /**
-         * Legt den Wert der imagename-Eigenschaft fest.
+         * Legt den Wert der folderid-Eigenschaft fest.
          * 
          * @param value
          *     allowed object is
-         *     {@link String }
+         *     {@link Integer }
          *     
          */
-        public void setIMAGENAME(String value) {
-            this.imagename = value;
+        public void setFOLDERID(Integer value) {
+            this.folderid = value;
         }
 
         /**
-         * Ruft den Wert der imagetype-Eigenschaft ab.
+         * Gets the value of the ccode property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGETYPE() {
-            return imagetype;
-        }
-
-        /**
-         * Legt den Wert der imagetype-Eigenschaft fest.
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the ccode property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGETYPE(String value) {
-            this.imagetype = value;
-        }
-
-        /**
-         * Ruft den Wert der imageurl-Eigenschaft ab.
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getCCODE().add(newItem);
+         * </pre>
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGEURL() {
-            return imageurl;
-        }
-
-        /**
-         * Legt den Wert der imageurl-Eigenschaft fest.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIMAGEURL(String value) {
-            this.imageurl = value;
-        }
-
-        /**
-         * Ruft den Wert der imagecdata-Eigenschaft ab.
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link CONSUMERPRODUCT.CPRODUCT.CCODE }
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIMAGECDATA() {
-            return imagecdata;
-        }
-
-        /**
-         * Legt den Wert der imagecdata-Eigenschaft fest.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
          */
-        public void setIMAGECDATA(String value) {
-            this.imagecdata = value;
+        public List<CONSUMERPRODUCT.CPRODUCT.CCODE> getCCODE() {
+            if (ccode == null) {
+                ccode = new ArrayList<CONSUMERPRODUCT.CPRODUCT.CCODE>();
+            }
+            return this.ccode;
         }
 
         /**
@@ -428,6 +418,89 @@ public class KOMPENDIUMIMAGE {
          */
         public void setDT(XMLGregorianCalendar value) {
             this.dt = value;
+        }
+
+
+        /**
+         * <p>Java-Klasse für anonymous complex type.
+         * 
+         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;element name="CDTYP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *         &lt;element name="CDVAL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "cdtyp",
+            "cdval"
+        })
+        public static class CCODE {
+
+            @XmlElement(name = "CDTYP")
+            protected String cdtyp;
+            @XmlElement(name = "CDVAL")
+            protected String cdval;
+
+            /**
+             * Ruft den Wert der cdtyp-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCDTYP() {
+                return cdtyp;
+            }
+
+            /**
+             * Legt den Wert der cdtyp-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCDTYP(String value) {
+                this.cdtyp = value;
+            }
+
+            /**
+             * Ruft den Wert der cdval-Eigenschaft ab.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getCDVAL() {
+                return cdval;
+            }
+
+            /**
+             * Legt den Wert der cdval-Eigenschaft fest.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setCDVAL(String value) {
+                this.cdval = value;
+            }
+
         }
 
     }
