@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import info.artikelstamm.model.v5.DATASOURCEType;
+import info.artikelstamm.model.v6.DATASOURCEType;
 
 public class Mapping {
 	

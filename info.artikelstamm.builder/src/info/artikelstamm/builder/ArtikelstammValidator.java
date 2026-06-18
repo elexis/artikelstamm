@@ -9,10 +9,10 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
-import info.artikelstamm.model.v5.ARTIKELSTAMM;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT;
+import info.artikelstamm.model.v6.ARTIKELSTAMM;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS.LIMITATION;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS.PRODUCT;
 
 
 public class ArtikelstammValidator {

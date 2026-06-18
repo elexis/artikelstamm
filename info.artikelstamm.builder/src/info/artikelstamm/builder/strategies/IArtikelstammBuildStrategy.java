@@ -10,11 +10,11 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.model.v5.ARTIKELSTAMM;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS;
-import info.artikelstamm.model.v5.DATASOURCEType;
+import info.artikelstamm.model.v6.ARTIKELSTAMM;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS;
+import info.artikelstamm.model.v6.DATASOURCEType;
 
 public interface IArtikelstammBuildStrategy {
 	

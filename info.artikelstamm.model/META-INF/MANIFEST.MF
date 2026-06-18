@@ -4,7 +4,7 @@ Bundle-Name: Artikelstamm Model
 Bundle-SymbolicName: info.artikelstamm.model
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: info.artikelstamm
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: info.artikelstamm.model.v2,
  info.artikelstamm.model.v3,
  info.artikelstamm.model.v4,

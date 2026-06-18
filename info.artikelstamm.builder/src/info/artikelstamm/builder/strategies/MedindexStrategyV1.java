@@ -24,11 +24,11 @@ import ch.hcisolutions.index.MedindexHelper;
 import ch.hcisolutions.index.PRODUCT;
 import ch.hcisolutions.index.PRODUCT.PRD;
 import info.artikelstamm.builder.mapping.Mapping;
-import info.artikelstamm.model.v5.ARTIKELSTAMM;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.ITEMS.ITEM;
-import info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS;
-import info.artikelstamm.model.v5.DATASOURCEType;
-import info.artikelstamm.model.v5.SALECDType;
+import info.artikelstamm.model.v6.ARTIKELSTAMM;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM;
+import info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS;
+import info.artikelstamm.model.v6.DATASOURCEType;
+import info.artikelstamm.model.v6.SALECDType;
 
 public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	
@@ -102,8 +102,8 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 					continue;
 				}
 				
-				info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION limitation =
-					new info.artikelstamm.model.v5.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
+				info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS.LIMITATION limitation =
+					new info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
 				limitation.setDSCR(lim2.getDSCRD());
 				limitation.setDSCRF(lim2.getDSCRF());
 				limitation.setLIMNAMEBAG(lim2.getLIMCD());
@@ -126,7 +126,7 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 		
 		// Clean skipped limitation references;
 		PRODUCTS products = artikelstamm.getPRODUCTS();
-		for (info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT prod : products
+		for (info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS.PRODUCT prod : products
 			.getPRODUCT()) {
 			String limnamebag = prod.getLIMNAMEBAG();
 			if (limnamebag != null) {
@@ -147,8 +147,8 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 	}
 	
 	private void addProduct(ARTIKELSTAMM artikelstamm, PRD prd){
-		info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT product =
-			new info.artikelstamm.model.v5.ARTIKELSTAMM.PRODUCTS.PRODUCT();
+		info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS.PRODUCT product =
+			new info.artikelstamm.model.v6.ARTIKELSTAMM.PRODUCTS.PRODUCT();
 		product.setDSCR(prd.getDSCRD());
 		product.setDSCRF(prd.getDSCRF());
 		product.setATC(prd.getATC());
@@ -285,14 +285,37 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 			// DEDUCTIBLE
 			// Co-Payment information
 			// https://index.hcisolutions.ch/DataDoc/element/ARTICLE/ART/SLOPLUS
-			if (a.getARTSL() != null && a.getARTSL().getSLOPLUS() != null) {
-				// 1: 20 %
-				// 2: 10 %
-				int value = a.getARTSL().getSLOPLUS().intValue();
-				if (value == 1) {
-					item.setDEDUCTIBLE(20);
-				} else if (value == 2) {
-					item.setDEDUCTIBLE(10);
+			if (a.getARTSL() != null) {
+				if(a.getARTSL().getSLOPLUS() != null) {
+					// 1: 20 %
+					// 2: 10 %
+					int value = a.getARTSL().getSLOPLUS().intValue();
+					if (value == 1) {
+						item.setDEDUCTIBLE(20);
+					} else if (value == 2) {
+						item.setDEDUCTIBLE(10);
+					}					
+				}
+				if(a.getARTSL().isPM() != null && a.getARTSL().isPM()) {
+					if(item.getARTSL() == null) {
+						item.setARTSL(new info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM.ARTSL());
+						item.getARTSL().setARTLIMS(new info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM.ARTSL.ARTLIMS());
+					}
+					item.getARTSL().setPM(true);
+					if(a.getARTLIM() != null && !a.getARTLIM().isEmpty()) {
+						for (ARTLIM artlim : a.getARTLIM()) {
+							if(artlim.getINDCDS() != null && !artlim.getINDCDS().isEmpty()) {
+								info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM.ARTSL.ARTLIMS.ARTLIM artlimWithIndication = new info.artikelstamm.model.v6.ARTIKELSTAMM.ITEMS.ITEM.ARTSL.ARTLIMS.ARTLIM();
+								artlimWithIndication.setLIMCD(artlim.getLIMCD());
+								usedLimitations.add(artlim.getLIMCD());
+								artlimWithIndication.setINDCD(artlim.getINDCDS().get(0).getINDCD());
+								artlimWithIndication.setVDAT(artlim.getVDAT());
+								artlimWithIndication.setVTDAT(artlim.getVTDAT());
+								
+								item.getARTSL().getARTLIMS().getARTLIM().add(artlimWithIndication);
+							}
+						}
+					}
 				}
 			}
 			// NARCOTIC
