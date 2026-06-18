@@ -3,7 +3,7 @@ build:
   tags:
   - docker-host
   script:
-  - ./download-build-artikelstamm.sh
+  - ./download-build-artikelstammv6.sh
   artifacts:
     paths:
       - medindex/artikelstamm_*.gz
