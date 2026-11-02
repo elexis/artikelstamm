@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.hcisolutions.index.ARTICLE;
 import ch.hcisolutions.index.ARTICLE.ART;
 import ch.hcisolutions.index.ARTICLE.ART.ARTINS;
@@ -104,9 +106,9 @@ public class MedindexStrategyV1 implements IArtikelstammBuildStrategy {
 				
 				info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS.LIMITATION limitation =
 					new info.artikelstamm.model.v6.ARTIKELSTAMM.LIMITATIONS.LIMITATION();
-				limitation.setDSCR(lim2.getDSCRD());
-				limitation.setDSCRF(lim2.getDSCRF());
-				limitation.setLIMNAMEBAG(lim2.getLIMCD());
+				limitation.setDSCR(StringUtils.defaultString(lim2.getDSCRD()));
+				limitation.setDSCRF(StringUtils.defaultString(lim2.getDSCRF()));
+				limitation.setLIMNAMEBAG(StringUtils.defaultString(lim2.getLIMCD()));
 				if ("PTS".equals(lim2.getLIMTYP())) {
 					if (lim2.getLIMVAL() != null) {
 						limitation.setLIMITATIONPTS(lim2.getLIMVAL().intValue());
