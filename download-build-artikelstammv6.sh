@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 rm -f MedIndexDownload.jar ArtikelstammBuilderv6.jar Elexis_Artikelstamm_v6.xsd
 rm -Rf medindex/
-wget https://github.com/elexis/artikelstamm/releases/download/0.3/MedIndexDownload.jar
-wget https://github.com/elexis/artikelstamm/releases/download/0.3/ArtikelstammBuilderv6.jar
-wget https://github.com/elexis/artikelstamm/releases/download/0.3/Elexis_Artikelstamm_v6.xsd
+wget https://github.com/elexis/artikelstamm/releases/download/0.4/MedIndexDownload.jar
+wget https://github.com/elexis/artikelstamm/releases/download/0.4/ArtikelstammBuilderv6.jar
+wget https://github.com/elexis/artikelstamm/releases/download/0.4/Elexis_Artikelstamm_v6.xsd
 
 docker run --rm -v "$(pwd)":/prog -w /prog adoptopenjdk/openjdk8:alpine java -XX:MaxRAMPercentage=75.0 -jar MedIndexDownload.jar ${HCI_USERNAME} ${HCI_PASSWORD}
 
